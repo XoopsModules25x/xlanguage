@@ -27,7 +27,7 @@ defined('XOOPS_ROOT_PATH') or die('Restricted access');
  */
 class XlanguageCorePreload extends XoopsPreloadItem
 {
-	function eventCoreIncludeCommonLanguage($args)
+    function eventCoreIncludeCommonLanguage($args)
     {
          if (XlanguageCorePreload::isActive()) {
             global $xoopsConfig;
@@ -35,12 +35,11 @@ class XlanguageCorePreload extends XoopsPreloadItem
          }
     }
 
-
-	function isActive()
+    function isActive()
     {
         $module_handler =& xoops_getHandler('module');
         $module = $module_handler->getByDirname('xlanguage');
+
         return ($module && $module->getVar('isactive')) ? true : false;
     }
 }
-?>

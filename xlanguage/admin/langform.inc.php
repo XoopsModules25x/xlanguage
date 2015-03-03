@@ -32,11 +32,11 @@ include XOOPS_ROOT_PATH."/class/xoopsformloader.php";
 $sform = new XoopsThemeForm(_AM_XLANG_EDITLANG, "langform", xoops_getenv('PHP_SELF'));
 
 if($isBase){
-	$lang_select = new XoopsFormSelect(_AM_XLANG_NAME, 'lang_name', $lang_name);
-	$lang_select->addOptionArray($xlanguage_handler->getXoopsLangList());
-	$sform->addElement($lang_select, true);
+    $lang_select = new XoopsFormSelect(_AM_XLANG_NAME, 'lang_name', $lang_name);
+    $lang_select->addOptionArray($xlanguage_handler->getXoopsLangList());
+    $sform->addElement($lang_select, true);
 }else{
-	$sform->addElement(new XoopsFormText(_AM_XLANG_NAME, 'lang_name', 50, 255, $lang_name), true);
+    $sform->addElement(new XoopsFormText(_AM_XLANG_NAME, 'lang_name', 50, 255, $lang_name), true);
 }
 
 $sform->addElement(new XoopsFormText(_AM_XLANG_DESC, 'lang_desc', 50, 255, $lang_desc));
@@ -46,23 +46,21 @@ $lang_code = new XoopsFormText(_AM_XLANG_CODE, 'lang_code', 50, 255, $lang_code)
 $lang_code->setDescription(_AM_XLANG_CODE_DESC);
 $sform->addElement($lang_code, true);
 
-
 //$sform->addElement(new XoopsFormText(_AM_XLANG_CHARSET, 'lang_charset', 50, 255, $lang_charset), true);
 $lang_charset = new XoopsFormText(_AM_XLANG_CHARSET, 'lang_charset', 50, 255, $lang_charset);
 $lang_charset->setDescription(_AM_XLANG_CHARSET_DESC);
 $sform->addElement($lang_charset, true);
 
-
 if(!$isBase){
-	$baseList =& $xlanguage_handler->getAll();
-	$base_list = array();
-	foreach($baseList as $base => $baselang){
-		$base_list[$base] = $base;
-	}
-	
-	$base_select = new XoopsFormSelect(_AM_XLANG_BASE, 'lang_base', $lang_base);
-	$base_select->addOptionArray($base_list);
-	$sform->addElement($base_select, true);
+    $baseList =& $xlanguage_handler->getAll();
+    $base_list = array();
+    foreach($baseList as $base => $baselang){
+        $base_list[$base] = $base;
+    }
+    
+    $base_select = new XoopsFormSelect(_AM_XLANG_BASE, 'lang_base', $lang_base);
+    $base_select->addOptionArray($base_list);
+    $sform->addElement($base_select, true);
 }
 $sform->addElement(new XoopsFormText(_AM_XLANG_WEIGHT, 'weight', 10, 10, $weight));
 

@@ -1,4 +1,4 @@
-<?php 
+<?php
 // $Id: about2.php 8203 2011-11-07 03:55:46Z beckmi $
 //  ------------------------------------------------------------------------ //
 //         Xlanguage: eXtensible Language Management For Xoops               //
@@ -44,14 +44,14 @@ echo "<div>" . _MI_XLANG_RELEASE . ": " . $versioninfo -> getInfo('releasedate')
 // Author Information
 $sform = new XoopsThemeForm(_MI_XLANG_AUTHOR_INFO, "", "");
 if  ( $versioninfo->getInfo('author_realname'))
-	$author_name = $versioninfo->getInfo('author') . " (" . $versioninfo->getInfo('author_realname') . ")";
+    $author_name = $versioninfo->getInfo('author') . " (" . $versioninfo->getInfo('author_realname') . ")";
 else
-	$author_name = $versioninfo->getInfo('author');
+    $author_name = $versioninfo->getInfo('author');
 $sform -> addElement(new XoopsFormLabel(_MI_XLANG_AUTHOR_NAME, $author_name));
 $author_sites = $versioninfo -> getInfo('author_website');
 $author_site_info = "";
 foreach($author_sites as $site){
-	$author_site_info .= "<a href='" . $site['url'] . "' target='blank'>" . $site['name'] . "</a>; ";
+    $author_site_info .= "<a href='" . $site['url'] . "' target='blank'>" . $site['name'] . "</a>; ";
 }
 $sform -> addElement(new XoopsFormLabel(_MI_XLANG_AUTHOR_WEBSITE, $author_site_info));
 $sform -> addElement(new XoopsFormLabel(_MI_XLANG_AUTHOR_EMAIL, "<a href='mailto:" . $versioninfo -> getInfo('author_email') . "'>" . $versioninfo -> getInfo('author_email') . "</a>"));
@@ -71,14 +71,13 @@ if (@file_exists($file))
     $fp = @fopen($file, "r");
     $bugtext = @fread($fp, filesize($file));
     @fclose($file);
-	$sform = new XoopsThemeForm(_MI_XLANG_AUTHOR_BUGFIXES, "", "");
-	ob_start();
-	echo "<div class='even' align='left'>".$myts->displayTarea($bugtext)."</div>";
-	$sform -> addElement(new XoopsFormLabel('', ob_get_contents(), 0));
-	ob_end_clean();
-	$sform -> display();
-	unset($file);
-} 
+    $sform = new XoopsThemeForm(_MI_XLANG_AUTHOR_BUGFIXES, "", "");
+    ob_start();
+    echo "<div class='even' align='left'>".$myts->displayTarea($bugtext)."</div>";
+    $sform -> addElement(new XoopsFormLabel('', ob_get_contents(), 0));
+    ob_end_clean();
+    $sform -> display();
+    unset($file);
+}
 
 xoops_cp_footer();
-?>
