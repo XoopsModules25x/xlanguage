@@ -64,7 +64,7 @@ if(!defined('XLANGUAGE_TAGS_RESERVED')) define('XLANGUAGE_TAGS_RESERVED', "</hea
  * first.
  */
 $available_languages = array(
-	'ar' => array('ar([-_][[:alpha:]]{2})?|arabic', 'arabic'),
+    'ar' => array('ar([-_][[:alpha:]]{2})?|arabic', 'arabic'),
     'bg' => array('bg|bulgarian', 'bulgarian'),
     'ca' => array('ca|catalan', 'catalan'),
     'cs' => array('cs|czech', 'czech'),
@@ -104,4 +104,3 @@ $available_languages = array(
     'zh-tw' => array('zh[-_]tw|chinese traditional', 'tchinese'),
     'zh-cn' => array('zh[-_]cn|chinese simplified', 'schinese'),
     );
-?>

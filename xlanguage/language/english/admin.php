@@ -1,4 +1,4 @@
-<?php 
+<?php
 // $Id: admin.php 10066 2012-08-13 09:22:47Z beckmi $
 //  ------------------------------------------------------------------------ //
 //         Xlanguage: eXtensible Language Management For Xoops               //

@@ -36,43 +36,43 @@ $cookie_var = XLANGUAGE_LANG_TAG;
 
 $xlanguage["action"] = false;
 if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
-	$cookie_path = "/";
-	setcookie($cookie_var, $_GET[XLANGUAGE_LANG_TAG], time()+3600*24*30, $cookie_path, '', 0);
-	$xlanguage["lang"] = $_GET[XLANGUAGE_LANG_TAG];
+    $cookie_path = "/";
+    setcookie($cookie_var, $_GET[XLANGUAGE_LANG_TAG], time()+3600*24*30, $cookie_path, '', 0);
+    $xlanguage["lang"] = $_GET[XLANGUAGE_LANG_TAG];
 }elseif (!empty($_COOKIE[$cookie_var])) {
-	$xlanguage["lang"] = $_COOKIE[$cookie_var];
-	/* FIXME: shall we remove it? */
-	/*
-	if(preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])){
-	}elseif (strpos($_SERVER['REQUEST_URI'], "?")) {
-	    $_SERVER['REQUEST_URI'] .= "&".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
+    $xlanguage["lang"] = $_COOKIE[$cookie_var];
+    /* FIXME: shall we remove it? */
+    /*
+    if(preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])){
+    }elseif (strpos($_SERVER['REQUEST_URI'], "?")) {
+        $_SERVER['REQUEST_URI'] .= "&".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
     }else{
-	    $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
+        $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
     }
     */
-}elseif($lang = xlanguage_detectLang())	{
-	$xlanguage["lang"] = $lang;
+}elseif($lang = xlanguage_detectLang())    {
+    $xlanguage["lang"] = $lang;
 }else{
-	$xlanguage["lang"] = $xoopsConfig['language'];
+    $xlanguage["lang"] = $xoopsConfig['language'];
 }
 
 $xlanguage_handler=& xoops_getmodulehandler('language', 'xlanguage');
 $xlanguage_handler->loadConfig();
 $lang = $xlanguage_handler->getByName($xlanguage["lang"]);
 if(is_object($lang) && strcasecmp($lang->getVar('lang_name'),$xoopsConfig['language'])){
-	if($lang->isBase()){
-		$xoopsConfig['language'] = $lang->getVar('lang_name');
-	}else{
-		$lang_base = $xlanguage_handler->getByName($lang->getVar('lang_base'));
-		if(is_object($lang_base)){
-			$xlanguage['charset_base'] = $lang_base->getVar('lang_charset');
-			$xlanguage["action"] = true;
-			$xoopsConfig['language'] = $lang_base->getVar('lang_name');
-			unset($lang_base);
-		}
-	}
-	if($lang->getVar('lang_charset')) $xlanguage['charset'] = $lang->getVar('lang_charset');
-	if($lang->getVar('lang_code')) $xlanguage['code'] = $lang->getVar('lang_code');
+    if($lang->isBase()){
+        $xoopsConfig['language'] = $lang->getVar('lang_name');
+    }else{
+        $lang_base = $xlanguage_handler->getByName($lang->getVar('lang_base'));
+        if(is_object($lang_base)){
+            $xlanguage['charset_base'] = $lang_base->getVar('lang_charset');
+            $xlanguage["action"] = true;
+            $xoopsConfig['language'] = $lang_base->getVar('lang_name');
+            unset($lang_base);
+        }
+    }
+    if($lang->getVar('lang_charset')) $xlanguage['charset'] = $lang->getVar('lang_charset');
+    if($lang->getVar('lang_code')) $xlanguage['code'] = $lang->getVar('lang_code');
 }
 unset($lang);
 
@@ -84,22 +84,21 @@ if($xlanguage["action"]){
         $in_charset = $xlanguage["charset"];
         $out_charset = $xlanguage["charset_base"];
 
-		//$CONV_REQUEST_array=array("_GET", "_POST");
-		$CONV_REQUEST_array=array("_POST");
-	    foreach ($CONV_REQUEST_array as $HV){
-		    if(!empty(${$HV})) {
-				${$HV} = xlanguage_convert_encoding(${$HV}, $out_charset, $in_charset);
-		    }
-			$GLOBALS["HTTP".$HV."_VARS"] = ${$HV};
-		}
-	}
-	ob_start("xlanguage_encoding");
+        //$CONV_REQUEST_array=array("_GET", "_POST");
+        $CONV_REQUEST_array=array("_POST");
+        foreach ($CONV_REQUEST_array as $HV){
+            if(!empty(${$HV})) {
+                ${$HV} = xlanguage_convert_encoding(${$HV}, $out_charset, $in_charset);
+            }
+            $GLOBALS["HTTP".$HV."_VARS"] = ${$HV};
+        }
+    }
+    ob_start("xlanguage_encoding");
 }else{
-	ob_start("xlanguage_ml");
+    ob_start("xlanguage_ml");
 }
 
-
-/* 
+/*
  * hardcoded scripts for language switching in theme html files
  *
  * To use it:
@@ -107,9 +106,8 @@ if($xlanguage["action"]){
  * 2 config options "$options = array("images", " ", 5); // display mode, delimitor, number per line"; Options for display mode: image - flag; text - text; dropdown - dropdown selection box with text
  * 3 insert "<{$smarty.const.XLANGUAGE_SWITCH_CODE}>" into your theme html anywhere you would like to see it present
  */
-$xlanguage_theme_enable = true; 
+$xlanguage_theme_enable = true;
 if(!empty($xlanguage_theme_enable)){
-	$options = array("dropdown", " ", 5); // display mode, delimitor, number per line
-	xlanguage_select_show($options);
-} 
-?>
+    $options = array("dropdown", " ", 5); // display mode, delimitor, number per line
+    xlanguage_select_show($options);
+}
