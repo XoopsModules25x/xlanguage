@@ -1,5 +1,5 @@
 <?php
-// $Id: vars.php 8203 2011-11-07 03:55:46Z beckmi $
+// $Id: vars.php 12334 2014-02-27 08:02:54Z beckmi $
 //  ------------------------------------------------------------------------ //
 //         Xlanguage: eXtensible Language Management For Xoops               //
 //             Copyright (c) 2004 Xoops China Community                      //
@@ -27,10 +27,18 @@
 // Author: D.J.(phppp) php_pp@hotmail.com                                    //
 // URL: http://www.xoops.org.cn                                              //
 // ------------------------------------------------------------------------- //
-if(!defined('XLANGUAGE_CONFIG_FILE')) define('XLANGUAGE_CONFIG_FILE', XOOPS_CACHE_PATH.'/xlanguage.php');
-if(!defined('XLANGUAGE_CONFIG_VAR')) define('XLANGUAGE_CONFIG_VAR', 'cached_config');
-if(!defined('XLANGUAGE_LANG_TAG')) define('XLANGUAGE_LANG_TAG', "lang");
-if(!defined('XLANGUAGE_TAGS_RESERVED')) define('XLANGUAGE_TAGS_RESERVED', "</head>,</body>");
+if (!defined('XLANGUAGE_CONFIG_FILE')) {
+    define('XLANGUAGE_CONFIG_FILE', XOOPS_CACHE_PATH . '/xlanguage.php');
+}
+if (!defined('XLANGUAGE_CONFIG_VAR')) {
+    define('XLANGUAGE_CONFIG_VAR', 'cached_config');
+}
+if (!defined('XLANGUAGE_LANG_TAG')) {
+    define('XLANGUAGE_LANG_TAG', "lang");
+}
+if (!defined('XLANGUAGE_TAGS_RESERVED')) {
+    define('XLANGUAGE_TAGS_RESERVED', "</head>,</body>");
+}
 
 /**
  * phpMyAdmin Language Loading File
@@ -64,43 +72,46 @@ if(!defined('XLANGUAGE_TAGS_RESERVED')) define('XLANGUAGE_TAGS_RESERVED', "</hea
  * first.
  */
 $available_languages = array(
-    'ar' => array('ar([-_][[:alpha:]]{2})?|arabic', 'arabic'),
-    'bg' => array('bg|bulgarian', 'bulgarian'),
-    'ca' => array('ca|catalan', 'catalan'),
-    'cs' => array('cs|czech', 'czech'),
-    'da' => array('da|danish', 'danish'),
-    'de' => array('de([-_][[:alpha:]]{2})?|german', 'german'),
-    'el' => array('el|greek', 'greek'),
-    'en' => array('en([-_][[:alpha:]]{2})?|english', 'english'),
-    'es' => array('es([-_][[:alpha:]]{2})?|spanish', 'spanish'),
-    'et' => array('et|estonian', 'estonian'),
-    'fi' => array('fi|finnish', 'finnish'),
-    'fr' => array('fr([-_][[:alpha:]]{2})?|french', 'french'),
-    'gl' => array('gl|galician', 'galician'),
-    'he' => array('he|hebrew', 'hebrew'),
-    'hr' => array('hr|croatian', 'croatian'),
-    'hu' => array('hu|hungarian', 'hungarian'),
-    'id' => array('id|indonesian', 'indonesian'),
-    'it' => array('it|italian', 'italian'),
-    'ja' => array('ja|japanese', 'japanese'),
-    'ko' => array('ko|korean', 'koreano'),
-    'ka' => array('ka|georgian', 'georgian'),
-    'lt' => array('lt|lithuanian', 'lithuanian'),
-    'lv' => array('lv|latvian', 'latvian'),
-    'nl' => array('nl([-_][[:alpha:]]{2})?|dutch', 'dutch'),
-    'no' => array('no|norwegian', 'norwegian'),
-    'pl' => array('pl|polish', 'polish'),
+    'ar'    => array('ar([-_][[:alpha:]]{2})?|arabic', 'arabic'),
+    'bg'    => array('bg|bulgarian', 'bulgarian'),
+    'ca'    => array('ca|catalan', 'catalan'),
+    'cs'    => array('cs|czech', 'czech'),
+    'da'    => array('da|danish', 'danish'),
+    'de'    => array('de([-_][[:alpha:]]{2})?|german', 'german'),
+    'el'    => array('el|greek', 'greek'),
+    'en'    => array('en([-_][[:alpha:]]{2})?|english', 'english'),
+    'es'    => array('es([-_][[:alpha:]]{2})?|spanish', 'spanish'),
+    'et'    => array('et|estonian', 'estonian'),
+    'fi'    => array('fi|finnish', 'finnish'),
+    'fr'    => array('fr([-_][[:alpha:]]{2})?|french', 'french'),
+    'gl'    => array('gl|galician', 'galician'),
+    'he'    => array('he|hebrew', 'hebrew'),
+    'hr'    => array('hr|croatian', 'croatian'),
+    'hu'    => array('hu|hungarian', 'hungarian'),
+    'id'    => array('id|indonesian', 'indonesian'),
+    'it'    => array('it|italian', 'italian'),
+    'ja'    => array('ja|japanese', 'japanese'),
+    'ko'    => array('ko|korean', 'koreano'),
+    'ka'    => array('ka|georgian', 'georgian'),
+    'lt'    => array('lt|lithuanian', 'lithuanian'),
+    'lv'    => array('lv|latvian', 'latvian'),
+    'nl'    => array('nl([-_][[:alpha:]]{2})?|dutch', 'dutch'),
+    'no'    => array('no|norwegian', 'norwegian'),
+    'pl'    => array('pl|polish', 'polish'),
     'pt-br' => array('pt[-_]br|brazilian portuguese', 'portuguesebr'),
-    'pt' => array('pt([-_][[:alpha:]]{2})?|portuguese', 'portuguese'),
-    'ro' => array('ro|romanian', 'romanian'),
-    'ru' => array('ru|russian', 'russian'),
-    'sk' => array('sk|slovak', 'slovak'),
-    'sq' => array('sq|albanian', 'albanian'),
-    'sr' => array('sr|serbian', 'serbian'),
-    'sv' => array('sv|swedish', 'swedish'),
-    'th' => array('th|thai', 'thai'),
-    'tr' => array('tr|turkish', 'turkish'),
-    'uk' => array('uk|ukrainian', 'ukrainian'),
+    'pt'    => array('pt([-_][[:alpha:]]{2})?|portuguese', 'portuguese'),
+    'ro'    => array('ro|romanian', 'romanian'),
+    'ru'    => array('ru|russian', 'russian'),
+    'sk'    => array('sk|slovak', 'slovak'),
+    'sq'    => array('sq|albanian', 'albanian'),
+    'sr'    => array('sr|serbian', 'serbian'),
+    'sv'    => array('sv|swedish', 'swedish'),
+    'th'    => array('th|thai', 'thai'),
+    'tr'    => array('tr|turkish', 'turkish'),
+    'uk'    => array('uk|ukrainian', 'ukrainian'),
     'zh-tw' => array('zh[-_]tw|chinese traditional', 'tchinese'),
     'zh-cn' => array('zh[-_]cn|chinese simplified', 'schinese'),
-    );
+);
+
+// mb
+$GLOBALS['available_languages'] =& $available_languages;
