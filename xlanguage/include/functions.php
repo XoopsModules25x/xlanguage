@@ -1,32 +1,21 @@
 <?php
-// $Id: functions.php 12334 2014-02-27 08:02:54Z beckmi $
-//  ------------------------------------------------------------------------ //
-//         Xlanguage: eXtensible Language Management For Xoops               //
-//             Copyright (c) 2004 Xoops China Community                      //
-//                    <http://www.xoops.org.cn/>                             //
-//  ------------------------------------------------------------------------ //
-//  This program is free software; you can redistribute it and/or modify     //
-//  it under the terms of the GNU General Public License as published by     //
-//  the Free Software Foundation; either version 2 of the License, or        //
-//  (at your option) any later version.                                      //
-//                                                                           //
-//  You may not change or alter any portion of this comment or credits       //
-//  of supporting developers from this source code or any supporting         //
-//  source code which is considered copyrighted (c) material of the          //
-//  original comment or credit authors.                                      //
-//                                                                           //
-//  This program is distributed in the hope that it will be useful,          //
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of           //
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the            //
-//  GNU General Public License for more details.                             //
-//                                                                           //
-//  You should have received a copy of the GNU General Public License        //
-//  along with this program; if not, write to the Free Software              //
-//  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307 USA //
-//  ------------------------------------------------------------------------ //
-// Author: D.J.(phppp) php_pp@hotmail.com                                    //
-// URL: http://www.xoops.org.cn                                              //
-// ------------------------------------------------------------------------- //
+/**
+ * xLanguage module (eXtensible Language Management For XOOPS)
+ *
+ * You may not change or alter any portion of this comment or credits
+ * of supporting developers from this source code or any supporting source code
+ * which is considered copyrighted (c) material of the original comment or credit authors.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ *
+ * @copyright    XOOPS Project (http://xoops.org)
+ * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @package      xlanguage
+ * @since        2.0
+ * @author       D.J.(phppp) php_pp@hotmail.com
+ * @version      $Id $
+ **/
 
 function xlanguage_convert_encoding($value, $out_charset, $in_charset)
 {
@@ -94,7 +83,7 @@ function xlanguage_lang_detect($str = '', $envType = '')
     $lang = '';
 
     if (!empty($available_languages)) {
-        foreach ($available_languages AS $key => $value) {
+        foreach ($available_languages as $key => $value) {
             // $envType =  1 for the 'HTTP_ACCEPT_LANGUAGE' environment variable,
             //             2 for the 'HTTP_USER_AGENT' one
             $expr = $value[0];

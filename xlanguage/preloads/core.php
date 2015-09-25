@@ -9,33 +9,39 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright       XOOPS Project (http://xoops.org)
  * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @package         xlanguage
  * @author          trabis <lusopoemas@gmail.com>
  * @version         $Id: core.php 9674 2012-06-19 15:12:44Z beckmi $
  */
 
-defined('XOOPS_ROOT_PATH') or die('Restricted access');
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
 
 /**
  * Xlanguage core preloads
  *
- * @copyright       The XOOPS Project http://sourceforge.net/projects/xoops/
+ * @copyright       XOOPS Project (http://xoops.org)
  * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author          trabis <lusopoemas@gmail.com>
  */
 class XlanguageCorePreload extends XoopsPreloadItem
 {
-    function eventCoreIncludeCommonLanguage($args)
+    /**
+     * @param $args
+     */
+    public function eventCoreIncludeCommonLanguage($args)
     {
-         if (XlanguageCorePreload::isActive()) {
+        if (XlanguageCorePreload::isActive()) {
             global $xoopsConfig;
-            include_once dirname(dirname(__FILE__)) . '/api.php';
-         }
+            include_once dirname(__DIR__) . '/api.php';
+        }
     }
 
-    function isActive()
+    /**
+     * @return bool
+     */
+    public function isActive()
     {
         $module_handler =& xoops_getHandler('module');
         $module = $module_handler->getByDirname('xlanguage');

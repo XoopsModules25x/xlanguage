@@ -1,41 +1,43 @@
-3.05 	NOT RELEASED
--------------------
+3.05 Beta 1       NOT RELEASED
+=================================
+- moved all images, CSS, and JS files to /assets (mamba)
+- renamed .html Smarty templates to .tpl (mamba)
 - fixed language auto-detection (Rewarder/Mamba)
 
 3.04:
--------------------
+=================================
 - updated POSIX Regex to PCRE (Mamba)
 - minor fixes (Mamba)
 - fixing generation of configuration file for extended languages
 
 3.03:
--------------------
+=================================
 1 updated to XOOPS 2.5.x GUI using ModuleAdmin class (Mamba)
 
 3.02:
--------------------
+=================================
 1 adjusted for Xoops 2.4.0 using Preloads, no hacks of Core files required anymore in 2.4.0 and above (trabis)
 
 3.0:
--------------------
+=================================
 1 compatable for all Xoops active versions
 2 added smarty template for block
 3 added inline scripts for displaying language switch manner anywhere prefered
 
 2.04:
--------------------
+=================================
 capable for different language cache, reported by suico @ xoops.org
 
 2.03:
--------------------
+=================================
 "input" parse improvement, reported by irmtfan @ xoops.org
 
 2.02
--------------------
+=================================
 bugfix for XSS vulnerability
 Thanks domifara @ dev.xoops.org
 
 2.01
--------------------
+=================================
 bugfix for nonexisting language
 
