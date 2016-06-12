@@ -21,7 +21,7 @@ $sform = new XoopsThemeForm(_AM_XLANG_EDITLANG, 'langform', xoops_getenv('PHP_SE
 
 if ($isBase) {
     $lang_select = new XoopsFormSelect(_AM_XLANG_NAME, 'lang_name', $lang_name);
-    $lang_select->addOptionArray($xlanguage_handler->getXoopsLangList());
+    $lang_select->addOptionArray($xlanguageHandler->getXoopsLangList());
     $sform->addElement($lang_select, true);
 } else {
     $sform->addElement(new XoopsFormText(_AM_XLANG_NAME, 'lang_name', 50, 255, $lang_name), true);
@@ -40,7 +40,7 @@ $lang_charset->setDescription(_AM_XLANG_CHARSET_DESC);
 $sform->addElement($lang_charset, true);
 
 if (!$isBase) {
-    $baseList  = $xlanguage_handler->getAll();
+    $baseList  = $xlanguageHandler->getAll();
     $base_list = array();
     foreach ($baseList as $base => $baselang) {
         $base_list[$base] = $base;

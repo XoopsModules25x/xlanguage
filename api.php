@@ -45,14 +45,14 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
     $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
-$xlanguage_handler = xoops_getModuleHandler('language', 'xlanguage');
-$xlanguage_handler->loadConfig();
-$lang = $xlanguage_handler->getByName($xlanguage['lang']);
+$xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+$xlanguageHandler->loadConfig();
+$lang = $xlanguageHandler->getByName($xlanguage['lang']);
 if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['language'])) {
     if ($lang->hasBase()) {
         $xoopsConfig['language'] = $lang->getVar('lang_name');
     } else {
-        $lang_base = $xlanguage_handler->getByName($lang->getVar('lang_base'));
+        $lang_base = $xlanguageHandler->getByName($lang->getVar('lang_base'));
         if (is_object($lang_base)) {
             $xlanguage['charset_base'] = $lang_base->getVar('lang_charset');
             $xlanguage['action']       = true;
@@ -69,7 +69,7 @@ if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['lan
 }
 unset($lang);
 
-$GLOBALS['xlanguage_handler'] = $xlanguage_handler;
+$GLOBALS['xlanguage_handler'] = $xlanguageHandler;
 
 if ($xlanguage['action']) {
     //if (CONV_REQUEST && (!empty($_GET)||!empty($_POST))) {

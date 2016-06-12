@@ -24,9 +24,9 @@ function b_xlanguage_select_show($options)
 
     $block = array();
 
-    $xlanguage_handler = xoops_getModuleHandler('language', 'xlanguage');
-    $xlanguage_handler->loadConfig();
-    $lang_list = $xlanguage_handler->getAllList();
+    $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+    $xlanguageHandler->loadConfig();
+    $lang_list = $xlanguageHandler->getAllList();
     if (!is_array($lang_list) || count($lang_list) < 1) {
         return $block;
     }

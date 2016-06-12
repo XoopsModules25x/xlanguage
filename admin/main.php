@@ -36,8 +36,8 @@ if (isset($_GET)) {
 
 define('XLANG_CONFIG_LINK', "<a href='main.php' target='_self'>" . _AM_XLANG_CONFIG . '</a>');
 
-$xlanguage_handler = xoops_getModuleHandler('language', 'xlanguage');
-$xlanguage_handler->loadConfig();
+$xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+$xlanguageHandler->loadConfig();
 
 switch ($op) {
     case 'del':
@@ -52,8 +52,8 @@ switch ($op) {
             if (isset($type) && $type === 'ext') {
                 $isBase = false;
             }
-            $lang = $xlanguage_handler->get($lang_id, $isBase);
-            $xlanguage_handler->delete($lang);
+            $lang = $xlanguageHandler->get($lang_id, $isBase);
+            $xlanguageHandler->delete($lang);
             redirect_header('main.php', 2, _AM_XLANG_DELETED);
         }
         break;
@@ -64,9 +64,9 @@ switch ($op) {
             $isBase = false;
         }
         if (isset($lang_id) && $lang_id > 0) {
-            $lang = $xlanguage_handler->get($lang_id, $isBase);
+            $lang = $xlanguageHandler->get($lang_id, $isBase);
         } else {
-            $lang = $xlanguage_handler->create(true, $isBase);
+            $lang = $xlanguageHandler->create(true, $isBase);
         }
         $lang_name = preg_replace("/[^a-zA-Z0-9\_\-]/", '', $lang_name);
 
@@ -79,7 +79,7 @@ switch ($op) {
             $lang->setVar('lang_base', $lang_base);
         }
         $lang->setVar('weight', $weight);
-        $xlanguage_handler->insert($lang);
+        $xlanguageHandler->insert($lang);
         redirect_header('main.php', 2, _AM_XLANG_SAVED);
         break;
 
@@ -95,11 +95,11 @@ switch ($op) {
             $isBase = false;
         }
         if (isset($lang_id) && $lang_id > 0) {
-            $lang = $xlanguage_handler->get($lang_id, $isBase);
+            $lang = $xlanguageHandler->get($lang_id, $isBase);
         } elseif (isset($lang_name)) {
-            $lang = $xlanguage_handler->getByName($lang_name, $isBase);
+            $lang = $xlanguageHandler->getByName($lang_name, $isBase);
         } else {
-            $lang = $xlanguage_handler->create(true, $isBase);
+            $lang = $xlanguageHandler->create(true, $isBase);
         }
         $lang_name    = $lang->getVar('lang_name');
         $lang_desc    = $lang->getVar('lang_desc');
@@ -173,11 +173,11 @@ xoops_cp_footer();
 
 function languageList()
 {
-    global $xlanguage_handler, $xoopsModule;
+    global $xlanguageHandler, $xoopsModule;
 
     global $pathIcon16;
 
-    $lang_list = $xlanguage_handler->getAllList();
+    $lang_list = $xlanguageHandler->getAllList();
     if (is_array($lang_list) && count($lang_list) > 0) {
         echo "<table width='100%' border='0' cellspacing='1' class='outer'><tr><td class=\"odd\">";
         echo "<div style='text-align: center;'><b><h4>" . _AM_XLANG_LANGLIST . '</h4></b><br>';

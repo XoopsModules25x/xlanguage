@@ -33,7 +33,7 @@ $modversion['icons32']        = '../../Frameworks/moduleclasses/icons/32';
 
 //about
 $modversion['release_file']        = XOOPS_URL . '/modules/' . $modversion['dirname'] . '/docs/changelog.txt';
-$modversion['release_date']        = '2015/09/23';
+$modversion['release_date']        = '2016/06/12';
 $modversion['module_website_url']  = 'www.xoops.org/';
 $modversion['module_website_name'] = 'XOOPS';
 $modversion['module_status']       = 'Beta 1';

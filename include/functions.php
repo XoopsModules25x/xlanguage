@@ -58,6 +58,9 @@ function xlanguage_convert_item($value, $out_charset, $in_charset)
     return $value;
 }
 
+/**
+ * @return mixed
+ */
 function xlanguage_createConfig()
 {
     $xlang_handler = xoops_getModuleHandler('language', 'xlanguage');
@@ -189,8 +192,8 @@ function xlanguage_ml($s)
     global $xoopsConfig;
     global $xlanguage_langs;
     if (!isset($xlanguage_langs)) {
-        $xlanguage_handler = xoops_getModuleHandler('language', 'xlanguage');
-        $langs             = $xlanguage_handler->getAll(true);
+        $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+        $langs             = $xlanguageHandler->getAll(true);
         //        $langs = $GLOBALS['xlanguage_handler']->getAll(true); //mb
         foreach (array_keys($langs) as $_lang) {
             $xlanguage_langs[$_lang] = $langs[$_lang]->getVar('lang_code');
@@ -325,7 +328,7 @@ function getPreferredLanguage()
     $langs = array();
     if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         // break up string into pieces (languages and q factors)
-        preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
+        preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.\d+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
         if (count($lang_parse[1])) {
             // create a list like "en" => 0.8
             $langs = array_combine($lang_parse[1], $lang_parse[4]);
@@ -344,7 +347,7 @@ function getPreferredLanguage()
         break;
     }
     //if complex language simplify it
-    if (stristr($lang, '-')) {
+    if (strstr($lang, '-')) {
         $tmp  = explode('-', $lang);
         $lang = $tmp[0];
     }
