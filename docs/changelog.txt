@@ -3,6 +3,15 @@
 - moved all images, CSS, and JS files to /assets (mamba)
 - renamed .html Smarty templates to .tpl (mamba)
 - fixed language auto-detection (Rewarder/Mamba)
+- removed "@version" (mamba)
+- XOOPS 2.5.8 and PHP 7 (mamba)
+- standardization with addNavigation(basename(__FILE__)) (mamba)
+- removed unneeded double quotes and parenthesis (mamba)
+- improved type comparison (mamba)
+- standardization with <br> (mamba)
+- updated function visibility (mamba)
+- small changes based on testing tool feedback (mamba)
+- code cosmetics (mamba)
 
 3.04:
 =================================

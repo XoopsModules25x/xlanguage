@@ -14,7 +14,6 @@
  * @package      xlanguage
  * @since        2.0
  * @author       XOOPS Development Team
- * @version      $Id $
  **/
 
 $path = dirname(dirname(dirname(__DIR__)));
@@ -34,8 +33,8 @@ xoops_loadLanguage('admin', $moduleDirName);
 xoops_loadLanguage('modinfo', $moduleDirName);
 xoops_loadLanguage('main', $moduleDirName);
 
-$pathIcon16 = '../'.$xoopsModule->getInfo('icons16');
-$pathIcon32 = '../'.$xoopsModule->getInfo('icons32');
+$pathIcon16      = '../' . $xoopsModule->getInfo('icons16');
+$pathIcon32      = '../' . $xoopsModule->getInfo('icons32');
 $pathModuleAdmin = $xoopsModule->getInfo('dirmoduleadmin');
 
-include_once $GLOBALS['xoops']->path($pathModuleAdmin.'/moduleadmin.php');
+include_once $GLOBALS['xoops']->path($pathModuleAdmin . '/moduleadmin.php');

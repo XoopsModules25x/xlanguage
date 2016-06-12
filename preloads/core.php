@@ -12,7 +12,7 @@
  * @copyright       XOOPS Project (http://xoops.org)
  * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @package         xlanguage
- * @author          trabis <lusopoemas@gmail.com> 
+ * @author          trabis <lusopoemas@gmail.com>
  */
 
 // defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
@@ -29,7 +29,7 @@ class XlanguageCorePreload extends XoopsPreloadItem
     /**
      * @param $args
      */
-    public function eventCoreIncludeCommonLanguage($args)
+    public static function eventCoreIncludeCommonLanguage($args)
     {
         if (XlanguageCorePreload::isActive()) {
             global $xoopsConfig;
@@ -40,11 +40,11 @@ class XlanguageCorePreload extends XoopsPreloadItem
     /**
      * @return bool
      */
-    public function isActive()
+    public static function isActive()
     {
-        $module_handler =& xoops_getHandler('module');
-        $module = $module_handler->getByDirname('xlanguage');
+        $moduleHandler = xoops_getHandler('module');
+        $module        = $moduleHandler->getByDirname('xlanguage');
 
-        return ($module && $module->getVar('isactive')) ? true : false;
+        return ($module && $module->getVar('isactive'));
     }
 }

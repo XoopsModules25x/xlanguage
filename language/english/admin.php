@@ -14,7 +14,6 @@
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
- * @version      $Id $
  **/
 
 define('_AM_XLANG_CONFIG', 'XLanguage Configuration');

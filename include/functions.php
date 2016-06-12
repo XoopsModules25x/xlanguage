@@ -14,8 +14,11 @@
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
- * @version      $Id $
- **/
+ * @param $value
+ * @param $out_charset
+ * @param $in_charset
+ * @return array|string
+ */
 
 function xlanguage_convert_encoding($value, $out_charset, $in_charset)
 {
@@ -30,15 +33,19 @@ function xlanguage_convert_encoding($value, $out_charset, $in_charset)
     return $value;
 }
 
+/**
+ * @param $value
+ * @param $out_charset
+ * @param $in_charset
+ * @return string
+ */
 function xlanguage_convert_item($value, $out_charset, $in_charset)
 {
     if (strtolower($in_charset) == strtolower($out_charset)) {
         return $value;
     }
-    $xconv_handler = @xoops_getmodulehandler('xconv', 'xconv', true);
-    if (is_object($xconv_handler)
-        && $converted_value = @$xconv_handler->convert_encoding($value, $out_charset, $in_charset)
-    ) {
+    $xconv_handler = @xoops_getModuleHandler('xconv', 'xconv', true);
+    if (is_object($xconv_handler) && $converted_value = @$xconv_handler->convert_encoding($value, $out_charset, $in_charset)) {
         return $converted_value;
     }
     if (XOOPS_USE_MULTIBYTES && function_exists('mb_convert_encoding')) {
@@ -53,15 +60,18 @@ function xlanguage_convert_item($value, $out_charset, $in_charset)
 
 function xlanguage_createConfig()
 {
-    $xlang_handler =& xoops_getmodulehandler('language', 'xlanguage');
+    $xlang_handler = xoops_getModuleHandler('language', 'xlanguage');
 
     return $xlang_handler->createConfig();
 }
 
-function &xlanguage_loadConfig()
+/**
+ * @return mixed
+ */
+function xlanguage_loadConfig()
 {
-    $xlang_handler =& xoops_getmodulehandler('language', 'xlanguage');
-    $config        =& $xlang_handler->loadFileConfig();
+    $xlang_handler = xoops_getModuleHandler('language', 'xlanguage');
+    $config        = $xlang_handler->loadFileConfig();
 
     return $config;
 }
@@ -70,12 +80,15 @@ function &xlanguage_loadConfig()
  * Analyzes some PHP environment variables to find the most probable language
  * that should be used
  *
- * @param  string   $ string to analyze
- * @param  integer  $ type of the PHP environment variable which value is $str
+ * @param  string $str
+ * @param  string $envType
+ * @return int|string
+ * @internal param $string $ string to analyze
+ * @internal param $integer $ type of the PHP environment variable which value is $str
  *
- * @global array    the list of available translations
- * @global string   the retained translation keyword
- * @access private
+ * @global        array    the list of available translations
+ * @global        string   the retained translation keyword
+ * @access   private
  */
 function xlanguage_lang_detect($str = '', $envType = '')
 {
@@ -90,11 +103,9 @@ function xlanguage_lang_detect($str = '', $envType = '')
             if (strpos($expr, '[-_]') === false) {
                 $expr = str_replace('|', '([-_][[:alpha:]]{2,3})?|', $expr);
             }
-//        if (($envType == 1 && eregi('^(' . $expr . ')(;q=[0-9]\\.[0-9])?$', $str))
-//            || ($envType == 2 && eregi('(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))', $str))) {
-            if (($envType == 1 && preg_match('#^(' . $expr . ')(;q=[0-9]\\.[0-9])?$#i', $str))
-                || ($envType == 2 && preg_match('#(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))#i', $str))
-            ) {
+            //        if (($envType == 1 && eregi('^(' . $expr . ')(;q=[0-9]\\.[0-9])?$', $str))
+            //            || ($envType == 2 && eregi('(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))', $str))) {
+            if (($envType == 1 && preg_match('#^(' . $expr . ')(;q=[0-9]\\.[0-9])?$#i', $str)) || ($envType == 2 && preg_match('#(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))#i', $str))) {
                 $lang = $key;
                 //if($lang != 'en')
                 break;
@@ -105,6 +116,9 @@ function xlanguage_lang_detect($str = '', $envType = '')
     return $lang;
 }
 
+/**
+ * @return string
+ */
 function xlanguage_detectLang()
 {
     global $available_languages, $_SERVER;
@@ -121,24 +135,20 @@ function xlanguage_detectLang()
     $xoops_lang = '';
     // 1. try to findout user's language by checking its HTTP_ACCEPT_LANGUAGE variable
 
+    //    if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
+    //        $accepted    = explode(',', $HTTP_ACCEPT_LANGUAGE);
+    //        $acceptedCnt = count($accepted);
+    //        reset($accepted);
+    //        for ($i = 0; $i < $acceptedCnt; ++$i) {
+    //            $lang = xlanguage_lang_detect($accepted[$i], 1);
+    //            if (strncasecmp($lang, 'en', 2)) {
+    //                break;
+    //            }
+    //        }
+    //    }
 
-//    if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
-//        $accepted    = explode(',', $HTTP_ACCEPT_LANGUAGE);
-//        $acceptedCnt = count($accepted);
-//        reset($accepted);
-//        for ($i = 0; $i < $acceptedCnt; ++$i) {
-//            $lang = xlanguage_lang_detect($accepted[$i], 1);
-//            if (strncasecmp($lang, 'en', 2)) {
-//                break;
-//            }
-//        }
-//    }
-
-
-
-//This returns the most preferred langauage "q=1"
- $lang = getPreferredLanguage();
-
+    //This returns the most preferred langauage "q=1"
+    $lang = getPreferredLanguage();
 
     // 2. if not found in HTTP_ACCEPT_LANGUAGE, try to find user's language by checking its HTTP_USER_AGENT variable
     if (empty($lang) && !empty($HTTP_USER_AGENT)) {
@@ -152,6 +162,10 @@ function xlanguage_detectLang()
     return $xoops_lang;
 }
 
+/**
+ * @param $output
+ * @return array|mixed|string
+ */
 function xlanguage_encoding($output)
 {
     global $xlanguage;
@@ -160,21 +174,26 @@ function xlanguage_encoding($output)
     if (preg_match("/^\<\?[\s]?xml[\s]+version=([\"'])[^\>]+\\1[\s]+encoding=([\"'])[^\>]+\\2[\s]?\?\>/i", $output)) {
         return $output;
     }
-    $in_charset  = $xlanguage["charset_base"];
-    $out_charset = $xlanguage["charset"];
+    $in_charset  = $xlanguage['charset_base'];
+    $out_charset = $xlanguage['charset'];
 
     return $output = xlanguage_convert_encoding($output, $out_charset, $in_charset);
 }
 
+/**
+ * @param $s
+ * @return mixed
+ */
 function xlanguage_ml($s)
 {
     global $xoopsConfig;
     global $xlanguage_langs;
-
     if (!isset($xlanguage_langs)) {
-        $langs =& $GLOBALS["xlanguage_handler"]->getAll(true);
+        $xlanguage_handler = xoops_getModuleHandler('language', 'xlanguage');
+        $langs             = $xlanguage_handler->getAll(true);
+        //        $langs = $GLOBALS['xlanguage_handler']->getAll(true); //mb
         foreach (array_keys($langs) as $_lang) {
-            $xlanguage_langs[$_lang] = $langs[$_lang]->getVar("lang_code");
+            $xlanguage_langs[$_lang] = $langs[$_lang]->getVar('lang_code');
         }
         unset($langs);
     }
@@ -224,84 +243,89 @@ function xlanguage_ml($s)
     return $s;
 }
 
+/**
+ * @param $matches
+ * @return mixed
+ */
 function xlanguage_ml_escape_bracket($matches)
 {
     global $xlanguage_langs;
     $ret = $matches[1];
     if (!empty($xlanguage_langs)) {
-        $pattern = '/(\[([\/])?(' . implode("|", array_map("preg_quote", array_values($xlanguage_langs))) . ')([\|\]]))/isU';
+        $pattern = '/(\[([\/])?(' . implode('|', array_map('preg_quote', array_values($xlanguage_langs))) . ')([\|\]]))/isU';
         $ret     = preg_replace($pattern, "&#91;\\2\\3\\4", $ret);
     }
 
     return $ret;
 }
 
+/**
+ * @param  null $options
+ * @return bool
+ */
 function xlanguage_select_show($options = null)
 {
-    include_once XOOPS_ROOT_PATH . "/modules/xlanguage/blocks/xlanguage_blocks.php";
+    include_once XOOPS_ROOT_PATH . '/modules/xlanguage/blocks/xlanguage_blocks.php';
     if (empty($options)) {
-        $options[0] = "images"; // display style: image, text, select
-        $options[1] = " "; // delimitor
+        $options[0] = 'images'; // display style: image, text, select
+        $options[1] = ' '; // delimitor
         $options[2] = 5; // items per line
     }
 
     $block        = b_xlanguage_select_show($options);
-    $block["tag"] = "xlanguage";
+    $block['tag'] = 'xlanguage';
 
-    $content = "";
+    $content = '';
     $i       = 1;
-    if (!empty($block["display"])) { //mb
-        if (in_array($block["display"], array("images", "text"))) {
-            foreach ($block["languages"] as $name => $lang) {
-                $content .= "<a href=\"" . $block["url"] . $lang["name"] . "\" title=\"" . $lang["desc"] . "\">";
-                if ($block["display"] == "images") {
-                    $content .= "<img src=\"" . $lang["image"] . "\" alt=\"" . $lang["desc"] . "\"";
-                    if ($block["selected"] != $lang["name"]) {
+    if (!empty($block['display'])) { //mb
+        if (in_array($block['display'], array('images', 'text'))) {
+            foreach ($block['languages'] as $name => $lang) {
+                $content .= "<a href=\"" . $block['url'] . $lang['name'] . "\" title=\"" . $lang['desc'] . "\">";
+                if ($block['display'] === 'images') {
+                    $content .= "<img src=\"" . $lang['image'] . "\" alt=\"" . $lang['desc'] . "\"";
+                    if ($block['selected'] != $lang['name']) {
                         $content .= " style=\"MozOpacity: .8; opacity: .8; filter:Alpha(opacity=80);\"";
                     }
-                    $content .= "/>";
+                    $content .= '/>';
                 } else {
-                    $content .= $lang["desc"];
+                    $content .= $lang['desc'];
                 }
-                $content .= "</a>";
-                if ((++$i % $block["number"]) == 0) {
-                    $content .= "<br />";
+                $content .= '</a>';
+                if ((++$i % $block['number']) == 0) {
+                    $content .= '<br>';
                 }
             }
         } else {
-            $content .= "<select name=\"" . $block["tag"] . "\"
+            $content .= "<select name=\"" . $block['tag'] . "\"
                 onChange=\"if (this.options[this.selectedIndex].value.length >0) { window.document.location=this.options[this.selectedIndex].value;}\"
                 >";
-            if (!empty($block["languages"])) { //mb
-                foreach ($block["languages"] as $name => $lang) {
-                    $content .= "<option value=\"" . $block["url"] . $lang["name"] . "\"";
-                    if ($block["selected"] == $lang["name"]) {
-                        $content .= " selected ";
+            if (!empty($block['languages'])) { //mb
+                foreach ($block['languages'] as $name => $lang) {
+                    $content .= "<option value=\"" . $block['url'] . $lang['name'] . "\"";
+                    if ($block['selected'] == $lang['name']) {
+                        $content .= ' selected ';
                     }
-                    $content .= "/>" . $lang["desc"] . "</option>";
+                    $content .= '/>' . $lang['desc'] . '</option>';
                 }
             }
-            $content .= "</select>";
+            $content .= '</select>';
         }
     }
 
-    define("XLANGUAGE_SWITCH_CODE", $content);
+    define('XLANGUAGE_SWITCH_CODE', $content);
 
     return true;
 }
 
-
-
+/**
+ * @return int|string
+ */
 function getPreferredLanguage()
 {
     $langs = array();
     if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-// break up string into pieces (languages and q factors)
-        preg_match_all(
-            '/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i',
-            $_SERVER['HTTP_ACCEPT_LANGUAGE'],
-            $lang_parse
-        );
+        // break up string into pieces (languages and q factors)
+        preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.[0-9]+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
         if (count($lang_parse[1])) {
             // create a list like "en" => 0.8
             $langs = array_combine($lang_parse[1], $lang_parse[4]);
@@ -315,14 +339,15 @@ function getPreferredLanguage()
             arsort($langs, SORT_NUMERIC);
         }
     }
-//extract most important (first)
+    //extract most important (first)
     foreach ($langs as $lang => $val) {
         break;
     }
-//if complex language simplify it
-    if (stristr($lang, "-")) {
-        $tmp  = explode("-", $lang);
+    //if complex language simplify it
+    if (stristr($lang, '-')) {
+        $tmp  = explode('-', $lang);
         $lang = $tmp[0];
     }
+
     return $lang;
 }

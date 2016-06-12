@@ -14,7 +14,6 @@
  * @package      xlanguage
  * @since        2.0
  * @author       XOOPS Team
- * @version      $Id $
  **/
 
 include_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
@@ -24,7 +23,7 @@ xoops_cp_header();
 
 $indexAdmin = new ModuleAdmin();
 
-    echo $indexAdmin->addNavigation('index.php');
-    echo $indexAdmin->renderIndex();
+echo $indexAdmin->addNavigation(basename(__FILE__));
+echo $indexAdmin->renderIndex();
 
 include_once __DIR__ . '/admin_footer.php';

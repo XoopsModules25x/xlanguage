@@ -14,7 +14,6 @@
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
- * @version      $Id $
  **/
 
 if (!defined('XLANGUAGE_CONFIG_FILE')) {
@@ -24,10 +23,10 @@ if (!defined('XLANGUAGE_CONFIG_VAR')) {
     define('XLANGUAGE_CONFIG_VAR', 'cached_config');
 }
 if (!defined('XLANGUAGE_LANG_TAG')) {
-    define('XLANGUAGE_LANG_TAG', "lang");
+    define('XLANGUAGE_LANG_TAG', 'lang');
 }
 if (!defined('XLANGUAGE_TAGS_RESERVED')) {
-    define('XLANGUAGE_TAGS_RESERVED', "</head>,</body>");
+    define('XLANGUAGE_TAGS_RESERVED', '</head>,</body>');
 }
 
 /**
@@ -100,7 +99,7 @@ $available_languages = array(
     'tr'    => array('tr|turkish', 'turkish'),
     'uk'    => array('uk|ukrainian', 'ukrainian'),
     'zh-tw' => array('zh[-_]tw|chinese traditional', 'tchinese'),
-    'zh-cn' => array('zh[-_]cn|chinese simplified', 'schinese'),
+    'zh-cn' => array('zh[-_]cn|chinese simplified', 'schinese')
 );
 
 // mb

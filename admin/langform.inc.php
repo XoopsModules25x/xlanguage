@@ -14,11 +14,10 @@
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
- * @version    $Id $
  **/
 
-include XOOPS_ROOT_PATH."/class/xoopsformloader.php";
-$sform = new XoopsThemeForm(_AM_XLANG_EDITLANG, "langform", xoops_getenv('PHP_SELF'));
+include XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+$sform = new XoopsThemeForm(_AM_XLANG_EDITLANG, 'langform', xoops_getenv('PHP_SELF'));
 
 if ($isBase) {
     $lang_select = new XoopsFormSelect(_AM_XLANG_NAME, 'lang_name', $lang_name);
@@ -41,7 +40,7 @@ $lang_charset->setDescription(_AM_XLANG_CHARSET_DESC);
 $sform->addElement($lang_charset, true);
 
 if (!$isBase) {
-    $baseList =& $xlanguage_handler->getAll();
+    $baseList  = $xlanguage_handler->getAll();
     $base_list = array();
     foreach ($baseList as $base => $baselang) {
         $base_list[$base] = $base;
@@ -54,15 +53,16 @@ if (!$isBase) {
 $sform->addElement(new XoopsFormText(_AM_XLANG_WEIGHT, 'weight', 10, 10, $weight));
 
 $image_option_tray = new XoopsFormElementTray(_AM_XLANG_IMAGE, '');
-$image_array =& XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . "/modules/" . $xoopsModule -> dirname() . "/assets/images/");
-$lang_image =(empty($lang_image))?'noflag.gif':$lang_image;
-$image_select = new XoopsFormSelect('', 'lang_image', $lang_image);
+$image_array       = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/assets/images/');
+$lang_image        = empty($lang_image) ? 'noflag.gif' : $lang_image;
+$image_select      = new XoopsFormSelect('', 'lang_image', $lang_image);
 $image_select->addOptionArray($image_array);
-$image_select->setExtra("onchange='showImgSelected(\"image\", \"lang_image\", \"/modules/" . $xoopsModule -> dirname() . "/assets/images/\", \"\", \"" . XOOPS_URL . "\")'");
+$image_select->setExtra("onchange='showImgSelected(\"image\", \"lang_image\", \"/modules/" . $xoopsModule->dirname() . "/assets/images/\", \"\", \"" . XOOPS_URL . "\")'");
 $image_tray = new XoopsFormElementTray('', '&nbsp;');
 $image_tray->addElement($image_select);
 if (!empty($lang_image)) {
-    $image_tray->addElement(new XoopsFormLabel('', "<div style='padding: 8px;'><img src='" . XOOPS_URL . "/modules/" . $xoopsModule -> dirname() . "/assets/images/" . $lang_image . "' name='image' id='image' alt='' /></div>"));
+    $image_tray->addElement(new XoopsFormLabel('', "<div style='padding: 8px;'><img src='" . XOOPS_URL . '/modules/' . $xoopsModule->dirname() . '/assets/images/' . $lang_image
+                                                   . "' name='image' id='image' alt='' /></div>"));
 } else {
     $image_tray->addElement(new XoopsFormLabel('', "<div style='padding: 8px;'><img src='" . XOOPS_URL . "/images/blank.gif' name='image' id='image' alt='' /></div>"));
 }

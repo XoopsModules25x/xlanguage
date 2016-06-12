@@ -9,17 +9,17 @@
                 <{/if}>
             </a>
             <{if $smarty.foreach.lang_it.iteration % $block.number eq 0}>
-                <br/>
+                <br>
             <{/if}>
         <{/foreach}>
     <{else}>
         <select name="selectlang"
                 onChange="if(this.options[this.selectedIndex].value.length >0 ){ window.document.location=this.options[this.selectedIndex].value;}"
-                >
+        >
             <{foreach item=lang name=lang_it from=$block.languages}>
                 <option value="<{$block.url}><{$lang.name}>"
                         <{if $block.selected eq $lang.name}>selected<{/if}>
-                        ><{$lang.desc}></option>
+                ><{$lang.desc}></option>
             <{/foreach}>
         </select>
     <{/if}>
