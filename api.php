@@ -14,23 +14,22 @@
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
- * @version      $Id $
  **/
 
 global $xlanguage;
-include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php');
-include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/include/functions.php');
+include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php');
+include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php');
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
 
-$xlanguage["action"] = false;
+$xlanguage['action'] = false;
 if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
-    $cookie_path = "/";
-    setcookie($cookie_var, $_GET[XLANGUAGE_LANG_TAG], time()+3600*24*30, $cookie_path, '', 0);
-    $xlanguage["lang"] = $_GET[XLANGUAGE_LANG_TAG];
+    $cookie_path = '/';
+    setcookie($cookie_var, $_GET[XLANGUAGE_LANG_TAG], time() + 3600 * 24 * 30, $cookie_path, '', 0);
+    $xlanguage['lang'] = $_GET[XLANGUAGE_LANG_TAG];
 } elseif (!empty($_COOKIE[$cookie_var])) {
-    $xlanguage["lang"] = $_COOKIE[$cookie_var];
+    $xlanguage['lang'] = $_COOKIE[$cookie_var];
     /* FIXME: shall we remove it? */
     /*
     if (preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])) {
@@ -41,23 +40,23 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
     }
     */
 } elseif ($lang = xlanguage_detectLang()) {
-    $xlanguage["lang"] = $lang;
+    $xlanguage['lang'] = $lang;
 } else {
-    $xlanguage["lang"] = $xoopsConfig['language'];
+    $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
-$xlanguage_handler=& xoops_getmodulehandler('language', 'xlanguage');
-$xlanguage_handler->loadConfig();
-$lang = $xlanguage_handler->getByName($xlanguage["lang"]);
+$xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+$xlanguageHandler->loadConfig();
+$lang = $xlanguageHandler->getByName($xlanguage['lang']);
 if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['language'])) {
-    if ($lang->isBase()) {
+    if ($lang->hasBase()) {
         $xoopsConfig['language'] = $lang->getVar('lang_name');
     } else {
-        $lang_base = $xlanguage_handler->getByName($lang->getVar('lang_base'));
+        $lang_base = $xlanguageHandler->getByName($lang->getVar('lang_base'));
         if (is_object($lang_base)) {
             $xlanguage['charset_base'] = $lang_base->getVar('lang_charset');
-            $xlanguage["action"] = true;
-            $xoopsConfig['language'] = $lang_base->getVar('lang_name');
+            $xlanguage['action']       = true;
+            $xoopsConfig['language']   = $lang_base->getVar('lang_name');
             unset($lang_base);
         }
     }
@@ -70,26 +69,26 @@ if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['lan
 }
 unset($lang);
 
-$GLOBALS['xlanguage_handler'] =& $xlanguage_handler;
+$GLOBALS['xlanguage_handler'] = $xlanguageHandler;
 
-if ($xlanguage["action"]) {
+if ($xlanguage['action']) {
     //if (CONV_REQUEST && (!empty($_GET)||!empty($_POST))) {
     if (!empty($_POST)) {
-        $in_charset = $xlanguage["charset"];
-        $out_charset = $xlanguage["charset_base"];
+        $in_charset  = $xlanguage['charset'];
+        $out_charset = $xlanguage['charset_base'];
 
         //$CONV_REQUEST_array=array("_GET", "_POST");
-        $CONV_REQUEST_array=array("_POST");
+        $CONV_REQUEST_array = array('_POST');
         foreach ($CONV_REQUEST_array as $HV) {
             if (!empty(${$HV})) {
                 ${$HV} = xlanguage_convert_encoding(${$HV}, $out_charset, $in_charset);
             }
-            $GLOBALS["HTTP".$HV."_VARS"] = ${$HV};
+            $GLOBALS['HTTP' . $HV . '_VARS'] = ${$HV};
         }
     }
-    ob_start("xlanguage_encoding");
+    ob_start('xlanguage_encoding');
 } else {
-    ob_start("xlanguage_ml");
+    ob_start('xlanguage_ml');
 }
 
 /*
@@ -102,6 +101,6 @@ if ($xlanguage["action"]) {
  */
 $xlanguage_theme_enable = true;
 if (!empty($xlanguage_theme_enable)) {
-    $options = array("dropdown", " ", 5); // display mode, delimitor, number per line
+    $options = array('dropdown', ' ', 5); // display mode, delimitor, number per line
     xlanguage_select_show($options);
 }
