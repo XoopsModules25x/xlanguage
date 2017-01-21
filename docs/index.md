@@ -14,16 +14,14 @@ This module, **xLanguage** (eXtensible Multi-language content and character enco
    installation
    book/1install
    book/2administration
-* [Install/Uninstall](book/1install.md)
-* [Administration Menu](book/2administration.md)
-* [Preferences](book/3preferences.md)
-* [Operating Instructions](book/4operations.md)
-* [The User Side](book/5userside.md)
-* [Blocks](book/6blocks.md)
-* [Templates](book/7templates.md)
-* [Other](book/8other.md) //delete, if not used
-* [Module Credits](book/9credits.md)
-* [About XOOPS CMS](book/10aboutxoops.md)
+   book/3preferences
+   book/4operations.md
+   book/5userside.md
+   6blocks.md
+   7templates.md
+   book/8other.md 
+   book/9credits.md
+   book/10aboutxoops.md
 
 .. filtering: when and suchthat?
 .. random configurability: rand, mt_rand, else?
