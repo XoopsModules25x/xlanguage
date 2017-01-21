@@ -1,7 +1,7 @@
 Welcome to xLanguage documentation!
 ================================
 
-.. image:: /en/assets/image001.jpg
+.. image:: /assets/image001.jpg
    :width: 25%
    :align: right
    :alt: the Eris dwarf planet
