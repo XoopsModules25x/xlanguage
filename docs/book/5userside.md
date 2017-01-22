@@ -7,4 +7,4 @@ image:: /../assets/image005.jpg
 
 When the user clicks on the French flag, the text changes to French:
 
-..image:: /../assets/image006.jpg
+..image:: ../assets/image006.jpg
