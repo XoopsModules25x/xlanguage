@@ -1,7 +1,7 @@
 ![](../assets/logoXoops.jpg)
 
 # 10.0 About XOOPS CMS
-
+================================
 XOOPS is a Content Management System (CSM) and a Web Portal program that allows administrators to easily create dynamic websites with great content and many outstanding features. It is an ideal tool for developing small to large dynamic community websites, intra company portals, corporate portals, weblogs and much more. It can be installed on an Internet host with a PHP-capable web server (e.g., Apache) and a database (e.g., MySQL).
 
 **The main Project websites is http://xooops.org**

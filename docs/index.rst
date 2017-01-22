@@ -17,8 +17,8 @@ This module, **xLanguage** (eXtensible Multi-language content and character enco
    book/3preferences
    book/4operations.md
    book/5userside.md
-   6blocks.md
-   7templates.md
+   book/6blocks.md
+   book/7templates.md
    book/8other.md 
    book/9credits.md
    book/10aboutxoops.md
