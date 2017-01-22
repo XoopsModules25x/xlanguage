@@ -1,4 +1,4 @@
-# 9.0 Module Credits
+9.0 Module Credits
 ================================
 This module was originally developed by D.J. (phppp)
 

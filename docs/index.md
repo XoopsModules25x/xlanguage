@@ -11,7 +11,6 @@ This module, **xLanguage** (eXtensible Multi-language content and character enco
 .. toctree::
    :maxdepth: 2
 
-   installation
    book/1install
    book/2administration
    book/3preferences

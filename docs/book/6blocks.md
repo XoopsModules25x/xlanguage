@@ -1,4 +1,4 @@
-# 6.0 Blocks
+6.0 Blocks
 ================================
 
 This module has only one Block - where you can show selection of available languages. 
