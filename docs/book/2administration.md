@@ -1,7 +1,7 @@
 2.0 Administration Menu
 ================================
 
-../assets/image002.jpg
+.. image:: ../assets/image002.jpg
 *Figure 2: Admin menu of the xLanguage Module*
 
 In the menu you can do following:
