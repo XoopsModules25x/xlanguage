@@ -16,18 +16,18 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-include_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+require_once __DIR__ . '/../../../include/cp_header.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 xoops_cp_header();
 $myts = MyTextSanitizer::getInstance();
 
+/** @var XoopsModuleHandler $moduleHandler */
 $moduleHandler = xoops_getHandler('module');
 $versioninfo   = $moduleHandler->get($xoopsModule->getVar('mid'));
 
 // Left headings...
 echo "<a href='index.php'><img src='" . XOOPS_URL . '/modules/' . $xoopsModule->dirname() . '/' . $versioninfo->getInfo('image') . "' alt='' hspace='10' vspace='0' align='left'></a>";
-echo "<div style='margin-top: 10px; color: #33538e; margin-bottom: 4px; font-size: 18px; line-height: 18px; font-weight: bold; display: block;'>" . $versioninfo->getInfo('name') . ' ver '
-     . $versioninfo->getInfo('version') . '</div>';
+echo "<div style='margin-top: 10px; color: #33538e; margin-bottom: 4px; font-size: 18px; line-height: 18px; font-weight: bold; display: block;'>" . $versioninfo->getInfo('name') . ' ver ' . $versioninfo->getInfo('version') . '</div>';
 echo '</div>';
 echo '<div>' . _MI_XLANG_RELEASE . ': ' . $versioninfo->getInfo('releasedate') . '</div>';
 

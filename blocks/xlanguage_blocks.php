@@ -89,22 +89,22 @@ function b_xlanguage_select_edit($options)
     $form = _MB_XLANGUAGE_DISPLAY_METHOD . "&nbsp;<select name='options[]'>";
     $form .= "<option value='images'";
     if ($options[0] === 'images') {
-        $form .= " selected='selected'";
+        $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_FLAGLIST . "</option>\n";
     $form .= "<option value='text'";
     if ($options[0] === 'text') {
-        $form .= " selected='selected'";
+        $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_TEXTLIST . "</option>\n";
     $form .= "<option value='dropdown'";
     if ($options[0] === 'dropdown') {
-        $form .= " selected='selected'";
+        $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_DROPDOWNLIST . "</option>\n";
     $form .= "</select>\n";
-    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_SEPARATOR . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[1] . "' />";
-    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_PERROW . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[2] . "' />";
+    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_SEPARATOR . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[1] . "'>";
+    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_PERROW . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'>";
 
     return $form;
 }

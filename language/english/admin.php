@@ -46,3 +46,11 @@ define('_AM_XLANG_MODULEADMIN_MISSING', 'Error: The ModuleAdmin class is missing
 
 define('_AM_XLANG_CHARSET_DESC', "'For example 'iso-8859-1' or ' gb2312' or 'UTF-8'");
 define('_AM_XLANG_CODE_DESC', "e.g. 'en' or 'xen', not a true language code, just a tag to indicate English content");
+//3.05
+define('_AM_XLANG_UPGRADEFAILED0', "Update failed - couldn't rename field '%s'");
+define('_AM_XLANG_UPGRADEFAILED1', "Update failed - couldn't add new fields");
+define('_AM_XLANG_UPGRADEFAILED2', "Update failed - couldn't rename table '%s'");
+define('_AM_XLANG_ERROR_COLUMN', 'Could not create column in database : %s');
+define('_AM_XLANG_ERROR_BAD_XOOPS', 'This module requires XOOPS %s+ (%s installed)');
+define('_AM_XLANG_ERROR_BAD_PHP', 'This module requires PHP version %s+ (%s installed)');
+define('_AM_XLANG_ERROR_TAG_REMOVAL', 'Could not remove tags from Tag Module');

@@ -237,9 +237,9 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
      */
     public function &getAllList()
     {
-        $baseArray =& $this->getAll();
+        $baseArray = $this->getAll();
 
-        $extArray =& $this->getAll(false);
+        $extArray = $this->getAll(false);
         $ret      = array();
         if (is_array($baseArray) && count($baseArray) > 0) {
             foreach ($baseArray as $base) {
@@ -299,9 +299,26 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
         }
 
         if ($lang->isNew()) {
-            $var_array = array('lang_id', 'weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image', 'lang_base');
+            $var_array = array(
+                'lang_id',
+                'weight',
+                'lang_name',
+                'lang_desc',
+                'lang_code',
+                'lang_charset',
+                'lang_image',
+                'lang_base'
+            );
             if ($lang->isBase) {
-                $var_array = array('lang_id', 'weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image');
+                $var_array = array(
+                    'lang_id',
+                    'weight',
+                    'lang_name',
+                    'lang_desc',
+                    'lang_code',
+                    'lang_charset',
+                    'lang_image'
+                );
             }
             $lang_id = $this->db->genId($lang->table . '_lang_id_seq');
             foreach ($var_array as $var) {
@@ -318,7 +335,15 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
             }
             $lang->setVar('lang_id', $lang_id);
         } else {
-            $var_array = array('weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image', 'lang_base');
+            $var_array = array(
+                'weight',
+                'lang_name',
+                'lang_desc',
+                'lang_code',
+                'lang_charset',
+                'lang_image',
+                'lang_base'
+            );
             if ($lang->isBase) {
                 $var_array = array('weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image');
             }
@@ -382,7 +407,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
 
         $file_content = '<?php';
         unset($this->cached_config);
-        $baseArray =& $this->getAll();
+        $baseArray = $this->getAll();
         if (is_array($baseArray) && count($baseArray) > 0) {
             $file_content .= "\n    \$" . XLANGUAGE_CONFIG_VAR . "['xlanguage_base'] = array(";
             foreach ($baseArray as $lang) {
@@ -399,7 +424,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
             $file_content .= "\n    );";
         }
 
-        $extArray =& $this->getAll(false);
+        $extArray = $this->getAll(false);
         if (is_array($extArray) && count($extArray) > 0) {
             $file_content .= "\n    \$" . XLANGUAGE_CONFIG_VAR . "['xlanguage_ext'] = array(";
             foreach ($extArray as $lang) {

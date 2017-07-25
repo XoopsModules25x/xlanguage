@@ -16,10 +16,24 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-$moduleHandler = xoops_getHandler('module');
-$xoopsModule   = XoopsModule::getByDirname('xlanguage');
-$moduleInfo    = $moduleHandler->get($xoopsModule->getVar('mid'));
-$pathIcon32    = $moduleInfo->getInfo('icons32');
+use Xmf\Module\Admin;
+use Xmf\Module\Helper;
+
+// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+
+//$path = dirname(dirname(dirname(__DIR__)));
+//require_once $path . '/mainfile.php';
+
+$moduleDirName = basename(dirname(__DIR__));
+
+if (false !== ($moduleHelper = Helper::getHelper($moduleDirName))) {
+} else {
+    $moduleHelper = Helper::getHelper('system');
+}
+$pathIcon32    = Admin::menuIconPath('');
+$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
+
+xoops_loadLanguage('modinfo', $moduleDirName);
 
 $adminmenu = array();
 
@@ -47,4 +61,3 @@ $adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
 // $adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU3;
 // $adminmenu[$i]['link'] = "admin/about2.php";
 // $adminmenu[$i]['icon']  = $pathIcon32.'/about.png';
-

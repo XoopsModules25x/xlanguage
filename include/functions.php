@@ -44,8 +44,8 @@ function xlanguage_convert_item($value, $out_charset, $in_charset)
     if (strtolower($in_charset) == strtolower($out_charset)) {
         return $value;
     }
-    $xconv_handler = @xoops_getModuleHandler('xconv', 'xconv', true);
-    if (is_object($xconv_handler) && $converted_value = @$xconv_handler->convert_encoding($value, $out_charset, $in_charset)) {
+    $xconvHandler = @xoops_getModuleHandler('xconv', 'xconv', true);
+    if (is_object($xconvHandler) && $converted_value = @$xconvHandler->convert_encoding($value, $out_charset, $in_charset)) {
         return $converted_value;
     }
     if (XOOPS_USE_MULTIBYTES && function_exists('mb_convert_encoding')) {
@@ -63,9 +63,9 @@ function xlanguage_convert_item($value, $out_charset, $in_charset)
  */
 function xlanguage_createConfig()
 {
-    $xlang_handler = xoops_getModuleHandler('language', 'xlanguage');
+    $xlangHandler = xoops_getModuleHandler('language', 'xlanguage');
 
-    return $xlang_handler->createConfig();
+    return $xlangHandler->createConfig();
 }
 
 /**
@@ -73,8 +73,8 @@ function xlanguage_createConfig()
  */
 function xlanguage_loadConfig()
 {
-    $xlang_handler = xoops_getModuleHandler('language', 'xlanguage');
-    $config        = $xlang_handler->loadFileConfig();
+    $xlangHandler = xoops_getModuleHandler('language', 'xlanguage');
+    $config       = $xlangHandler->loadFileConfig();
 
     return $config;
 }
@@ -193,8 +193,8 @@ function xlanguage_ml($s)
     global $xlanguage_langs;
     if (!isset($xlanguage_langs)) {
         $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
-        $langs             = $xlanguageHandler->getAll(true);
-        //        $langs = $GLOBALS['xlanguage_handler']->getAll(true); //mb
+        $langs            = $xlanguageHandler->getAll(true);
+        //        $langs = $GLOBALS['xlanguageHandler']->getAll(true); //mb
         foreach (array_keys($langs) as $_lang) {
             $xlanguage_langs[$_lang] = $langs[$_lang]->getVar('lang_code');
         }
@@ -268,7 +268,7 @@ function xlanguage_ml_escape_bracket($matches)
  */
 function xlanguage_select_show($options = null)
 {
-    include_once XOOPS_ROOT_PATH . '/modules/xlanguage/blocks/xlanguage_blocks.php';
+    require_once XOOPS_ROOT_PATH . '/modules/xlanguage/blocks/xlanguage_blocks.php';
     if (empty($options)) {
         $options[0] = 'images'; // display style: image, text, select
         $options[1] = ' '; // delimitor
@@ -289,7 +289,7 @@ function xlanguage_select_show($options = null)
                     if ($block['selected'] != $lang['name']) {
                         $content .= " style=\"MozOpacity: .8; opacity: .8; filter:Alpha(opacity=80);\"";
                     }
-                    $content .= '/>';
+                    $content .= '>';
                 } else {
                     $content .= $lang['desc'];
                 }
@@ -308,7 +308,7 @@ function xlanguage_select_show($options = null)
                     if ($block['selected'] == $lang['name']) {
                         $content .= ' selected ';
                     }
-                    $content .= '/>' . $lang['desc'] . '</option>';
+                    $content .= '>' . $lang['desc'] . '</option>';
                 }
             }
             $content .= '</select>';

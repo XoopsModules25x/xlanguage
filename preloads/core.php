@@ -33,7 +33,7 @@ class XlanguageCorePreload extends XoopsPreloadItem
     {
         if (XlanguageCorePreload::isActive()) {
             global $xoopsConfig;
-            include_once dirname(__DIR__) . '/api.php';
+            require_once __DIR__ . '/../api.php';
         }
     }
 
@@ -42,6 +42,7 @@ class XlanguageCorePreload extends XoopsPreloadItem
      */
     public static function isActive()
     {
+        /** @var XoopsModuleHandler $moduleHandler */
         $moduleHandler = xoops_getHandler('module');
         $module        = $moduleHandler->getByDirname('xlanguage');
 

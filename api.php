@@ -17,8 +17,8 @@
  **/
 
 global $xlanguage;
-include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php');
-include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php');
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php';
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
@@ -69,7 +69,7 @@ if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['lan
 }
 unset($lang);
 
-$GLOBALS['xlanguage_handler'] = $xlanguageHandler;
+$GLOBALS['xlanguageHandler'] = $xlanguageHandler;
 
 if ($xlanguage['action']) {
     //if (CONV_REQUEST && (!empty($_GET)||!empty($_POST))) {
