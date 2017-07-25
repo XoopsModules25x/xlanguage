@@ -9,7 +9,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright    XOOPS Project (http://xoops.org)
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
@@ -69,13 +69,13 @@ $modversion['releasedate']  = 'July 9th, 2006';
 $modversion['status']       = 'stable';
 $modversion['xoopsversion'] = '2.0+';
 
-$modversion['author_website'][1]['url']  = 'http://xoops.org.cn';
+$modversion['author_website'][1]['url']  = 'https://xoops.org.cn';
 $modversion['author_website'][1]['name'] = 'The Xoops China Community';
 $modversion['author_website'][2]['url']  = 'http://xoopsforge.com';
 $modversion['author_website'][2]['name'] = 'XForge';
 
 $modversion['author_email']      = 'php_pp@hotmail.com';
-$modversion['demo_site_url']     = 'http://xoops.org.cn';
+$modversion['demo_site_url']     = 'https://xoops.org.cn';
 $modversion['demo_site_name']    = 'Xoops China';
 $modversion['support_site_url']  = 'http://xoopsforge.com';
 $modversion['support_site_name'] = 'XForge';

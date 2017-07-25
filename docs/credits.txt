@@ -9,7 +9,7 @@ Credits
 Author
 ------
 D.J. (phppp)
-http://xoops.org
+https://xoops.org
 http://xoopsforge.com
 
 
