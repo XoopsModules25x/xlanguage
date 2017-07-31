@@ -1,5 +1,5 @@
 <?php
-// 
+//
 // Blocks
 define('_MB_XLANGUAGE_SELECT', 'Click to select your language');
 define('_MB_XLANGUAGE_DISPLAY_METHOD', 'Display method');

@@ -29,7 +29,7 @@ define('_MI_XLANGUAGE_ADMENU_HOME', 'Home');
 //3.05
 //Help
 define('_MI_XLANG_DIRNAME', basename(dirname(dirname(__DIR__))));
-define('_MI_XLANG_HELP_HEADER', __DIR__ . '/help/helpheader.html');
+define('_MI_XLANG_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_XLANG_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_XLANG_OVERVIEW', 'Overview');
 
