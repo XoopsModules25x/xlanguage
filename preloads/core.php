@@ -31,21 +31,7 @@ class XlanguageCorePreload extends XoopsPreloadItem
      */
     public static function eventCoreIncludeCommonLanguage($args)
     {
-        if (XlanguageCorePreload::isActive()) {
             global $xoopsConfig;
             require_once __DIR__ . '/../api.php';
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    public static function isActive()
-    {
-        /** @var XoopsModuleHandler $moduleHandler */
-        $moduleHandler = xoops_getHandler('module');
-        $module        = $moduleHandler->getByDirname('xlanguage');
-
-        return ($module && $module->getVar('isactive'));
     }
 }
