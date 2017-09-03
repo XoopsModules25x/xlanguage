@@ -24,6 +24,7 @@ function b_xlanguage_select_show($options)
 
     $block = array();
 
+    /** @var \XlanguageLanguageHandler $xlanguageHandler */
     $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
     $xlanguageHandler->loadConfig();
     $lang_list = $xlanguageHandler->getAllList();
@@ -52,10 +53,10 @@ function b_xlanguage_select_show($options)
     $QUERY_STRING_array = array_filter(explode('&', xoops_getenv('QUERY_STRING')));
     $QUERY_STRING_new   = array();
     foreach ($QUERY_STRING_array as $QUERY) {
-        if (substr($QUERY, 0, strlen(XLANGUAGE_LANG_TAG) + 1) != XLANGUAGE_LANG_TAG . '=') {
+        if (0 !== strpos($QUERY, XLANGUAGE_LANG_TAG . '=')) {
             $vals = explode('=', $QUERY);
             foreach (array_keys($vals) as $key) {
-                if (preg_match("/^a-z0-9$/i", $vals[$key])) {
+                if (preg_match('/^a-z0-9$/i', $vals[$key])) {
                     $vals[$key] = urlencode($vals[$key]);
                 }
             }

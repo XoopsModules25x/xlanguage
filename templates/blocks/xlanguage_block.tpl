@@ -4,7 +4,7 @@
             <a href="<{$block.url}><{$lang.name}>" title="<{$lang.desc}>">
                 <{if $block.display eq "images"}>
                     <img src="<{$lang.image}>" alt="<{$lang.desc}>"
-                         <{if $block.selected != $lang.name}>style="MozOpacity: .8; opacity: .8; filter:Alpha(opacity=80);"<{/if}>>
+                         <{if $block.selected != $lang.name}>style="-moz-opacity: .8; opacity: .8; filter:Alpha(opacity=80);"<{/if}>>
                 <{else}>
                     <{$lang.desc}>
                 <{/if}>

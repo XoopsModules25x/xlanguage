@@ -16,19 +16,19 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-$modversion['version']       = 3.05;
-$modversion['module_status'] = 'RC 1';
-$modversion['release_date']  = '2017/07/20';
-$modversion['name']          = _MI_XLANGUAGE_NAME;
-$modversion['description']   = _MI_XLANGUAGE_DESC;
-$modversion['credits']       = 'Adi Chiributa - webmaster@artistic.ro; wjue - http://www.wjue.org; GIJOE - http://www.peak.ne.jp';
-$modversion['author']        = 'phppp(D.J.)';
-$modversion['help']          = 'page=help';
-$modversion['license']       = 'GNU GPL';
-$modversion['license_url']   = 'www.gnu.org/licenses/gpl-2.0.html';
-$modversion['official']      = 1; //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
-$modversion['image']         = 'assets/images/logoModule.png';
-$modversion['dirname']       = basename(__DIR__);
+$modversion['version']             = 3.05;
+$modversion['module_status']       = 'RC 1';
+$modversion['release_date']        = '2017/07/20';
+$modversion['name']                = _MI_XLANGUAGE_NAME;
+$modversion['description']         = _MI_XLANGUAGE_DESC;
+$modversion['credits']             = 'Adi Chiributa - webmaster@artistic.ro; wjue - http://www.wjue.org; GIJOE - http://www.peak.ne.jp';
+$modversion['author']              = 'phppp(D.J.)';
+$modversion['help']                = 'page=help';
+$modversion['license']             = 'GNU GPL';
+$modversion['license_url']         = 'www.gnu.org/licenses/gpl-2.0.html';
+$modversion['official']            = 1; //1 indicates supported by XOOPS Dev Team, 0 means 3rd party supported
+$modversion['image']               = 'assets/images/logoModule.png';
+$modversion['dirname']             = basename(__DIR__);
 $modversion['modicons16']          = 'assets/images/icons/16';
 $modversion['modicons32']          = 'assets/images/icons/32';
 $modversion['release_file']        = XOOPS_URL . '/modules/' . $modversion['dirname'] . '/docs/changelog.txt';

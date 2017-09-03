@@ -15,7 +15,7 @@
  * @author          trabis <lusopoemas@gmail.com>
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * Xlanguage core preloads
@@ -31,7 +31,7 @@ class XlanguageCorePreload extends XoopsPreloadItem
      */
     public static function eventCoreIncludeCommonLanguage($args)
     {
-            global $xoopsConfig;
-            require_once __DIR__ . '/../api.php';
+        global $xoopsConfig;
+        require_once __DIR__ . '/../api.php';
     }
 }

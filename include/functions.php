@@ -63,9 +63,10 @@ function xlanguage_convert_item($value, $out_charset, $in_charset)
  */
 function xlanguage_createConfig()
 {
-    $xlangHandler = xoops_getModuleHandler('language', 'xlanguage');
+    /** @var \XlanguageLanguageHandler $xlanguageHandler */
+    $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
 
-    return $xlangHandler->createConfig();
+    return $xlanguageHandler->createConfig();
 }
 
 /**
@@ -73,8 +74,9 @@ function xlanguage_createConfig()
  */
 function xlanguage_loadConfig()
 {
-    $xlangHandler = xoops_getModuleHandler('language', 'xlanguage');
-    $config       = $xlangHandler->loadFileConfig();
+    /** @var \XlanguageLanguageHandler $xlanguageHandler */
+    $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+    $config       = $xlanguageHandler->loadFileConfig();
 
     return $config;
 }
@@ -180,7 +182,8 @@ function xlanguage_encoding($output)
     $in_charset  = $xlanguage['charset_base'];
     $out_charset = $xlanguage['charset'];
 
-    return $output = xlanguage_convert_encoding($output, $out_charset, $in_charset);
+    $output = xlanguage_convert_encoding($output, $out_charset, $in_charset);
+    return $output;
 }
 
 /**
@@ -192,6 +195,8 @@ function xlanguage_ml($s)
     global $xoopsConfig;
     global $xlanguage_langs;
     if (!isset($xlanguage_langs)) {
+
+        /** @var \XlanguageLanguageHandler $xlanguageHandler */
         $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
         $langs            = $xlanguageHandler->getAll(true);
         //        $langs = $GLOBALS['xlanguageHandler']->getAll(true); //mb
@@ -283,11 +288,11 @@ function xlanguage_select_show($options = null)
     if (!empty($block['display'])) { //mb
         if (in_array($block['display'], array('images', 'text'))) {
             foreach ($block['languages'] as $name => $lang) {
-                $content .= "<a href=\"" . $block['url'] . $lang['name'] . "\" title=\"" . $lang['desc'] . "\">";
+                $content .= '<a href="' . $block['url'] . $lang['name'] . '" title="' . $lang['desc'] . '">';
                 if ($block['display'] === 'images') {
-                    $content .= "<img src=\"" . $lang['image'] . "\" alt=\"" . $lang['desc'] . "\"";
+                    $content .= '<img src="' . $lang['image'] . '" alt="' . $lang['desc'] . '"';
                     if ($block['selected'] != $lang['name']) {
-                        $content .= " style=\"MozOpacity: .8; opacity: .8; filter:Alpha(opacity=80);\"";
+                        $content .= ' style="MozOpacity: .8; opacity: .8; filter:Alpha(opacity=80);"';
                     }
                     $content .= '>';
                 } else {
@@ -299,12 +304,12 @@ function xlanguage_select_show($options = null)
                 }
             }
         } else {
-            $content .= "<select name=\"" . $block['tag'] . "\"
-                onChange=\"if (this.options[this.selectedIndex].value.length >0) { window.document.location=this.options[this.selectedIndex].value;}\"
-                >";
+            $content .= '<select name="' . $block['tag'] . '"
+                onChange="if (this.options[this.selectedIndex].value.length >0) { window.document.location=this.options[this.selectedIndex].value;}"
+                >';
             if (!empty($block['languages'])) { //mb
                 foreach ($block['languages'] as $name => $lang) {
-                    $content .= "<option value=\"" . $block['url'] . $lang['name'] . "\"";
+                    $content .= '<option value="' . $block['url'] . $lang['name'] . '"';
                     if ($block['selected'] == $lang['name']) {
                         $content .= ' selected ';
                     }

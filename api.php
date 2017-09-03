@@ -45,6 +45,7 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
     $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
+/** @var \XlanguageLanguageHandler $xlanguageHandler */
 $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
 $xlanguageHandler->loadConfig();
 $lang = $xlanguageHandler->getByName($xlanguage['lang']);

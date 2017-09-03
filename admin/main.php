@@ -36,6 +36,7 @@ if (isset($_GET)) {
 
 define('XLANG_CONFIG_LINK', "<a href='main.php' target='_self'>" . _AM_XLANG_CONFIG . '</a>');
 
+/** @var \XlanguageLanguageHandler $xlanguageHandler */
 $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
 $xlanguageHandler->loadConfig();
 

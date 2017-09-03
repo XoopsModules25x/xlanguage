@@ -19,7 +19,7 @@
 use Xmf\Module\Admin;
 use Xmf\Module\Helper;
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 //$path = dirname(dirname(dirname(__DIR__)));
 //require_once $path . '/mainfile.php';

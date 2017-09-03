@@ -57,7 +57,7 @@ $image_array       = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/modules/'
 $lang_image        = empty($lang_image) ? 'noflag.gif' : $lang_image;
 $image_select      = new XoopsFormSelect('', 'lang_image', $lang_image);
 $image_select->addOptionArray($image_array);
-$image_select->setExtra("onchange='showImgSelected(\"image\", \"lang_image\", \"/modules/" . $xoopsModule->dirname() . "/assets/images/\", \"\", \"" . XOOPS_URL . "\")'");
+$image_select->setExtra("onchange='showImgSelected(\"image\", \"lang_image\", \"/modules/" . $xoopsModule->dirname() . '/assets/images/", "", "' . XOOPS_URL . "\")'");
 $image_tray = new XoopsFormElementTray('', '&nbsp;');
 $image_tray->addElement($image_select);
 if (!empty($lang_image)) {
