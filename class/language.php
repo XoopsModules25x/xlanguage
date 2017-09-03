@@ -9,7 +9,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright    XOOPS Project (http://xoops.org)
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
@@ -131,7 +131,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
      *
      * @return Blanguage|null|Xlanguage
      */
-    public function &get($id, $isBase = true)
+    public function get($id, $isBase = true)
     {
         $lang = null;
         $id   = (int)$id;
@@ -162,7 +162,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
      *
      * @return Blanguage|null|Xlanguage
      */
-    public function &getByName($name)
+    public function getByName($name)
     {
         $lang = null;
         if (empty($name) || preg_match("/[^a-zA-Z0-9\_\-]/", $name)) {
@@ -206,7 +206,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
      *
      * @return array
      */
-    public function &getAll($isBase = true)
+    public function getAll($isBase = true)
     {
         $prefix = $isBase ? 'xlanguage_base' : 'xlanguage_ext';
         $ret    = array();
@@ -235,11 +235,11 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
     /**
      * @return array
      */
-    public function &getAllList()
+    public function getAllList()
     {
-        $baseArray =& $this->getAll();
+        $baseArray = $this->getAll();
 
-        $extArray =& $this->getAll(false);
+        $extArray = $this->getAll(false);
         $ret      = array();
         if (is_array($baseArray) && count($baseArray) > 0) {
             foreach ($baseArray as $base) {
@@ -299,9 +299,26 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
         }
 
         if ($lang->isNew()) {
-            $var_array = array('lang_id', 'weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image', 'lang_base');
+            $var_array = array(
+                'lang_id',
+                'weight',
+                'lang_name',
+                'lang_desc',
+                'lang_code',
+                'lang_charset',
+                'lang_image',
+                'lang_base'
+            );
             if ($lang->isBase) {
-                $var_array = array('lang_id', 'weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image');
+                $var_array = array(
+                    'lang_id',
+                    'weight',
+                    'lang_name',
+                    'lang_desc',
+                    'lang_code',
+                    'lang_charset',
+                    'lang_image'
+                );
             }
             $lang_id = $this->db->genId($lang->table . '_lang_id_seq');
             foreach ($var_array as $var) {
@@ -318,7 +335,15 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
             }
             $lang->setVar('lang_id', $lang_id);
         } else {
-            $var_array = array('weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image', 'lang_base');
+            $var_array = array(
+                'weight',
+                'lang_name',
+                'lang_desc',
+                'lang_code',
+                'lang_charset',
+                'lang_image',
+                'lang_base'
+            );
             if ($lang->isBase) {
                 $var_array = array('weight', 'lang_name', 'lang_desc', 'lang_code', 'lang_charset', 'lang_image');
             }
@@ -382,36 +407,36 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
 
         $file_content = '<?php';
         unset($this->cached_config);
-        $baseArray =& $this->getAll();
+        $baseArray = $this->getAll();
         if (is_array($baseArray) && count($baseArray) > 0) {
             $file_content .= "\n    \$" . XLANGUAGE_CONFIG_VAR . "['xlanguage_base'] = array(";
             foreach ($baseArray as $lang) {
-                $file_content .= "\n        \"" . $lang->getVar('lang_name') . "\"=>array(";
+                $file_content .= "\n        \"" . $lang->getVar('lang_name') . '"=>array(';
                 $file_content .= "\n            \"lang_id\"=>" . $lang->getVar('lang_id') . ',';
                 $file_content .= "\n            \"weight\"=>" . $lang->getVar('weight') . ',';
-                $file_content .= "\n            \"lang_name\"=>\"" . $lang->getVar('lang_name') . "\",";
-                $file_content .= "\n            \"lang_desc\"=>\"" . $lang->getVar('lang_desc') . "\",";
-                $file_content .= "\n            \"lang_code\"=>\"" . $lang->getVar('lang_code') . "\",";
-                $file_content .= "\n            \"lang_charset\"=>\"" . $lang->getVar('lang_charset') . "\",";
-                $file_content .= "\n            \"lang_image\"=>\"" . $lang->getVar('lang_image') . "\"";
+                $file_content .= "\n            \"lang_name\"=>\"" . $lang->getVar('lang_name') . '",';
+                $file_content .= "\n            \"lang_desc\"=>\"" . $lang->getVar('lang_desc') . '",';
+                $file_content .= "\n            \"lang_code\"=>\"" . $lang->getVar('lang_code') . '",';
+                $file_content .= "\n            \"lang_charset\"=>\"" . $lang->getVar('lang_charset') . '",';
+                $file_content .= "\n            \"lang_image\"=>\"" . $lang->getVar('lang_image') . '"';
                 $file_content .= "\n        ),";
             }
             $file_content .= "\n    );";
         }
 
-        $extArray =& $this->getAll(false);
+        $extArray = $this->getAll(false);
         if (is_array($extArray) && count($extArray) > 0) {
             $file_content .= "\n    \$" . XLANGUAGE_CONFIG_VAR . "['xlanguage_ext'] = array(";
             foreach ($extArray as $lang) {
-                $file_content .= "\n        \"" . $lang->getVar('lang_name') . "\"=>array(";
+                $file_content .= "\n        \"" . $lang->getVar('lang_name') . '"=>array(';
                 $file_content .= "\n            \"lang_id\"=>" . $lang->getVar('lang_id') . ',';
                 $file_content .= "\n            \"weight\"=>" . $lang->getVar('weight') . ',';
-                $file_content .= "\n            \"lang_name\"=>\"" . $lang->getVar('lang_name') . "\",";
-                $file_content .= "\n            \"lang_desc\"=>\"" . $lang->getVar('lang_desc') . "\",";
-                $file_content .= "\n            \"lang_code\"=>\"" . $lang->getVar('lang_code') . "\",";
-                $file_content .= "\n            \"lang_charset\"=>\"" . $lang->getVar('lang_charset') . "\",";
-                $file_content .= "\n            \"lang_image\"=>\"" . $lang->getVar('lang_image') . "\",";
-                $file_content .= "\n            \"lang_base\"=>\"" . $lang->getVar('lang_base') . "\"";
+                $file_content .= "\n            \"lang_name\"=>\"" . $lang->getVar('lang_name') . '",';
+                $file_content .= "\n            \"lang_desc\"=>\"" . $lang->getVar('lang_desc') . '",';
+                $file_content .= "\n            \"lang_code\"=>\"" . $lang->getVar('lang_code') . '",';
+                $file_content .= "\n            \"lang_charset\"=>\"" . $lang->getVar('lang_charset') . '",';
+                $file_content .= "\n            \"lang_image\"=>\"" . $lang->getVar('lang_image') . '",';
+                $file_content .= "\n            \"lang_base\"=>\"" . $lang->getVar('lang_base') . '"';
                 $file_content .= "\n        ),";
             }
             $file_content .= "\n    );";

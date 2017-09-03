@@ -1,5 +1,5 @@
 
-D.J.(phppp) http://xoops.org
+D.J.(phppp) https://xoops.org
 ===========================================================================================================
 
 xlanguage, eXtensible Xoops Multilingual Content and Encoding Management

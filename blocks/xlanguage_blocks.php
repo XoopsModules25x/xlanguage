@@ -9,7 +9,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright    XOOPS Project (http://xoops.org)
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
@@ -24,6 +24,7 @@ function b_xlanguage_select_show($options)
 
     $block = array();
 
+    /** @var \XlanguageLanguageHandler $xlanguageHandler */
     $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
     $xlanguageHandler->loadConfig();
     $lang_list = $xlanguageHandler->getAllList();
@@ -52,10 +53,10 @@ function b_xlanguage_select_show($options)
     $QUERY_STRING_array = array_filter(explode('&', xoops_getenv('QUERY_STRING')));
     $QUERY_STRING_new   = array();
     foreach ($QUERY_STRING_array as $QUERY) {
-        if (substr($QUERY, 0, strlen(XLANGUAGE_LANG_TAG) + 1) != XLANGUAGE_LANG_TAG . '=') {
+        if (0 !== strpos($QUERY, XLANGUAGE_LANG_TAG . '=')) {
             $vals = explode('=', $QUERY);
             foreach (array_keys($vals) as $key) {
-                if (preg_match("/^a-z0-9$/i", $vals[$key])) {
+                if (preg_match('/^a-z0-9$/i', $vals[$key])) {
                     $vals[$key] = urlencode($vals[$key]);
                 }
             }
@@ -89,22 +90,22 @@ function b_xlanguage_select_edit($options)
     $form = _MB_XLANGUAGE_DISPLAY_METHOD . "&nbsp;<select name='options[]'>";
     $form .= "<option value='images'";
     if ($options[0] === 'images') {
-        $form .= " selected='selected'";
+        $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_FLAGLIST . "</option>\n";
     $form .= "<option value='text'";
     if ($options[0] === 'text') {
-        $form .= " selected='selected'";
+        $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_TEXTLIST . "</option>\n";
     $form .= "<option value='dropdown'";
     if ($options[0] === 'dropdown') {
-        $form .= " selected='selected'";
+        $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_DROPDOWNLIST . "</option>\n";
     $form .= "</select>\n";
-    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_SEPARATOR . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[1] . "' />";
-    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_PERROW . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[2] . "' />";
+    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_SEPARATOR . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[1] . "'>";
+    $form .= '<br>' . _MB_XLANGUAGE_IMAGE_PERROW . ' (' . _MB_XLANGUAGE_OPTIONAL . "):&nbsp;<input type='text' name='options[]' value='" . $options[2] . "'>";
 
     return $form;
 }

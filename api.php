@@ -9,7 +9,7 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright    XOOPS Project (http://xoops.org)
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
@@ -17,8 +17,8 @@
  **/
 
 global $xlanguage;
-include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php');
-include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php');
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php';
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
@@ -45,6 +45,7 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
     $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
+/** @var \XlanguageLanguageHandler $xlanguageHandler */
 $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
 $xlanguageHandler->loadConfig();
 $lang = $xlanguageHandler->getByName($xlanguage['lang']);
@@ -69,7 +70,7 @@ if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['lan
 }
 unset($lang);
 
-$GLOBALS['xlanguage_handler'] = $xlanguageHandler;
+$GLOBALS['xlanguageHandler'] = $xlanguageHandler;
 
 if ($xlanguage['action']) {
     //if (CONV_REQUEST && (!empty($_GET)||!empty($_POST))) {

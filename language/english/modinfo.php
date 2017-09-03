@@ -1,5 +1,5 @@
 <?php
-// 
+//
 // Module Info
 
 define('_MI_XLANGUAGE_NAME', 'xLanguage');
@@ -26,3 +26,16 @@ define('_MI_XLANG_AUTHOR_BUGFIXES', 'Bug fix history');
 define('_MI_XLANG_MODULE_XOOPSVERSION', 'Xoops Version');
 //3.03
 define('_MI_XLANGUAGE_ADMENU_HOME', 'Home');
+//3.05
+//Help
+define('_MI_XLANG_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_XLANG_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
+define('_MI_XLANG_BACK_2_ADMIN', 'Back to Administration of ');
+define('_MI_XLANG_OVERVIEW', 'Overview');
+
+//define('_MI_XLANG_HELP_DIR', __DIR__);
+
+//help multi-page
+define('_MI_XLANG_DISCLAIMER', 'Disclaimer');
+define('_MI_XLANG_LICENSE', 'License');
+define('_MI_XLANG_SUPPORT', 'Support');

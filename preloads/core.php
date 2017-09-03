@@ -9,18 +9,18 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright       XOOPS Project (http://xoops.org)
+ * @copyright       XOOPS Project (https://xoops.org)
  * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @package         xlanguage
  * @author          trabis <lusopoemas@gmail.com>
  */
 
-// defined('XOOPS_ROOT_PATH') || exit('XOOPS root path not defined');
+// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
 
 /**
  * Xlanguage core preloads
  *
- * @copyright       XOOPS Project (http://xoops.org)
+ * @copyright       XOOPS Project (https://xoops.org)
  * @license         http://www.gnu.org/licenses/gpl-2.0.html GNU Public License
  * @author          trabis <lusopoemas@gmail.com>
  */
@@ -31,20 +31,7 @@ class XlanguageCorePreload extends XoopsPreloadItem
      */
     public static function eventCoreIncludeCommonLanguage($args)
     {
-        if (XlanguageCorePreload::isActive()) {
-            global $xoopsConfig;
-            include_once dirname(__DIR__) . '/api.php';
-        }
-    }
-
-    /**
-     * @return bool
-     */
-    public static function isActive()
-    {
-        $moduleHandler = xoops_getHandler('module');
-        $module        = $moduleHandler->getByDirname('xlanguage');
-
-        return ($module && $module->getVar('isactive'));
+        global $xoopsConfig;
+        require_once __DIR__ . '/../api.php';
     }
 }

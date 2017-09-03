@@ -9,18 +9,18 @@
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @copyright    XOOPS Project (http://xoops.org)
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-include_once dirname(dirname(dirname(__DIR__))) . '/include/cp_header.php';
-include_once __DIR__ . '/admin_header.php';
+require_once __DIR__ . '/../../../include/cp_header.php';
+require_once __DIR__ . '/admin_header.php';
 
-include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php');
-include_once(XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php');
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php';
 
 $op = '';
 if (isset($_POST)) {
@@ -36,6 +36,7 @@ if (isset($_GET)) {
 
 define('XLANG_CONFIG_LINK', "<a href='main.php' target='_self'>" . _AM_XLANG_CONFIG . '</a>');
 
+/** @var \XlanguageLanguageHandler $xlanguageHandler */
 $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
 $xlanguageHandler->loadConfig();
 
@@ -43,8 +44,8 @@ switch ($op) {
     case 'del':
         if (!isset($_POST['ok']) || $_POST['ok'] != 1) {
             xoops_cp_header();
-            $aboutAdmin = new ModuleAdmin();
-            echo $aboutAdmin->addNavigation(basename(__FILE__));
+            $aboutAdmin = \Xmf\Module\Admin::getInstance();
+            $adminObject->displayNavigation(basename(__FILE__));
             //            echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
             xoops_confirm(array('op' => 'del', 'type' => $_GET['type'], 'lang_id' => (int)$_GET['lang_id'], 'ok' => 1), 'main.php', _AM_XLANG_DELETE_CFM);
         } else {
@@ -85,8 +86,8 @@ switch ($op) {
 
     case 'edit':
         xoops_cp_header();
-        $aboutAdmin = new ModuleAdmin();
-        echo $aboutAdmin->addNavigation(basename(__FILE__));
+        $aboutAdmin = \Xmf\Module\Admin::getInstance();
+        $adminObject->displayNavigation(basename(__FILE__));
         // echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         // echo "<br>";
         echo '<h4>' . _AM_XLANG_EDITLANG . '</h4>';
@@ -115,16 +116,16 @@ switch ($op) {
 
     case 'add':
         xoops_cp_header();
-        $aboutAdmin = new ModuleAdmin();
+        $aboutAdmin = \Xmf\Module\Admin::getInstance();
         //        echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         //        echo "<br>";
         //        echo "<h4>" . _AM_XLANG_ADDLANG . "</h4>";
         if (isset($type) && $type === 'ext') {
             $isBase = false;
-            echo $aboutAdmin->addNavigation('main.php?op=add&type=ext');
+            $adminObject->displayNavigation('main.php?op=add&type=ext');
         } else {
             $isBase = true;
-            echo $aboutAdmin->addNavigation('main.php?op=add&type=base');
+            $adminObject->displayNavigation('main.php?op=add&type=base');
         }
         $lang_name    = '';
         $lang_desc    = '';
@@ -145,16 +146,16 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
-        $mainAdmin = new ModuleAdmin();
-        echo $mainAdmin->addNavigation(basename(__FILE__));
+        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject->displayNavigation(basename(__FILE__));
 
         // if (TDMDownloads_checkModuleAdmin()) {
-        // $mainAdmin = new ModuleAdmin();
-        // echo $mainAdmin->addNavigation('downloads.php');
-        $mainAdmin->addItemButton(_MI_XLANGUAGE_ADMENU1, 'main.php?op=add&type=base', 'add');
-        $mainAdmin->addItemButton(_MI_XLANGUAGE_ADMENU2, 'main.php?op=add&type=ext', 'insert_table_row');
+        // $adminObject = \Xmf\Module\Admin::getInstance();
+        // $adminObject->displayNavigation('downloads.php');
+        $adminObject->addItemButton(_MI_XLANGUAGE_ADMENU1, 'main.php?op=add&type=base', 'add');
+        $adminObject->addItemButton(_MI_XLANGUAGE_ADMENU2, 'main.php?op=add&type=ext', 'insert_table_row');
 
-        echo $mainAdmin->renderButton();
+        $adminObject->displayButton('left');
         //        }
 
         //        echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
@@ -163,8 +164,7 @@ switch ($op) {
         echo "<table width='100%' border='0' cellspacing='1' class='outer'><tr><td class=\"odd\"><br>";
         //        echo " - <b><a href='index.php?op=add&amp;type=base'>" . _AM_XLANG_ADDBASE . "</a></b><br><br>\n";
         //        echo " - <b><a href='index.php?op=add&amp;type=ext'>" . _AM_XLANG_ADDEXT . "</a></b><br><br>\n";
-        echo '<b>' . $configfile_status . '</b>: ' . XLANGUAGE_CONFIG_FILE . " (<a href='main.php?op=createconfig' title='" . _AM_XLANG_CREATECONFIG . "'>" . _AM_XLANG_CREATECONFIG
-             . "</a>)<br><br>\n";
+        echo '<b>' . $configfile_status . '</b>: ' . XLANGUAGE_CONFIG_FILE . " (<a href='main.php?op=createconfig' title='" . _AM_XLANG_CREATECONFIG . "'>" . _AM_XLANG_CREATECONFIG . "</a>)<br><br>\n";
         //        echo " - <b><a href='about.php'>" . _AM_XLANG_ABOUT . "</a></b>";
         echo '</td></tr></table>';
         break;
@@ -181,9 +181,23 @@ function languageList()
     if (is_array($lang_list) && count($lang_list) > 0) {
         echo "<table width='100%' border='0' cellspacing='1' class='outer'><tr><td class=\"odd\">";
         echo "<div style='text-align: center;'><b><h4>" . _AM_XLANG_LANGLIST . '</h4></b><br>';
-        echo "<table class='outer' width='100%' border='0' cellpadding='0' cellspacing='0' ><tr class='bg2'><th align='center'>" . _AM_XLANG_DESC . "</th><th align='center'>" . _AM_XLANG_NAME
-             . "</th><th align='center'>" . _AM_XLANG_CHARSET . "</th><th align='center'>" . _AM_XLANG_CODE . "</th><th align='center'>" . _AM_XLANG_IMAGE . "</th><th align='center'>"
-             . _AM_XLANG_WEIGHT . "</th><th align='center'>" . _AM_XLANG_BASE . "</th><th align='center'>" . _AM_XLANG_ACTION . "</th></tr>\n";
+        echo "<table class='outer' width='100%' border='0' cellpadding='0' cellspacing='0' ><tr class='bg2'><th align='center'>"
+             . _AM_XLANG_DESC
+             . "</th><th align='center'>"
+             . _AM_XLANG_NAME
+             . "</th><th align='center'>"
+             . _AM_XLANG_CHARSET
+             . "</th><th align='center'>"
+             . _AM_XLANG_CODE
+             . "</th><th align='center'>"
+             . _AM_XLANG_IMAGE
+             . "</th><th align='center'>"
+             . _AM_XLANG_WEIGHT
+             . "</th><th align='center'>"
+             . _AM_XLANG_BASE
+             . "</th><th align='center'>"
+             . _AM_XLANG_ACTION
+             . "</th></tr>\n";
         $class = 'even';
         foreach (array_keys($lang_list) as $lang_name) {
             $lang     =& $lang_list[$lang_name];
@@ -198,11 +212,23 @@ function languageList()
                 if (is_readable(XOOPS_ROOT_PATH . '/modules/xlanguage/assets/images/' . $lang['base']->getVar('lang_image'))) {
                     $lang_image = $lang['base']->getVar('lang_image');
                 }
-                echo "<td class='$class' ><img src='" . XOOPS_URL . '/modules/xlanguage/assets/images/' . $lang_image . "' alt='" . $lang['base']->getVar('lang_desc') . "' /></td>\n";
+                echo "<td class='$class' ><img src='" . XOOPS_URL . '/modules/xlanguage/assets/images/' . $lang_image . "' alt='" . $lang['base']->getVar('lang_desc') . "'></td>\n";
                 echo "<td class='$class' >" . $lang['base']->getVar('weight') . "</td>\n";
                 echo "<td class='$class' >&#216;</td>\n";
-                echo "<td class='$class' ><a href='main.php?op=edit&amp;type=base&amp;lang_id=" . $lang['base']->getVar('lang_id') . "'><img src=" . $pathIcon16 . '/edit.png title=' . _EDIT
-                     . "></a>\n" . "<a href='main.php?op=del&amp;type=base&amp;lang_id=" . $lang['base']->getVar('lang_id') . "'><img src=" . $pathIcon16 . '/delete.png title=' . _DELETE . "></td>\n";
+                echo "<td class='$class' ><a href='main.php?op=edit&amp;type=base&amp;lang_id="
+                     . $lang['base']->getVar('lang_id')
+                     . "'><img src="
+                     . $pathIcon16
+                     . '/edit.png title='
+                     . _EDIT
+                     . "></a>\n"
+                     . "<a href='main.php?op=del&amp;type=base&amp;lang_id="
+                     . $lang['base']->getVar('lang_id')
+                     . "'><img src="
+                     . $pathIcon16
+                     . '/delete.png title='
+                     . _DELETE
+                     . "></td>\n";
                 echo "</tr>\n";
                 $isOrphan = false;
                 $class    = ($class === 'odd') ? 'even' : 'odd';
@@ -220,12 +246,24 @@ function languageList()
                 if (is_readable(XOOPS_ROOT_PATH . '/modules/xlanguage/assets/images/' . $ext->getVar('lang_image'))) {
                     $lang_image = $ext->getVar('lang_image');
                 }
-                echo "<td class='$class' ><img src='" . XOOPS_URL . '/modules/xlanguage/assets/images/' . $lang_image . "' alt='" . $ext->getVar('lang_desc') . "' /></td>\n";
+                echo "<td class='$class' ><img src='" . XOOPS_URL . '/modules/xlanguage/assets/images/' . $lang_image . "' alt='" . $ext->getVar('lang_desc') . "'></td>\n";
                 echo "<td class='$class' >" . $ext->getVar('weight') . "</td>\n";
                 $lang_base = $isOrphan ? "<font color='red'>" . $ext->getVar('lang_base') . '</font>' : $ext->getVar('lang_base');
                 echo "<td class='$class' ><b>" . $lang_base . "</b></td>\n";
-                echo "<td class='$class' ><a href='main.php?op=edit&amp;type=ext&amp;lang_id=" . $ext->getVar('lang_id') . "'><img src=" . $pathIcon16 . '/edit.png title=' . _EDIT . "></a>\n"
-                     . "<a href='main.php?op=del&amp;type=ext&amp;lang_id=" . $ext->getVar('lang_id') . "'><img src=" . $pathIcon16 . '/delete.png title=' . _DELETE . "></td>\n";
+                echo "<td class='$class' ><a href='main.php?op=edit&amp;type=ext&amp;lang_id="
+                     . $ext->getVar('lang_id')
+                     . "'><img src="
+                     . $pathIcon16
+                     . '/edit.png title='
+                     . _EDIT
+                     . "></a>\n"
+                     . "<a href='main.php?op=del&amp;type=ext&amp;lang_id="
+                     . $ext->getVar('lang_id')
+                     . "'><img src="
+                     . $pathIcon16
+                     . '/delete.png title='
+                     . _DELETE
+                     . "></td>\n";
                 echo "</tr>\n";
             }
             echo "<tr><td colspan='9' ></td></tr>\n";

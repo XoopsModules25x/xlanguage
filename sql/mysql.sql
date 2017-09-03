@@ -3,27 +3,29 @@
 #
 
 CREATE TABLE `xlanguage_base` (
-  `lang_id`         int(8)             unsigned NOT NULL auto_increment,
-  `weight`             smallint(4)     NOT NULL default '1',
-  `lang_name`         varchar(255)     NOT NULL default '',
-  `lang_desc`         varchar(255)     NOT NULL default '',
-  `lang_code`         varchar(255)     NOT NULL default '',
-  `lang_charset`    varchar(255)     NOT NULL default '',
-  `lang_image`         varchar(255)     NOT NULL default '',
-  PRIMARY KEY          (`lang_id`),
+  `lang_id`      INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `weight`       SMALLINT(4)     NOT NULL DEFAULT '1',
+  `lang_name`    VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_desc`    VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_code`    VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_charset` VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_image`   VARCHAR(255)    NOT NULL DEFAULT '',
+  PRIMARY KEY (`lang_id`),
   KEY `lang_name`     (`lang_name`)
-) ENGINE=MyISAM;
+)
+  ENGINE = MyISAM;
 
 CREATE TABLE `xlanguage_ext` (
-  `lang_id`         int(8)             unsigned NOT NULL auto_increment,
-  `weight`             smallint(4)     NOT NULL default '1',
-  `lang_name`         varchar(255)     NOT NULL default '',
-  `lang_desc`         varchar(255)     NOT NULL default '',
-  `lang_code`         varchar(255)     NOT NULL default '',
-  `lang_charset`     varchar(255)     NOT NULL default '',
-  `lang_image`         varchar(255)     NOT NULL default '',
-  `lang_base`         varchar(255)     NOT NULL default '',
-  PRIMARY KEY          (`lang_id`),
+  `lang_id`      INT(8) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `weight`       SMALLINT(4)     NOT NULL DEFAULT '1',
+  `lang_name`    VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_desc`    VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_code`    VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_charset` VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_image`   VARCHAR(255)    NOT NULL DEFAULT '',
+  `lang_base`    VARCHAR(255)    NOT NULL DEFAULT '',
+  PRIMARY KEY (`lang_id`),
   KEY `lang_name`     (`lang_name`),
   KEY `lang_base`     (`lang_base`)
-) ENGINE=MyISAM;
+)
+  ENGINE = MyISAM;
