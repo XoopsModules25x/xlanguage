@@ -20,7 +20,7 @@ require_once __DIR__ . '/../../../include/cp_header.php';
 require_once __DIR__ . '/admin_header.php';
 
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
-require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php';
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/class/utility.php';
 
 $op = '';
 if (isset($_POST)) {
@@ -138,7 +138,7 @@ switch ($op) {
         break;
 
     case 'createconfig':
-        xlanguage_createConfig();
+        XLanguageUtility::createConfig();
         redirect_header('main.php', 1, _AM_XLANG_CREATED);
 
         break;

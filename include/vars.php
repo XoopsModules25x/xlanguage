@@ -20,7 +20,7 @@ if (!defined('XLANGUAGE_CONFIG_FILE')) {
     define('XLANGUAGE_CONFIG_FILE', XOOPS_CACHE_PATH . '/xlanguage.php');
 }
 if (!defined('XLANGUAGE_CONFIG_VAR')) {
-    define('XLANGUAGE_CONFIG_VAR', 'cached_config');
+    define('XLANGUAGE_CONFIG_VAR', 'cachedConfig');
 }
 if (!defined('XLANGUAGE_LANG_TAG')) {
     define('XLANGUAGE_LANG_TAG', 'lang');

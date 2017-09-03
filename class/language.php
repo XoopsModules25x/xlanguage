@@ -18,7 +18,7 @@
 
 //include_once(XOOPS_ROOT_PATH."/class/xoopslists.php");
 //include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php');
-//include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/include/functions.php');
+//include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/class/utility.php');
 
 /**
  * Class Blanguage
@@ -118,11 +118,11 @@ class Xlanguage extends Blanguage
  */
 class XlanguageLanguageHandler extends XoopsObjectHandler
 {
-    public $cached_config;
+    public $cachedConfig;
 
     public function loadConfig()
     {
-        $this->cached_config = $this->loadFileConfig();
+        $this->cachedConfig = $this->loadFileConfig();
     }
 
     /**
@@ -139,8 +139,8 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
             return $lang;
         }
         $prefix = $isBase ? 'xlanguage_base' : 'xlanguage_ext';
-        if (isset($this->cached_config[$prefix][$id])) {
-            $array = $this->cached_config[$prefix][$id];
+        if (isset($this->cachedConfig[$prefix][$id])) {
+            $array = $this->cachedConfig[$prefix][$id];
         } else {
             $sql   = 'SELECT * FROM ' . $this->db->prefix($prefix) . ' WHERE lang_id=' . $id;
             $array = $this->db->fetchArray($this->db->query($sql));
@@ -169,12 +169,12 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
             return $lang;
         }
         $isBase = false;
-        if (isset($this->cached_config['xlanguage_base'][$name])) {
-            $array  = $this->cached_config['xlanguage_base'][$name];
+        if (isset($this->cachedConfig['xlanguage_base'][$name])) {
+            $array  = $this->cachedConfig['xlanguage_base'][$name];
             $isBase = true;
-        } elseif (isset($this->cached_config['xlanguage_ext'][$name])) {
-            $array = $this->cached_config['xlanguage_ext'][$name];
-        } elseif (!isset($this->cached_config)) {
+        } elseif (isset($this->cachedConfig['xlanguage_ext'][$name])) {
+            $array = $this->cachedConfig['xlanguage_ext'][$name];
+        } elseif (!isset($this->cachedConfig)) {
             $sql    = 'SELECT * FROM ' . $this->db->prefix('xlanguage_base') . ' WHERE lang_name=\'' . $name . '\'';
             $result = $this->db->query($sql);
             $array  = $this->db->fetchArray($result);
@@ -210,15 +210,15 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
     {
         $prefix = $isBase ? 'xlanguage_base' : 'xlanguage_ext';
         $ret    = array();
-        if (isset($this->cached_config[$prefix])) {
-            $array = $this->cached_config[$prefix];
+        if (isset($this->cachedConfig[$prefix])) {
+            $array = $this->cachedConfig[$prefix];
             foreach ($array as $lang_name => $myrow) {
                 $lang = $this->create(false, $isBase);
                 $lang->assignVars($myrow);
                 $ret[$myrow['lang_name']] =& $lang;
                 unset($lang);
             }
-        } elseif (!isset($this->cached_config)) {
+        } elseif (!isset($this->cachedConfig)) {
             $sql    = 'SELECT * FROM ' . $this->db->prefix($prefix);
             $result = $this->db->query($sql);
             while ($myrow = $this->db->fetchArray($result)) {
@@ -286,6 +286,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
      */
     public function insert(XoopsObject $object)//insert(&$lang)
     {
+        $val_array = [];
         $lang = $object;
         if (!$lang->isDirty()) {
             return true;
@@ -406,7 +407,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
         }
 
         $file_content = '<?php';
-        unset($this->cached_config);
+        unset($this->cachedConfig);
         $baseArray = $this->getAll();
         if (is_array($baseArray) && count($baseArray) > 0) {
             $file_content .= "\n    \$" . XLANGUAGE_CONFIG_VAR . "['xlanguage_base'] = array(";
