@@ -22,7 +22,7 @@ function b_xlanguage_select_show($options)
 {
     global $xlanguage;
 
-    $block = array();
+    $block = [];
 
     /** @var \XlanguageLanguageHandler $xlanguageHandler */
     $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
@@ -32,7 +32,7 @@ function b_xlanguage_select_show($options)
         return $block;
     }
 
-    $languages = array();
+    $languages = [];
     foreach ($lang_list as $lang_name => $lang) {
         if (!isset($lang['base'])) {
             continue;
@@ -51,7 +51,7 @@ function b_xlanguage_select_show($options)
     }
 
     $QUERY_STRING_array = array_filter(explode('&', xoops_getenv('QUERY_STRING')));
-    $QUERY_STRING_new   = array();
+    $QUERY_STRING_new   = [];
     foreach ($QUERY_STRING_array as $QUERY) {
         if (0 !== strpos($QUERY, XLANGUAGE_LANG_TAG . '=')) {
             $vals = explode('=', $QUERY);

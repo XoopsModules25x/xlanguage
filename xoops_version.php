@@ -37,7 +37,7 @@ $modversion['module_website_name'] = 'XOOPS';
 $modversion['min_php']             = '5.5';
 $modversion['min_xoops']           = '2.5.9';
 $modversion['min_admin']           = '1.2';
-$modversion['min_db']              = array('mysql' => '5.5');
+$modversion['min_db']              = ['mysql' => '5.5'];
 
 $modversion['system_menu'] = 1;
 
@@ -51,12 +51,12 @@ $modversion['adminindex'] = 'admin/index.php';
 $modversion['adminmenu']  = 'admin/menu.php';
 
 // ------------------- Help files ------------------- //
-$modversion['helpsection'] = array(
+$modversion['helpsection'] = [
     ['name' => _MI_XLANG_OVERVIEW, 'link' => 'page=help'],
     ['name' => _MI_XLANG_DISCLAIMER, 'link' => 'page=disclaimer'],
     ['name' => _MI_XLANG_LICENSE, 'link' => 'page=license'],
     ['name' => _MI_XLANG_SUPPORT, 'link' => 'page=support'],
-);
+];
 
 // Use smarty
 $modversion['use_smarty'] = 1;

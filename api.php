@@ -79,7 +79,7 @@ if ($xlanguage['action']) {
         $out_charset = $xlanguage['charset_base'];
 
         //$CONV_REQUEST_array=array("_GET", "_POST");
-        $CONV_REQUEST_array = array('_POST');
+        $CONV_REQUEST_array = ['_POST'];
         foreach ($CONV_REQUEST_array as $HV) {
             if (!empty(${$HV})) {
                 ${$HV} = XLanguageUtility::convertEncoding(${$HV}, $out_charset, $in_charset);
@@ -102,6 +102,6 @@ if ($xlanguage['action']) {
  */
 $xlanguage_theme_enable = true;
 if (!empty($xlanguage_theme_enable)) {
-    $options = array('dropdown', ' ', 5); // display mode, delimitor, number per line
+    $options = ['dropdown', ' ', 5]; // display mode, delimitor, number per line
     XLanguageUtility::showSelectedLanguage($options);
 }

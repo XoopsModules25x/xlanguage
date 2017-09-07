@@ -224,8 +224,8 @@ function xlanguage_ml($s)
     $pqhtmltags  = explode(',', preg_quote(XLANGUAGE_TAGS_RESERVED, '/'));
     $mid_pattern = '(?:(?!(' . implode('|', $pqhtmltags) . ')).)*';
 
-    $patterns = array();
-    $replaces = array();
+    $patterns = [];
+    $replaces = [];
     /* */
     if (isset($xlanguage_langs[$xoopsConfig['language']])) {
         $lang       = $xlanguage_langs[$xoopsConfig['language']];
@@ -286,7 +286,7 @@ function xlanguage_select_show($options = null)
     $content = '';
     $i       = 1;
     if (!empty($block['display'])) { //mb
-        if (in_array($block['display'], array('images', 'text'))) {
+        if (in_array($block['display'], ['images', 'text'])) {
             foreach ($block['languages'] as $name => $lang) {
                 $content .= '<a href="' . $block['url'] . $lang['name'] . '" title="' . $lang['desc'] . '">';
                 if ($block['display'] === 'images') {
@@ -330,7 +330,7 @@ function xlanguage_select_show($options = null)
  */
 function getPreferredLanguage()
 {
-    $langs = array();
+    $langs = [];
     if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         // break up string into pieces (languages and q factors)
         preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.\d+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);

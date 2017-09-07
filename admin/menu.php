@@ -35,7 +35,7 @@ $pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
 xoops_loadLanguage('modinfo', $moduleDirName);
 
-$adminmenu = array();
+$adminmenu = [];
 
 $i                      = 1;
 $adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU_HOME;

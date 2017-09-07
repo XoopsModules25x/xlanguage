@@ -47,7 +47,7 @@ switch ($op) {
             $aboutAdmin = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             //            echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
-            xoops_confirm(array('op' => 'del', 'type' => $_GET['type'], 'lang_id' => (int)$_GET['lang_id'], 'ok' => 1), 'main.php', _AM_XLANG_DELETE_CFM);
+            xoops_confirm(['op' => 'del', 'type' => $_GET['type'], 'lang_id' => (int)$_GET['lang_id'], 'ok' => 1], 'main.php', _AM_XLANG_DELETE_CFM);
         } else {
             $isBase = true;
             if (isset($type) && $type === 'ext') {

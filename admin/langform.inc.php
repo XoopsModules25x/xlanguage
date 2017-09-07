@@ -41,7 +41,7 @@ $sform->addElement($lang_charset, true);
 
 if (!$isBase) {
     $baseList  = $xlanguageHandler->getAll();
-    $base_list = array();
+    $base_list = [];
     foreach ($baseList as $base => $baselang) {
         $base_list[$base] = $base;
     }
