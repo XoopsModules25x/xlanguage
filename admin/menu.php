@@ -35,29 +35,39 @@ $pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
 xoops_loadLanguage('modinfo', $moduleDirName);
 
-$adminmenu = [];
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU_HOME,
+    'link'  => 'admin/index.php',
+    'icon'  => $pathIcon32 . '/home.png',
+];
 
-$i                      = 1;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU_HOME;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU0;
-$adminmenu[$i]['link']  = 'admin/main.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU1;
-$adminmenu[$i]['link']  = 'admin/main.php?op=add&type=base';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/add.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU2;
-$adminmenu[$i]['link']  = 'admin/main.php?op=add&type=ext';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/insert_table_row.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU3;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
-// ++$i;
-// $adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU3;
-// $adminmenu[$i]['link'] = "admin/about2.php";
-// $adminmenu[$i]['icon']  = $pathIcon32.'/about.png';
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU0,
+    'link'  => 'admin/main.php',
+    'icon'  => $pathIcon32 . '/manage.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU1,
+    'link'  => 'admin/main.php?op=add&type=base',
+    'icon'  => $pathIcon32 . '/add.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU2,
+    'link'  => 'admin/main.php?op=add&type=ext',
+    'icon'  => $pathIcon32 . '/insert_table_row.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU3,
+    'link'  => 'admin/about.php',
+    'icon'  => $pathIcon32 . '/about.png',
+];
+
+//$adminmenu[] = [
+// 'title' =>  _MI_XLANGUAGE_ADMENU3,
+// 'link' =>  "admin/about2.php",
+// 'icon' =>  $pathIcon32.'/about.png',
+//];
+
