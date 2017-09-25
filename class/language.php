@@ -145,7 +145,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
             $sql   = 'SELECT * FROM ' . $this->db->prefix($prefix) . ' WHERE lang_id=' . $id;
             $array = $this->db->fetchArray($this->db->query($sql));
         }
-        if (!is_array($array) || count($array) == 0) {
+        if (!is_array($array) || 0 == count($array)) {
             return $lang;
         }
         $lang = $this->create(false, $isBase);
@@ -178,11 +178,11 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
             $sql    = 'SELECT * FROM ' . $this->db->prefix('xlanguage_base') . ' WHERE lang_name=\'' . $name . '\'';
             $result = $this->db->query($sql);
             $array  = $this->db->fetchArray($result);
-            if (!is_array($array) || count($array) == 0) {
+            if (!is_array($array) || 0 == count($array)) {
                 $sql    = 'SELECT * FROM ' . $this->db->prefix('xlanguage_ext') . ' WHERE lang_name=\'' . $name . '\'';
                 $result = $this->db->query($sql);
                 $array  = $this->db->fetchArray($result);
-                if (!is_array($array) || count($array) == 0) {
+                if (!is_array($array) || 0 == count($array)) {
                     return $lang;
                 }
             } else {
@@ -331,7 +331,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
 
                 return false;
             }
-            if ($lang_id == 0) {
+            if (0 == $lang_id) {
                 $lang_id = $this->db->getInsertId();
             }
             $lang->setVar('lang_id', $lang_id);

@@ -105,12 +105,12 @@ function xlanguage_lang_detect($str = '', $envType = '')
             // $envType =  1 for the 'HTTP_ACCEPT_LANGUAGE' environment variable,
             //             2 for the 'HTTP_USER_AGENT' one
             $expr = $value[0];
-            if (strpos($expr, '[-_]') === false) {
+            if (false === strpos($expr, '[-_]')) {
                 $expr = str_replace('|', '([-_][[:alpha:]]{2,3})?|', $expr);
             }
             //        if (($envType == 1 && eregi('^(' . $expr . ')(;q=[0-9]\\.[0-9])?$', $str))
             //            || ($envType == 2 && eregi('(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))', $str))) {
-            if (($envType == 1 && preg_match('#^(' . $expr . ')(;q=[0-9]\\.[0-9])?$#i', $str)) || ($envType == 2 && preg_match('#(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))#i', $str))) {
+            if ((1 == $envType && preg_match('#^(' . $expr . ')(;q=[0-9]\\.[0-9])?$#i', $str)) || (2 == $envType && preg_match('#(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))#i', $str))) {
                 $lang = $key;
                 //if($lang != 'en')
                 break;
@@ -205,7 +205,7 @@ function xlanguage_ml($s)
         }
         unset($langs);
     }
-    if (empty($xlanguage_langs) || count($xlanguage_langs) == 0) {
+    if (empty($xlanguage_langs) || 0 == count($xlanguage_langs)) {
         return $s;
     }
 
@@ -289,7 +289,7 @@ function xlanguage_select_show($options = null)
         if (in_array($block['display'], ['images', 'text'])) {
             foreach ($block['languages'] as $name => $lang) {
                 $content .= '<a href="' . $block['url'] . $lang['name'] . '" title="' . $lang['desc'] . '">';
-                if ($block['display'] === 'images') {
+                if ('images' === $block['display']) {
                     $content .= '<img src="' . $lang['image'] . '" alt="' . $lang['desc'] . '"';
                     if ($block['selected'] != $lang['name']) {
                         $content .= ' style="MozOpacity: .8; opacity: .8; filter:Alpha(opacity=80);"';
@@ -299,7 +299,7 @@ function xlanguage_select_show($options = null)
                     $content .= $lang['desc'];
                 }
                 $content .= '</a>';
-                if ((++$i % $block['number']) == 0) {
+                if (0 == (++$i % $block['number'])) {
                     $content .= '<br>';
                 }
             }
@@ -339,7 +339,7 @@ function getPreferredLanguage()
             $langs = array_combine($lang_parse[1], $lang_parse[4]);
             // set default to 1 for any without q factor
             foreach ($langs as $lang => $val) {
-                if ($val === '') {
+                if ('' === $val) {
                     $langs[$lang] = 1;
                 }
             }

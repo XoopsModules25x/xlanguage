@@ -42,7 +42,7 @@ $xlanguageHandler->loadConfig();
 
 switch ($op) {
     case 'del':
-        if (!isset($_POST['ok']) || $_POST['ok'] != 1) {
+        if (!isset($_POST['ok']) || 1 != $_POST['ok']) {
             xoops_cp_header();
             $aboutAdmin = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
@@ -50,7 +50,7 @@ switch ($op) {
             xoops_confirm(['op' => 'del', 'type' => $_GET['type'], 'lang_id' => (int)$_GET['lang_id'], 'ok' => 1], 'main.php', _AM_XLANG_DELETE_CFM);
         } else {
             $isBase = true;
-            if (isset($type) && $type === 'ext') {
+            if (isset($type) && 'ext' === $type) {
                 $isBase = false;
             }
             $lang = $xlanguageHandler->get($lang_id, $isBase);
@@ -61,7 +61,7 @@ switch ($op) {
 
     case 'save':
         $isBase = true;
-        if (isset($type) && $type === 'ext') {
+        if (isset($type) && 'ext' === $type) {
             $isBase = false;
         }
         if (isset($lang_id) && $lang_id > 0) {
@@ -92,7 +92,7 @@ switch ($op) {
         // echo "<br>";
         echo '<h4>' . _AM_XLANG_EDITLANG . '</h4>';
         $isBase = true;
-        if (isset($type) && $type === 'ext') {
+        if (isset($type) && 'ext' === $type) {
             $isBase = false;
         }
         if (isset($lang_id) && $lang_id > 0) {
@@ -120,7 +120,7 @@ switch ($op) {
         //        echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         //        echo "<br>";
         //        echo "<h4>" . _AM_XLANG_ADDLANG . "</h4>";
-        if (isset($type) && $type === 'ext') {
+        if (isset($type) && 'ext' === $type) {
             $isBase = false;
             $adminObject->displayNavigation('main.php?op=add&type=ext');
         } else {
@@ -231,7 +231,7 @@ function languageList()
                      . "></td>\n";
                 echo "</tr>\n";
                 $isOrphan = false;
-                $class    = ($class === 'odd') ? 'even' : 'odd';
+                $class    = ('odd' === $class) ? 'even' : 'odd';
             }
             if (!isset($lang['ext']) || count($lang['ext']) < 1) {
                 continue;
@@ -267,7 +267,7 @@ function languageList()
                 echo "</tr>\n";
             }
             echo "<tr><td colspan='9' ></td></tr>\n";
-            $class = ($class === 'odd') ? 'even' : 'odd';
+            $class = ('odd' === $class) ? 'even' : 'odd';
         }
 
         echo "</table></div>\n";

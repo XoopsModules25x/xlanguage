@@ -68,7 +68,7 @@ function b_xlanguage_select_show($options)
     $block['delimitor'] = $options[1];
     $block['number']    = $options[2];
     $block['selected']  = $xlanguage['lang'];
-    if ($options[0] === 'images' || $options[0] === 'text') {
+    if ('images' === $options[0] || 'text' === $options[0]) {
         $query_string = htmlspecialchars(implode('&', $QUERY_STRING_new));
         $query_string .= empty($query_string) ? '' : '&amp;';
     } else {
@@ -89,17 +89,17 @@ function b_xlanguage_select_edit($options)
 {
     $form = _MB_XLANGUAGE_DISPLAY_METHOD . "&nbsp;<select name='options[]'>";
     $form .= "<option value='images'";
-    if ($options[0] === 'images') {
+    if ('images' === $options[0]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_FLAGLIST . "</option>\n";
     $form .= "<option value='text'";
-    if ($options[0] === 'text') {
+    if ('text' === $options[0]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_TEXTLIST . "</option>\n";
     $form .= "<option value='dropdown'";
-    if ($options[0] === 'dropdown') {
+    if ('dropdown' === $options[0]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_DROPDOWNLIST . "</option>\n";
