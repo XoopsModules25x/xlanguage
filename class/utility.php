@@ -32,8 +32,7 @@ class XLanguageUtility extends XoopsObject
                     file_put_contents($folder . '/index.html', '<script>history.go(-1);</script>');
                 }
             }
-        }
-        catch (Exception $e) {
+        } catch (Exception $e) {
             echo 'Caught exception: ', $e->getMessage(), "\n", '<br>';
         }
     }
@@ -121,7 +120,7 @@ class XLanguageUtility extends XoopsObject
         }
 
         if (false === $success) {
-            $module->setErrors(sprintf(_AM_XLANG_ERROR_BAD_XOOPS, $requiredVer, $currentVer));
+            $module->setErrors(sprintf(_AM_XLANGUAGE_ERROR_BAD_XOOPS, $requiredVer, $currentVer));
         }
 
         return $success;
@@ -141,10 +140,10 @@ class XLanguageUtility extends XoopsObject
         // check for minimum PHP version
         $success = true;
         $verNum  = PHP_VERSION;
-        $reqVer  = $module->getInfo('min_php');
+        $reqVer  =& $module->getInfo('min_php');
         if (false !== $reqVer && '' !== $reqVer) {
             if (version_compare($verNum, $reqVer, '<')) {
-                $module->setErrors(sprintf(_AM_XLANG_ERROR_BAD_PHP, $reqVer, $verNum));
+                $module->setErrors(sprintf(_AM_XLANGUAGE_ERROR_BAD_PHP, $reqVer, $verNum));
                 $success = false;
             }
         }
@@ -214,7 +213,7 @@ class XLanguageUtility extends XoopsObject
     {
         /** @var \XlanguageLanguageHandler $xlanguageHandler */
         $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
-        $config       = $xlanguageHandler->loadFileConfig();
+        $config           = $xlanguageHandler->loadFileConfig();
 
         return $config;
     }
@@ -325,10 +324,10 @@ class XLanguageUtility extends XoopsObject
     }
 
     /**
-     * @param $s
+     * @param string $text
      * @return mixed
      */
-    public static function cleanMultiLang($s)
+    public static function cleanMultiLang($text)
     {
         global $xoopsConfig;
         global $xlanguage_langs;
@@ -344,7 +343,7 @@ class XLanguageUtility extends XoopsObject
             unset($langs);
         }
         if (empty($xlanguage_langs) || 0 == count($xlanguage_langs)) {
-            return $s;
+            return $text;
         }
 
         // escape brackets inside of <code>...</code>
@@ -356,7 +355,7 @@ class XLanguageUtility extends XoopsObject
         // escape brackets inside of <textarea></textarea>
         $patterns[] = '/(\<textarea\b[^>]*>[^\<]*\<\/textarea>)/isU';
 
-        $s = preg_replace_callback($patterns, 'static::escapeBracketMultiLang', $s);
+        $text = preg_replace_callback($patterns, 'static::escapeBracketMultiLang', $text);
 
         // create the pattern between language tags
         $pqhtmltags  = explode(',', preg_quote(XLANGUAGE_TAGS_RESERVED, '/'));
@@ -380,13 +379,13 @@ class XLanguageUtility extends XoopsObject
             $replaces[] = '';
         }
         if (!empty($xoopsConfig['language'])) {
-            $s = preg_replace('/\[[\/]?[\|]?' . preg_quote($xoopsConfig['language']) . '[\|]?\](\<br \/\>)?/i', '', $s);
+            $text = preg_replace('/\[[\/]?[\|]?' . preg_quote($xoopsConfig['language']) . '[\|]?\](\<br \/\>)?/i', '', $text);
         }
         if (count($replaces) > 0) {
-            $s = preg_replace($patterns, $replaces, $s);
+            $text = preg_replace($patterns, $replaces, $text);
         }
 
-        return $s;
+        return $text;
     }
 
     /**
@@ -490,13 +489,11 @@ class XLanguageUtility extends XoopsObject
             break;
         }
         //if complex language simplify it
-        if (strstr($lang, '-')) {
+        if (false !== strpos($lang, '-')) {
             $tmp  = explode('-', $lang);
             $lang = $tmp[0];
         }
 
         return $lang;
     }
-
-
 }

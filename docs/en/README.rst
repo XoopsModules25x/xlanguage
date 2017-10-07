@@ -8,11 +8,11 @@
             
 ## User Manual
 
-© 2016 XOOPS Project ([www.xoops.org](https://xoops.org))  
+© 2016 XOOPS Project ([www.xoops.org](https://xoops.org))
 
 ## Module Purpose 
 
-This module, **xLanguage** (eXtensible Multi-language content and character encoding Management plugin) handles displaying contents of different languages, like English, French and Chinese. Character encoding management also handles contents of different encoding sets for one language, like GB2312 (Chinese Simplified) and BIG5 (Chinese Traditional) for Chinese.  
+This module, **xLanguage** (eXtensible Multi-language content and character encoding Management plugin) handles displaying contents of different languages, like English, French and Chinese. Character encoding management also handles contents of different encoding sets for one language, like GB2312 (Chinese Simplified) and BIG5 (Chinese Traditional) for Chinese.
 
 ### What xLanguage CAN do
 1 displaying content of specified language based on user's dynamic choice 
@@ -32,7 +32,7 @@ This module, **xLanguage** (eXtensible Multi-language content and character enco
 ![image001.jpg](assets/image001.jpg)
 *Figure 1: Main view of the xLanguage Module (Admin side)*
 
-## Download/Fork the Module ![](https://xoops.org/images/forkit.png)  
+## Download/Fork the Module ![](https://xoops.org/images/forkit.png)
 
 **You can fork the module --> [here](https://github.com/XoopsModules25x/xlanguage))** 
 

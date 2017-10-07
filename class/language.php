@@ -287,7 +287,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
     public function insert(XoopsObject $object)//insert(&$lang)
     {
         $val_array = [];
-        $lang = $object;
+        $lang      = $object;
         if (!$lang->isDirty()) {
             return true;
         }
@@ -451,7 +451,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
     }
 
     /**
-     * @return null
+     * @return bool|null
      */
     public function loadFileConfig()
     {

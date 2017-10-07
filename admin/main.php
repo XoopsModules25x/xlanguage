@@ -34,7 +34,7 @@ if (isset($_GET)) {
     }
 }
 
-define('XLANG_CONFIG_LINK', "<a href='main.php' target='_self'>" . _AM_XLANG_CONFIG . '</a>');
+define('XLANG_CONFIG_LINK', "<a href='main.php' target='_self'>" . _AM_XLANGUAGE_CONFIG . '</a>');
 
 /** @var \XlanguageLanguageHandler $xlanguageHandler */
 $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
@@ -47,7 +47,7 @@ switch ($op) {
             $aboutAdmin = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             //            echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
-            xoops_confirm(['op' => 'del', 'type' => $_GET['type'], 'lang_id' => (int)$_GET['lang_id'], 'ok' => 1], 'main.php', _AM_XLANG_DELETE_CFM);
+            xoops_confirm(['op' => 'del', 'type' => $_GET['type'], 'lang_id' => (int)$_GET['lang_id'], 'ok' => 1], 'main.php', _AM_XLANGUAGE_DELETE_CFM);
         } else {
             $isBase = true;
             if (isset($type) && 'ext' === $type) {
@@ -55,7 +55,7 @@ switch ($op) {
             }
             $lang = $xlanguageHandler->get($lang_id, $isBase);
             $xlanguageHandler->delete($lang);
-            redirect_header('main.php', 2, _AM_XLANG_DELETED);
+            redirect_header('main.php', 2, _AM_XLANGUAGE_DELETED);
         }
         break;
 
@@ -81,7 +81,7 @@ switch ($op) {
         }
         $lang->setVar('weight', $weight);
         $xlanguageHandler->insert($lang);
-        redirect_header('main.php', 2, _AM_XLANG_SAVED);
+        redirect_header('main.php', 2, _AM_XLANGUAGE_SAVED);
         break;
 
     case 'edit':
@@ -90,7 +90,7 @@ switch ($op) {
         $adminObject->displayNavigation(basename(__FILE__));
         // echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         // echo "<br>";
-        echo '<h4>' . _AM_XLANG_EDITLANG . '</h4>';
+        echo '<h4>' . _AM_XLANGUAGE_EDITLANG . '</h4>';
         $isBase = true;
         if (isset($type) && 'ext' === $type) {
             $isBase = false;
@@ -119,7 +119,7 @@ switch ($op) {
         $aboutAdmin = \Xmf\Module\Admin::getInstance();
         //        echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         //        echo "<br>";
-        //        echo "<h4>" . _AM_XLANG_ADDLANG . "</h4>";
+        //        echo "<h4>" . _AM_XLANGUAGE_ADDLANG . "</h4>";
         if (isset($type) && 'ext' === $type) {
             $isBase = false;
             $adminObject->displayNavigation('main.php?op=add&type=ext');
@@ -139,7 +139,7 @@ switch ($op) {
 
     case 'createconfig':
         XLanguageUtility::createConfig();
-        redirect_header('main.php', 1, _AM_XLANG_CREATED);
+        redirect_header('main.php', 1, _AM_XLANGUAGE_CREATED);
 
         break;
 
@@ -160,12 +160,12 @@ switch ($op) {
 
         //        echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         languageList();
-        $configfile_status = (@is_readable(XLANGUAGE_CONFIG_FILE)) ? _AM_XLANG_CONFIGOK : _AM_XLANG_CONFIGNOTOK;
+        $configfile_status = (@is_readable(XLANGUAGE_CONFIG_FILE)) ? _AM_XLANGUAGE_CONFIGOK : _AM_XLANGUAGE_CONFIGNOTOK;
         echo "<table width='100%' border='0' cellspacing='1' class='outer'><tr><td class=\"odd\"><br>";
-        //        echo " - <b><a href='index.php?op=add&amp;type=base'>" . _AM_XLANG_ADDBASE . "</a></b><br><br>\n";
-        //        echo " - <b><a href='index.php?op=add&amp;type=ext'>" . _AM_XLANG_ADDEXT . "</a></b><br><br>\n";
-        echo '<b>' . $configfile_status . '</b>: ' . XLANGUAGE_CONFIG_FILE . " (<a href='main.php?op=createconfig' title='" . _AM_XLANG_CREATECONFIG . "'>" . _AM_XLANG_CREATECONFIG . "</a>)<br><br>\n";
-        //        echo " - <b><a href='about.php'>" . _AM_XLANG_ABOUT . "</a></b>";
+        //        echo " - <b><a href='index.php?op=add&amp;type=base'>" . _AM_XLANGUAGE_ADDBASE . "</a></b><br><br>\n";
+        //        echo " - <b><a href='index.php?op=add&amp;type=ext'>" . _AM_XLANGUAGE_ADDEXT . "</a></b><br><br>\n";
+        echo '<b>' . $configfile_status . '</b>: ' . XLANGUAGE_CONFIG_FILE . " (<a href='main.php?op=createconfig' title='" . _AM_XLANGUAGE_CREATECONFIG . "'>" . _AM_XLANGUAGE_CREATECONFIG . "</a>)<br><br>\n";
+        //        echo " - <b><a href='about.php'>" . _AM_XLANGUAGE_ABOUT . "</a></b>";
         echo '</td></tr></table>';
         break;
 }
@@ -180,23 +180,23 @@ function languageList()
     $lang_list = $xlanguageHandler->getAllList();
     if (is_array($lang_list) && count($lang_list) > 0) {
         echo "<table width='100%' border='0' cellspacing='1' class='outer'><tr><td class=\"odd\">";
-        echo "<div style='text-align: center;'><b><h4>" . _AM_XLANG_LANGLIST . '</h4></b><br>';
+        echo "<div style='text-align: center;'><b><h4>" . _AM_XLANGUAGE_LANGLIST . '</h4></b><br>';
         echo "<table class='outer' width='100%' border='0' cellpadding='0' cellspacing='0' ><tr class='bg2'><th align='center'>"
-             . _AM_XLANG_DESC
+             . _AM_XLANGUAGE_DESC
              . "</th><th align='center'>"
-             . _AM_XLANG_NAME
+             . _AM_XLANGUAGE_NAME
              . "</th><th align='center'>"
-             . _AM_XLANG_CHARSET
+             . _AM_XLANGUAGE_CHARSET
              . "</th><th align='center'>"
-             . _AM_XLANG_CODE
+             . _AM_XLANGUAGE_CODE
              . "</th><th align='center'>"
-             . _AM_XLANG_IMAGE
+             . _AM_XLANGUAGE_IMAGE
              . "</th><th align='center'>"
-             . _AM_XLANG_WEIGHT
+             . _AM_XLANGUAGE_WEIGHT
              . "</th><th align='center'>"
-             . _AM_XLANG_BASE
+             . _AM_XLANGUAGE_BASE
              . "</th><th align='center'>"
-             . _AM_XLANG_ACTION
+             . _AM_XLANGUAGE_ACTION
              . "</th></tr>\n";
         $class = 'even';
         foreach (array_keys($lang_list) as $lang_name) {
@@ -248,7 +248,7 @@ function languageList()
                 }
                 echo "<td class='$class' ><img src='" . XOOPS_URL . '/modules/xlanguage/assets/images/' . $lang_image . "' alt='" . $ext->getVar('lang_desc') . "'></td>\n";
                 echo "<td class='$class' >" . $ext->getVar('weight') . "</td>\n";
-                $lang_base = $isOrphan ? "<font color='red'>" . $ext->getVar('lang_base') . '</font>' : $ext->getVar('lang_base');
+                $lang_base = $isOrphan ? "<span style='color:red'>" . $ext->getVar('lang_base') . '</span>' : $ext->getVar('lang_base');
                 echo "<td class='$class' ><b>" . $lang_base . "</b></td>\n";
                 echo "<td class='$class' ><a href='main.php?op=edit&amp;type=ext&amp;lang_id="
                      . $ext->getVar('lang_id')

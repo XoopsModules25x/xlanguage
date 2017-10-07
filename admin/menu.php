@@ -70,4 +70,3 @@ $adminmenu[] = [
 // 'link' =>  "admin/about2.php",
 // 'icon' =>  $pathIcon32.'/about.png',
 //];
-

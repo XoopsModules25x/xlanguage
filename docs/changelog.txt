@@ -1,3 +1,8 @@
+<h5>3.05 RC 1        [NOT RELEASED]</h5>
+<hr>
+- cosmetics (mamba)
+- renamed XLANG to XLANGUAGE (mamba)
+
 <h5>3.05 RC 1        [2017-09-02]</h5>
 <hr>
 - code cosmetics (mamba)
