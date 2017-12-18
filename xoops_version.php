@@ -114,4 +114,3 @@ $modversion['blocks'][] = [
     'options'     => 'images| |5',
     'template'    => 'xlanguage_block.tpl',
 ];
-

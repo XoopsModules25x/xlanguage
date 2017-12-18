@@ -9,7 +9,7 @@
                     <{$lang.desc}>
                 <{/if}>
             </a>
-            <{if $smarty.foreach.lang_it.iteration % $block.number eq 0}>
+            <{if $block.number != 0 && $smarty.foreach.lang_it.iteration % $block.number eq 0}>
                 <br>
             <{/if}>
         <{/foreach}>

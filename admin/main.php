@@ -16,11 +16,13 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use Xoopsmodules\xlanguage;
+
 require_once __DIR__ . '/../../../include/cp_header.php';
 require_once __DIR__ . '/admin_header.php';
 
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
-require_once XOOPS_ROOT_PATH . '/modules/xlanguage/class/utility.php';
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/class/Utility.php';
 
 $op = '';
 if (isset($_POST)) {
@@ -138,7 +140,7 @@ switch ($op) {
         break;
 
     case 'createconfig':
-        XLanguageUtility::createConfig();
+        xlanguage\Utility::createConfig();
         redirect_header('main.php', 1, _AM_XLANGUAGE_CREATED);
 
         break;

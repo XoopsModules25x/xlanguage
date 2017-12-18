@@ -1,4 +1,4 @@
-<?php
+<?php namespace Xoopsmodules\xlanguage;
 /*
  * You may not change or alter any portion of this comment or credits
  * of supporting developers from this source code or any supporting source code
@@ -16,28 +16,30 @@
  * @since
  * @author       XOOPS Development Team
  */
+
 defined('XOOPS_ROOT_PATH') || exit('Restricted access');
 
 /**
- * Class XlanguageHelper
+ * Class Helper
  */
-class XlanguageHelper extends \Xmf\Module\Helper
+class Helper extends \Xmf\Module\Helper
 {
-    public $debugArray = [];
+    public $debug;
 
     /**
      * @internal param $debug
+     * @param bool $debug
      */
-    protected function __construct()
+    protected function __construct($debug = false)
     {
-        //        $this->debug   = $debug;
+        $this->debug   = $debug;
         $this->dirname = basename(dirname(__DIR__));
     }
 
     /**
      * @param bool $debug
      *
-     * @return \XlanguageHelper
+     * @return \Helper
      */
     public static function getInstance($debug = false)
     {
@@ -47,5 +49,13 @@ class XlanguageHelper extends \Xmf\Module\Helper
         }
 
         return $instance;
+    }
+
+    /**
+     * @return string
+     */
+    public function getDirname()
+    {
+        return $this->dirname;
     }
 }

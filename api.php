@@ -16,9 +16,11 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use Xoopsmodules\xlanguage;
+
 global $xlanguage;
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
-require_once XOOPS_ROOT_PATH . '/modules/xlanguage/class/utility.php';
+require_once XOOPS_ROOT_PATH . '/modules/xlanguage/class/Utility.php';
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
@@ -39,7 +41,7 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
         $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
     }
     */
-} elseif ($lang = XLanguageUtility::detectLang()) {
+} elseif ($lang = xlanguage\Utility::detectLang()) {
     $xlanguage['lang'] = $lang;
 } else {
     $xlanguage['lang'] = $xoopsConfig['language'];
@@ -82,14 +84,14 @@ if ($xlanguage['action']) {
         $CONV_REQUEST_array = ['_POST'];
         foreach ($CONV_REQUEST_array as $HV) {
             if (!empty(${$HV})) {
-                ${$HV} = XLanguageUtility::convertEncoding(${$HV}, $out_charset, $in_charset);
+                ${$HV} = xlanguage\Utility::convertEncoding(${$HV}, $out_charset, $in_charset);
             }
             $GLOBALS['HTTP' . $HV . '_VARS'] = ${$HV};
         }
     }
-    ob_start('XLanguageUtility::encodeCharSet');
+    ob_start("Xoopsmodules\xlanguage\Utility::encodeCharSet");
 } else {
-    ob_start('XLanguageUtility::cleanMultiLang');
+    ob_start("Xoopsmodules\xlanguage\Utility::cleanMultiLang");
 }
 
 /*
@@ -103,5 +105,5 @@ if ($xlanguage['action']) {
 $xlanguage_theme_enable = true;
 if (!empty($xlanguage_theme_enable)) {
     $options = ['dropdown', ' ', 5]; // display mode, delimitor, number per line
-    XLanguageUtility::showSelectedLanguage($options);
+    xlanguage\Utility::showSelectedLanguage($options);
 }

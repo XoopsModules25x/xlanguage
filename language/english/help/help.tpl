@@ -90,7 +90,7 @@
         the language selection box:<br>
         1) modify /modules/xlanguage/api.php "$xlanguage_theme_enable = true;"<br>
         2) config options "$options = array("images", " ", 5); // display mode, delimitor, number per line";<br>
-        3) insert &lt;{$smarty.const.XLANGUAGE_SWITCH_CODE}&gt; into your theme or template files anywhere you prefer it
+        3) insert &lt;{$smarty.const.XLANGUAGE_SWITCH_CODE}> into your theme or template files anywhere you prefer it
         present <br><br>
 
 

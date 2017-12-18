@@ -18,7 +18,7 @@
 
 //include_once(XOOPS_ROOT_PATH."/class/xoopslists.php");
 //include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php');
-//include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/class/utility.php');
+//include_once(XOOPS_ROOT_PATH.'/modules/xlanguage/class/Utility.php');
 
 /**
  * Class Blanguage
