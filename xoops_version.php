@@ -16,6 +16,8 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+require_once __DIR__ . '/preloads/autoloader.php';
+
 $moduleDirName = basename(__DIR__);
 
 // ------------------- Informations ------------------- //

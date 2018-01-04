@@ -16,7 +16,7 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-use Xoopsmodules\xlanguage;
+use XoopsModules\Xlanguage;
 
 global $xlanguage;
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
@@ -41,7 +41,7 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
         $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
     }
     */
-} elseif ($lang = xlanguage\Utility::detectLang()) {
+} elseif ($lang = Xlanguage\Utility::detectLang()) {
     $xlanguage['lang'] = $lang;
 } else {
     $xlanguage['lang'] = $xoopsConfig['language'];
@@ -84,14 +84,14 @@ if ($xlanguage['action']) {
         $CONV_REQUEST_array = ['_POST'];
         foreach ($CONV_REQUEST_array as $HV) {
             if (!empty(${$HV})) {
-                ${$HV} = xlanguage\Utility::convertEncoding(${$HV}, $out_charset, $in_charset);
+                ${$HV} = Xlanguage\Utility::convertEncoding(${$HV}, $out_charset, $in_charset);
             }
             $GLOBALS['HTTP' . $HV . '_VARS'] = ${$HV};
         }
     }
-    ob_start("Xoopsmodules\xlanguage\Utility::encodeCharSet");
+    ob_start("XoopsModules\Xlanguage\Utility::encodeCharSet");
 } else {
-    ob_start("Xoopsmodules\xlanguage\Utility::cleanMultiLang");
+    ob_start("XoopsModules\Xlanguage\Utility::cleanMultiLang");
 }
 
 /*
@@ -105,5 +105,5 @@ if ($xlanguage['action']) {
 $xlanguage_theme_enable = true;
 if (!empty($xlanguage_theme_enable)) {
     $options = ['dropdown', ' ', 5]; // display mode, delimitor, number per line
-    xlanguage\Utility::showSelectedLanguage($options);
+    Xlanguage\Utility::showSelectedLanguage($options);
 }

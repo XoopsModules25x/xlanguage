@@ -45,10 +45,10 @@ function tableExists($tablename)
 function xoops_module_pre_update_xlanguage(XoopsModule $module)
 {
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var xlanguage\Helper $helper */
-    /** @var xlanguage\Utility $utility */
-    $helper       = xlanguage\Helper::getInstance();
-    $utility      = new xlanguage\Utility();
+    /** @var Xlanguage\Helper $helper */
+    /** @var Xlanguage\Utility $utility */
+    $helper       = Xlanguage\Helper::getInstance();
+    $utility      = new Xlanguage\Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -69,12 +69,12 @@ function xoops_module_update_xlanguage(XoopsModule $module, $previousVersion = n
     $moduleDirName = basename(dirname(__DIR__));
     $capsDirName   = strtoupper($moduleDirName);
 
-    /** @var xlanguage\Helper $helper */
-    /** @var xlanguage\Utility $utility */
-    /** @var xlanguage\Configurator $configurator */
-    $helper  = xlanguage\Helper::getInstance();
-    $utility = new xlanguage\Utility();
-    $configurator = new xlanguage\Configurator();
+    /** @var Xlanguage\Helper $helper */
+    /** @var Xlanguage\Utility $utility */
+    /** @var Xlanguage\Configurator $configurator */
+    $helper  = Xlanguage\Helper::getInstance();
+    $utility = new Xlanguage\Utility();
+    $configurator = new Xlanguage\Configurator();
 
     if ($previousVersion < 240) {
 

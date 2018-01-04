@@ -16,7 +16,7 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-use Xoopsmodules\xlanguage;
+use XoopsModules\Xlanguage;
 
 require_once __DIR__ . '/../../../include/cp_header.php';
 require_once __DIR__ . '/admin_header.php';
@@ -140,7 +140,7 @@ switch ($op) {
         break;
 
     case 'createconfig':
-        xlanguage\Utility::createConfig();
+        Xlanguage\Utility::createConfig();
         redirect_header('main.php', 1, _AM_XLANGUAGE_CREATED);
 
         break;
