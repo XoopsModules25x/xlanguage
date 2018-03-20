@@ -32,7 +32,7 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
     $xlanguage['lang'] = $_GET[XLANGUAGE_LANG_TAG];
 } elseif (!empty($_COOKIE[$cookie_var])) {
     $xlanguage['lang'] = $_COOKIE[$cookie_var];
-    /* FIXME: shall we remove it? */
+/* FIXME: shall we remove it? */
     /*
     if (preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])) {
     } elseif (strpos($_SERVER['REQUEST_URI'], "?")) {

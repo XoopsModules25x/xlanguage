@@ -32,7 +32,7 @@ class Blanguage extends XoopsObject
      */
     public function __construct()
     {
-        $this->db    = XoopsDatabaseFactory::getDatabaseConnection();
+        $this->db    = \XoopsDatabaseFactory::getDatabaseConnection();
         $this->table = $this->db->prefix('xlanguage_base');
         $this->initVar('lang_id', XOBJ_DTYPE_INT);
         $this->initVar('weight', XOBJ_DTYPE_INT);
@@ -221,7 +221,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
         } elseif (!isset($this->cachedConfig)) {
             $sql    = 'SELECT * FROM ' . $this->db->prefix($prefix);
             $result = $this->db->query($sql);
-            while ($myrow = $this->db->fetchArray($result)) {
+            while (false !== ($myrow = $this->db->fetchArray($result))) {
                 $lang = $this->create(false, $isBase);
                 $lang->assignVars($myrow);
                 $ret[$myrow['lang_name']] =& $lang;
@@ -284,7 +284,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
      * @internal param object $lang
      *
      */
-    public function insert(XoopsObject $object)//insert(&$lang)
+    public function insert(\XoopsObject $object)//insert(&$lang)
     {
         $val_array = [];
         $lang      = $object;
@@ -371,7 +371,7 @@ class XlanguageLanguageHandler extends XoopsObjectHandler
      * @internal param object $lang
      *
      */
-    public function delete(XoopsObject $lang)//delete(&$lang)
+    public function delete(\XoopsObject $lang)//delete(&$lang)
     {
         if (!is_object($lang) || !$lang->getVar('lang_id')) {
             return true;

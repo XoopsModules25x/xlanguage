@@ -1,7 +1,7 @@
 ![alt XOOPS CMS](https://xoops.org/images/logoXoops4GithubRepository.png)
 ## xLanguage module for  [XOOPS CMS 2.5.8+](https://xoops.org)
 [![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](https://xoops.org)
-[![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](LICENSE)
+[![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
 
 [![Scrutinizer Code Quality](https://img.shields.io/scrutinizer/g/XoopsModules25x/xlanguage.svg?style=flat)](https://scrutinizer-ci.com/g/XoopsModules25x/xlanguage/?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/grade/177664bcc7874ab7bddc1192c59e480d)](https://www.codacy.com/app/mambax7/xlanguage_2)
