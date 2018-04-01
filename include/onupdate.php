@@ -17,6 +17,8 @@
  * @author       XOOPS Development Team
  */
 
+use XoopsModules\Xlanguage;
+
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !$GLOBALS['xoopsUser']->IsAdmin()
 ) {

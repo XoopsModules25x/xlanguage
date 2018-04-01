@@ -19,6 +19,8 @@
 
 //require_once __DIR__ . '/setup.php';
 
+use XoopsModules\Xlanguage;
+
 /**
  *
  * Prepares system prior to attempting to install module
@@ -29,7 +31,7 @@
 function xoops_module_pre_install_xlanguage(\XoopsModule $module)
 {
     include __DIR__ . '/../preloads/autoloader.php';
-    /** @var \Utility $utility */
+    /** @var Xlanguage\Utility $utility */
     $utility = new \XoopsModules\Xlanguage\Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
