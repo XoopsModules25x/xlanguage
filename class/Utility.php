@@ -132,11 +132,11 @@ class Utility
     {
         global $available_languages, $_SERVER;
 
-        if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+       if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
             $HTTP_ACCEPT_LANGUAGE = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
         }
 
-        if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+       if (\Xmf\Request::hasVar('HTTP_USER_AGENT', 'SERVER')) {
             $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
         }
 
