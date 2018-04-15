@@ -53,7 +53,7 @@ if (!$isBase) {
 $sform->addElement(new \XoopsFormText(_AM_XLANGUAGE_WEIGHT, 'weight', 10, 10, $weight));
 
 $image_option_tray = new \XoopsFormElementTray(_AM_XLANGUAGE_IMAGE, '');
-$image_array       = XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/assets/images/');
+$image_array       = \XoopsLists::getImgListAsArray(XOOPS_ROOT_PATH . '/modules/' . $xoopsModule->dirname() . '/assets/images/');
 $lang_image        = empty($lang_image) ? 'noflag.gif' : $lang_image;
 $image_select      = new \XoopsFormSelect('', 'lang_image', $lang_image);
 $image_select->addOptionArray($image_array);

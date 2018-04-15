@@ -23,7 +23,7 @@
 /**
  * Class Blanguage
  */
-class Blanguage extends XoopsObject
+class Blanguage extends \XoopsObject
 {
     public $isBase;
 
@@ -116,7 +116,7 @@ class Xlanguage extends Blanguage
 /**
  * Class XlanguageLanguageHandler
  */
-class XlanguageLanguageHandler extends XoopsObjectHandler
+class XlanguageLanguageHandler extends \XoopsObjectHandler
 {
     public $cachedConfig;
 
