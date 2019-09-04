@@ -246,7 +246,7 @@ function languageList(Xlanguage\LanguageHandler $xlanguageHandler)
                 }
                 echo "<td class='$class' ><img src='" . XOOPS_URL . '/modules/xlanguage/assets/images/' . $lang_image . "' alt='" . $ext->getVar('lang_desc') . "'></td>\n";
                 echo "<td class='$class' >" . $ext->getVar('weight') . "</td>\n";
-                $lang_base = $isOrphan ? "<span style='color:red'>" . $ext->getVar('lang_base') . '</span>' : $ext->getVar('lang_base');
+                $lang_base = $isOrphan ? "<span style='color:#ff0000'>" . $ext->getVar('lang_base') . '</span>' : $ext->getVar('lang_base');
                 echo "<td class='$class' ><b>" . $lang_base . "</b></td>\n";
                 echo "<td class='$class' ><a href='main.php?op=edit&amp;type=ext&amp;lang_id="
                      . $ext->getVar('lang_id')
