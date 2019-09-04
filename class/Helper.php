@@ -41,7 +41,7 @@ class Helper extends \Xmf\Module\Helper
     /**
      * @param bool $debug
      *
-     * @return \XoopsModules\Xlanguage\Helper
+     * @return \XoopsModules\Xlanguage\Helper $instance
      */
     public static function getInstance($debug = false)
     {
@@ -70,8 +70,6 @@ class Helper extends \Xmf\Module\Helper
      */
     public function getHandler($name)
     {
-        $ret   = false;
-
         $class = '\\XoopsModules\\' . ucfirst(mb_strtolower(basename(dirname(__DIR__)))) . '\\' . $name . 'Handler';
         if (!class_exists($class)) {
             throw new \RuntimeException("Class '$class' not found");

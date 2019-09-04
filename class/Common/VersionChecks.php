@@ -22,7 +22,7 @@ trait VersionChecks
     /**
      * Verifies XOOPS version meets minimum requirements for this module
      * @static
-     * @param \XoopsModule $module
+     * @param \XoopsModule|null $module
      *
      * @param null|string  $requiredVer
      * @return bool true if meets requirements, false if not
@@ -76,7 +76,7 @@ trait VersionChecks
         $verNum = PHP_VERSION;
         $reqVer = &$module->getInfo('min_php');
 
-        if (false !== $reqVer && '' !== $reqVer) {
+        if (false !== $reqVer && '' !== $reqVer && !is_array($reqVer)) {
             if (version_compare($verNum, $reqVer, '<')) {
                 $module->setErrors(sprintf(constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_PHP'), $reqVer, $verNum));
                 $success = false;
