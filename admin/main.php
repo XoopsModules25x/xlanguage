@@ -168,6 +168,9 @@ switch ($op) {
 }
 xoops_cp_footer();
 
+/**
+ * @param \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler
+ */
 function languageList(Xlanguage\LanguageHandler $xlanguageHandler)
 {
 //    global $xlanguageHandler, $xoopsModule;
