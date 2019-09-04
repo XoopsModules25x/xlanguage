@@ -15,8 +15,7 @@
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
-
-include XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
+require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
 $sform = new \XoopsThemeForm(_AM_XLANGUAGE_EDITLANG, 'langform', xoops_getenv('PHP_SELF'), 'post', true);
 
 if ($isBase) {
@@ -73,10 +72,10 @@ if (isset($lang_id)) {
 }
 $sform->addElement(new \XoopsFormHidden('type', $type));
 
-$button_tray = new \XoopsFormElementTray('', '');
-$button_tray->addElement(new \XoopsFormHidden('op', 'save'));
-$button_tray->addElement(new \XoopsFormButton('', '', _SUBMIT, 'submit'));
-$button_tray->addElement(new \XoopsFormButton('', '', _CANCEL, 'submit'));
-$sform->addElement($button_tray);
+$buttonTray = new \XoopsFormElementTray('', '');
+$buttonTray->addElement(new \XoopsFormHidden('op', 'save'));
+$buttonTray->addElement(new \XoopsFormButton('', '', _SUBMIT, 'submit'));
+$buttonTray->addElement(new \XoopsFormButton('', '', _CANCEL, 'submit'));
+$sform->addElement($buttonTray);
 
 $sform->display();

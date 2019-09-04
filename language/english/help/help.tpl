@@ -44,7 +44,7 @@
     ../modules directory. Install the module through Admin -> System Module -> Modules.
     <br><br>
     Detailed instructions on installing modules are available in the <a
-            href="https://www.gitbook.com/book/xoops/xoops-operations-guide/" target="_blank">XOOPS Operations Manual</a>
+            href="https://xoops.gitbook.io/xoops-operations-guide/" target="_blank">XOOPS Operations Manual</a>
 
     <h4 class="odd">OPERATING INSTRUCTIONS</h4>
 

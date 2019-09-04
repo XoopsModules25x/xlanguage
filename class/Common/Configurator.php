@@ -1,4 +1,6 @@
-<?php namespace XoopsModules\Xlanguage\Common;
+<?php
+
+namespace XoopsModules\Xlanguage\Common;
 
 /*
  You may not change or alter any portion of this comment or credits
@@ -17,10 +19,9 @@
  * @author      XOOPS Development Team
  * @package     Publisher
  * @since       1.05
- *
  */
 
-require_once  dirname(dirname(__DIR__)) . '/include/common.php';
+// require_once dirname(dirname(__DIR__)) . '/include/common.php';
 
 /**
  * Class Configurator
@@ -35,27 +36,34 @@ class Configurator
     public $templateFolders = [];
     public $oldFiles        = [];
     public $oldFolders      = [];
+    public $renameTables    = [];
+    public $moduleStats     = [];
     public $modCopyright;
+    public $icons           = [];
 
     /**
      * Configurator constructor.
      */
     public function __construct()
     {
-        $moduleDirName = basename(dirname(__DIR__));
-        $capsDirName   = strtoupper($moduleDirName);
 
-        require_once  dirname(dirname(__DIR__)) . '/include/config.php';
+        require dirname(dirname(__DIR__)) . '/config/config.php';
         $config = getConfig();
 
         $this->name            = $config->name;
-        $this->paths           = $config->paths;
+//        $this->paths           = $config->paths;
         $this->uploadFolders   = $config->uploadFolders;
         $this->copyBlankFiles  = $config->copyBlankFiles;
         $this->copyTestFolders = $config->copyTestFolders;
         $this->templateFolders = $config->templateFolders;
         $this->oldFiles        = $config->oldFiles;
         $this->oldFolders      = $config->oldFolders;
+        $this->renameTables    = $config->renameTables;
+        $this->moduleStats     = $config->moduleStats;
         $this->modCopyright    = $config->modCopyright;
+
+        $this->paths = include dirname(dirname(__DIR__)) . '/config/paths.php';
+        $this->icons  = include dirname(dirname(__DIR__)) . '/config/icons.php';
     }
 }
+

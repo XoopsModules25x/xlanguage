@@ -32,15 +32,16 @@ class XlanguageCorePreload extends \XoopsPreloadItem
     public static function eventCoreIncludeCommonLanguage($args)
     {
         global $xoopsConfig;
-        require_once  dirname(__DIR__) . '/api.php';
+        require_once dirname(__DIR__) . '/api.php';
     }
 
     // to add PSR-4 autoloader
+
     /**
      * @param $args
      */
     public static function eventCoreIncludeCommonEnd($args)
     {
-        include __DIR__ . '/autoloader.php';
+        require_once __DIR__ . '/autoloader.php';
     }
 }

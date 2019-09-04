@@ -17,18 +17,20 @@
  * @param $options
  * @return array
  */
-
 function b_xlanguage_select_show($options)
 {
     global $xlanguage;
 
     $block = [];
 
-    /** @var \XlanguageLanguageHandler $xlanguageHandler */
-    $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+    /** @var \XoopsModules\Xlanguage\Helper $helper */
+    $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+
+    /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
+    $xlanguageHandler = $helper->getHandler('Language');
     $xlanguageHandler->loadConfig();
     $lang_list = $xlanguageHandler->getAllList();
-    if (!is_array($lang_list) || count($lang_list) < 1) {
+    if (!is_array($lang_list) || (count($lang_list) < 1)) {
         return $block;
     }
 
@@ -53,7 +55,7 @@ function b_xlanguage_select_show($options)
     $QUERY_STRING_array = array_filter(explode('&', xoops_getenv('QUERY_STRING')));
     $QUERY_STRING_new   = [];
     foreach ($QUERY_STRING_array as $QUERY) {
-        if (0 !== strpos($QUERY, XLANGUAGE_LANG_TAG . '=')) {
+        if (0 !== mb_strpos($QUERY, XLANGUAGE_LANG_TAG . '=')) {
             $vals = explode('=', $QUERY);
             foreach (array_keys($vals) as $key) {
                 if (preg_match('/^a-z0-9$/i', $vals[$key])) {
@@ -76,7 +78,7 @@ function b_xlanguage_select_show($options)
         $query_string .= empty($query_string) ? '' : '&';
     }
     $block['url']       = xoops_getenv('PHP_SELF') . '?' . $query_string . XLANGUAGE_LANG_TAG . '=';
-    $block['languages'] =& $languages;
+    $block['languages'] = &$languages;
 
     return $block;
 }

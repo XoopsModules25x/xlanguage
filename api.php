@@ -20,7 +20,6 @@ use XoopsModules\Xlanguage;
 
 global $xlanguage;
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
-require_once XOOPS_ROOT_PATH . '/modules/xlanguage/class/Utility.php';
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
@@ -32,23 +31,26 @@ if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
     $xlanguage['lang'] = $_GET[XLANGUAGE_LANG_TAG];
 } elseif (!empty($_COOKIE[$cookie_var])) {
     $xlanguage['lang'] = $_COOKIE[$cookie_var];
-/* FIXME: shall we remove it? */
-    /*
-    if (preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])) {
-    } elseif (strpos($_SERVER['REQUEST_URI'], "?")) {
-        $_SERVER['REQUEST_URI'] .= "&".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
-    } else {
-        $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
-    }
-    */
+
+    /* FIXME: shall we remove it? */
+
+    //    if (preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])) {
+    //    } elseif (strpos($_SERVER['REQUEST_URI'], "?")) {
+    //        $_SERVER['REQUEST_URI'] .= "&".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
+    //    } else {
+    //        $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
+    //    }
+
 } elseif ($lang = Xlanguage\Utility::detectLang()) {
     $xlanguage['lang'] = $lang;
 } else {
     $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
-/** @var \XlanguageLanguageHandler $xlanguageHandler */
-$xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+/** @var \XoopsModules\Xlanguage\Helper $helper */
+$helper = \XoopsModules\Xlanguage\Helper::getInstance();
+/** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
+$xlanguageHandler = $helper->getHandler('Language');
 $xlanguageHandler->loadConfig();
 $lang = $xlanguageHandler->getByName($xlanguage['lang']);
 if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['language'])) {

@@ -1,8 +1,6 @@
-<?php namespace XoopsModules\Xlanguage;
+<?php
 
-use Xmf\Request;
-use XoopsModules\Xlanguage;
-use XoopsModules\Xlanguage\Common;
+namespace XoopsModules\Xlanguage;
 
 /**
  * Class Utility
@@ -16,7 +14,6 @@ class Utility
     use Common\FilesManagement; // Files Management Trait
 
     //--------------- Custom module methods -----------------------------
-
 
     /**
      * @param $value
@@ -45,9 +42,10 @@ class Utility
      */
     public static function convertItem($value, $out_charset, $in_charset)
     {
-        if (strtolower($in_charset) == strtolower($out_charset)) {
+        if (mb_strtolower($in_charset) == mb_strtolower($out_charset)) {
             return $value;
         }
+
         $xconvHandler = @xoops_getModuleHandler('xconv', 'xconv', true);
         if (is_object($xconvHandler) && $converted_value = @$xconvHandler->convert_encoding($value, $out_charset, $in_charset)) {
             return $converted_value;
@@ -67,8 +65,10 @@ class Utility
      */
     public static function createConfig()
     {
-        /** @var \XlanguageLanguageHandler $xlanguageHandler */
-        $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+        /** @var \XoopsModules\Xlanguage\Helper $helper */
+        $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+        /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
+        $xlanguageHandler = $helper->getHandler('Language');
 
         return $xlanguageHandler->createConfig();
     }
@@ -78,8 +78,10 @@ class Utility
      */
     public static function loadConfig()
     {
-        /** @var \XlanguageLanguageHandler $xlanguageHandler */
-        $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+        /** @var \XoopsModules\Xlanguage\Helper $helper */
+        $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+        /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
+        $xlanguageHandler = $helper->getHandler('Language');
         $config           = $xlanguageHandler->loadFileConfig();
 
         return $config;
@@ -89,8 +91,8 @@ class Utility
      * Analyzes some PHP environment variables to find the most probable language
      * that should be used
      *
-     * @param  string $str
-     * @param  string $envType
+     * @param string $str
+     * @param string $envType
      * @return int|string
      * @internal param $string $ string to analyze
      * @internal param $integer $ type of the PHP environment variable which value is $str
@@ -109,7 +111,7 @@ class Utility
                 // $envType =  1 for the 'HTTP_ACCEPT_LANGUAGE' environment variable,
                 //             2 for the 'HTTP_USER_AGENT' one
                 $expr = $value[0];
-                if (false === strpos($expr, '[-_]')) {
+                if (false === mb_strpos($expr, '[-_]')) {
                     $expr = str_replace('|', '([-_][[:alpha:]]{2,3})?|', $expr);
                 }
                 //        if (($envType == 1 && eregi('^(' . $expr . ')(;q=[0-9]\\.[0-9])?$', $str))
@@ -132,12 +134,14 @@ class Utility
     {
         global $available_languages, $_SERVER;
 
-       if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
-            $HTTP_ACCEPT_LANGUAGE = $_SERVER['HTTP_ACCEPT_LANGUAGE'];
+        //      if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
+            $HTTP_ACCEPT_LANGUAGE = \Xmf\Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
         }
 
-       if (\Xmf\Request::hasVar('HTTP_USER_AGENT', 'SERVER')) {
-            $HTTP_USER_AGENT = $_SERVER['HTTP_USER_AGENT'];
+        //if (!empty($_SERVER['HTTP_USER_AGENT'])) {
+        if (\Xmf\Request::hasVar('HTTP_USER_AGENT', 'SERVER')) {
+            $HTTP_USER_AGENT = \Xmf\Request::getString('HTTP_USER_AGENT', '', 'SERVER');
         }
 
         $lang       = '';
@@ -156,7 +160,7 @@ class Utility
         //        }
         //    }
 
-        //This returns the most preferred langauage "q=1"
+        //This returns the most preferred language "q=1"
         $lang = static::getPreferredLanguage();
 
         // 2. if not found in HTTP_ACCEPT_LANGUAGE, try to find user's language by checking its HTTP_USER_AGENT variable
@@ -187,6 +191,7 @@ class Utility
         $out_charset = $xlanguage['charset'];
 
         $output = static::convertEncoding($output, $out_charset, $in_charset);
+
         return $output;
     }
 
@@ -199,9 +204,11 @@ class Utility
         global $xoopsConfig;
         global $xlanguage_langs;
         if (!isset($xlanguage_langs)) {
-
-            /** @var \XlanguageLanguageHandler $xlanguageHandler */
-            $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+            $xlanguage_langs = [];
+            /** @var \XoopsModules\Xlanguage\Helper $helper */
+            $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+            /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
+            $xlanguageHandler = $helper->getHandler('Language');
             $langs            = $xlanguageHandler->getAll(true);
             //        $langs = $GLOBALS['xlanguageHandler']->getAll(true); //mb
             foreach (array_keys($langs) as $_lang) {
@@ -230,13 +237,13 @@ class Utility
 
         $patterns = [];
         $replaces = [];
-        /* */
+
         if (isset($xlanguage_langs[$xoopsConfig['language']])) {
             $lang       = $xlanguage_langs[$xoopsConfig['language']];
             $patterns[] = '/(\[([^\]]*\|)?' . preg_quote($lang) . '(\|[^\]]*)?\])(' . $mid_pattern . ')(\[\/([^\]]*\|)?' . preg_quote($lang) . '(\|[^\]]*)?\])/isU';
             $replaces[] = '$4';
         }
-        /* */
+
         foreach (array_keys($xlanguage_langs) as $_lang) {
             if ($_lang == @$xoopsConfig['language']) {
                 continue;
@@ -265,14 +272,14 @@ class Utility
         $ret = $matches[1];
         if (!empty($xlanguage_langs)) {
             $pattern = '/(\[([\/])?(' . implode('|', array_map('preg_quote', array_values($xlanguage_langs))) . ')([\|\]]))/isU';
-            $ret     = preg_replace($pattern, "&#91;\\2\\3\\4", $ret);
+            $ret     = preg_replace($pattern, '&#91;\\2\\3\\4', $ret);
         }
 
         return $ret;
     }
 
     /**
-     * @param  null $options
+     * @param null $options
      * @return bool
      */
     public static function showSelectedLanguage($options = null)
@@ -335,9 +342,11 @@ class Utility
     public static function getPreferredLanguage()
     {
         $langs = [];
-        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        //        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
+        if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
             // break up string into pieces (languages and q factors)
-            preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.\d+))?/i', $_SERVER['HTTP_ACCEPT_LANGUAGE'], $lang_parse);
+            $temp = \Xmf\Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
+            preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.\d+))?/i', $temp, $lang_parse);
             if (count($lang_parse[1])) {
                 // create a list like "en" => 0.8
                 $langs = array_combine($lang_parse[1], $lang_parse[4]);
@@ -356,7 +365,7 @@ class Utility
             break;
         }
         //if complex language simplify it
-        if (false !== strpos($lang, '-')) {
+        if (false !== mb_strpos($lang, '-')) {
             $tmp  = explode('-', $lang);
             $lang = $tmp[0];
         }

@@ -1,7 +1,9 @@
-<h5>3.05 RC 2        [2017-10-07]</h5>
+<h5>3.1 Beta 1        [NOT RELEASED]</h5>
 <hr>
 - cosmetics (mamba)
 - renamed XLANG to XLANGUAGE (mamba)
+- namespaces (mamba)
+- autoloading (mamba)
 
 <h5>3.05 RC 1        [2017-09-02]</h5>
 <hr>

@@ -15,7 +15,6 @@
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
-
 define('_AM_XLANGUAGE_CONFIG', 'XLanguage Configuration');
 define('_AM_XLANGUAGE_DELETE_CFM', 'Are you sure to delete the language?');
 define('_AM_XLANGUAGE_DELETED', 'The language has been deleted');
@@ -29,11 +28,11 @@ define('_AM_XLANGUAGE_ADDBASE', 'Add base language');
 define('_AM_XLANGUAGE_ADDEXT', 'Add extended language');
 define('_AM_XLANGUAGE_CREATECONFIG', 'Create config file');
 define('_AM_XLANGUAGE_ABOUT', 'About this module');
-define('_AM_XLANGUAGE_LANGLIST', 'language list');
+define('_AM_XLANGUAGE_LANGLIST', 'Language List');
 define('_AM_XLANGUAGE_DESC', 'Desc');
 define('_AM_XLANGUAGE_NAME', 'Name');
 define('_AM_XLANGUAGE_CHARSET', 'charset');
-define('_AM_XLANGUAGE_CODE', 'code');
+define('_AM_XLANGUAGE_CODE', 'Code');
 define('_AM_XLANGUAGE_IMAGE', 'Image');
 define('_AM_XLANGUAGE_WEIGHT', 'Weight');
 define('_AM_XLANGUAGE_BASE', 'Base language');

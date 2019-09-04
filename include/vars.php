@@ -15,7 +15,6 @@
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
-
 if (!defined('XLANGUAGE_CONFIG_FILE')) {
     define('XLANGUAGE_CONFIG_FILE', XOOPS_CACHE_PATH . '/xlanguage.php');
 }
@@ -99,8 +98,8 @@ $available_languages = [
     'tr'    => ['tr|turkish', 'turkish'],
     'uk'    => ['uk|ukrainian', 'ukrainian'],
     'zh-tw' => ['zh[-_]tw|chinese traditional', 'tchinese'],
-    'zh-cn' => ['zh[-_]cn|chinese simplified', 'schinese']
+    'zh-cn' => ['zh[-_]cn|chinese simplified', 'schinese'],
 ];
 
 // mb
-$GLOBALS['available_languages'] =& $available_languages;
+$GLOBALS['available_languages'] = &$available_languages;

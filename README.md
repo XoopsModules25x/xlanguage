@@ -1,5 +1,5 @@
 ![alt XOOPS CMS](https://xoops.org/images/logoXoops4GithubRepository.png)
-## xLanguage module for  [XOOPS CMS 2.5.8+](https://xoops.org)
+## xLanguage module for  [XOOPS CMS 2.5.9+](https://xoops.org)
 [![XOOPS CMS Module](https://img.shields.io/badge/XOOPS%20CMS-Module-blue.svg)](https://xoops.org)
 [![Software License](https://img.shields.io/badge/license-GPL-brightgreen.svg?style=flat)](http://www.gnu.org/licenses/gpl-2.0.html)
 
@@ -12,7 +12,7 @@
 
 **xLanguage** module for [XOOPS CMS](https://xoops.org) handles displaying contents in different languages, like English, French and Chinese. If you want to switch between languages, this module is for you.
 
-[![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://www.gitbook.com/book/xoops/xlanguage-tutorial/) Tutorial: see [here](https://www.gitbook.com/book/xoops/xlanguage-tutorial/).
+[![Tutorial Available](https://xoops.org/images/tutorial-available-blue.svg)](https://xoops.gitbook.io/xlanguage-tutorial/) Tutorial: see [here](https://xoops.gitbook.io/xlanguage-tutorial/).
 To contribute to the Tutorial, [fork it on GitHub](https://github.com/XoopsDocs/xlanguage-tutorial)
 
 [![Translations on Transifex](https://xoops.org/images/translations-transifex-blue.svg)](https://www.transifex.com/xoops)
