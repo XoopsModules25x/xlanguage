@@ -34,6 +34,7 @@ class Language extends Xlanguage\Blanguage
 
     /**
      * Language constructor.
+     * @param bool $isBase
      */
     public function __construct($isBase = false)
     {

@@ -34,6 +34,7 @@ class Blanguage extends \XoopsObject
 
     /**
      * Blanguage constructor.
+     * @param bool $isBase
      */
     public function __construct($isBase = false)
     {
