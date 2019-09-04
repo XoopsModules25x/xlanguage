@@ -31,6 +31,7 @@ use XoopsModules\Xlanguage;
 class Blanguage extends \XoopsObject
 {
     public $isBase = false;
+    public $db;
 
     /**
      * Blanguage constructor.
