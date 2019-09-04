@@ -233,7 +233,7 @@ class Utility
 
         // create the pattern between language tags
         $pqhtmltags  = explode(',', preg_quote(XLANGUAGE_TAGS_RESERVED, '/'));
-        $mid_pattern = '(?:(?!(' . implode('|', $pqhtmltags) . ')).)*';
+        $mid_pattern = '(?:(?!(' . str_replace(',', '|', preg_quote(XLANGUAGE_TAGS_RESERVED, '/')) . ')).)*';
 
         $patterns = [];
         $replaces = [];
