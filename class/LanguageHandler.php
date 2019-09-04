@@ -72,17 +72,18 @@ class LanguageHandler extends \XoopsObjectHandler
     }
 
     /**
-     * @param $name
+     * @param string $name
+     * @param bool $isBase
      *
      * @return Xlanguage\Blanguage|null|Xlanguage\Language
      */
-    public function getByName($name)
+    public function getByName($name, $isBase=false)
     {
         $lang = null;
         if (empty($name) || preg_match("/[^a-zA-Z0-9\_\-]/", $name)) {
             return $lang;
         }
-        $isBase = false;
+
         if (isset($this->cachedConfig['xlanguage_base'][$name])) {
             $array  = $this->cachedConfig['xlanguage_base'][$name];
             $isBase = true;
