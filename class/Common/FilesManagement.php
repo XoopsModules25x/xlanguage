@@ -61,16 +61,18 @@ trait FilesManagement
         if (!@mkdir($dst) && !is_dir($dst)) {
             throw new \RuntimeException('The directory ' . $dst . ' could not be created.');
         }
-        while (false !== ($file = readdir($dir))) {
-            if (('.' !== $file) && ('..' !== $file)) {
-                if (is_dir($src . '/' . $file)) {
-                    self::recurseCopy($src . '/' . $file, $dst . '/' . $file);
-                } else {
-                    copy($src . '/' . $file, $dst . '/' . $file);
+        if (false !== $dir) {
+            while (false !== ($file = readdir($dir))) {
+                if (('.' !== $file) && ('..' !== $file)) {
+                    if (is_dir($src . '/' . $file)) {
+                        self::recurseCopy($src . '/' . $file, $dst . '/' . $file);
+                    } else {
+                        copy($src . '/' . $file, $dst . '/' . $file);
+                    }
                 }
             }
+            closedir($dir);
         }
-        closedir($dir);
     }
 
     /**
@@ -95,7 +97,8 @@ trait FilesManagement
         $dirInfo = new \SplFileInfo($src);
         // validate is a directory
         if ($dirInfo->isDir()) {
-            $fileList = array_diff(scandir($src, SCANDIR_SORT_NONE), ['..', '.']);
+            $dirScan = scandir($src, SCANDIR_SORT_NONE);
+            $fileList = array_diff($dirScan, ['..', '.']);
             foreach ($fileList as $k => $v) {
                 $fileInfo = new \SplFileInfo("{$src}/{$v}");
                 if ($fileInfo->isDir()) {

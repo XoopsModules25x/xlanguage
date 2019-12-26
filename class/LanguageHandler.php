@@ -41,7 +41,7 @@ class LanguageHandler extends \XoopsObjectHandler
      * @param int  $id
      * @param bool $isBase
      *
-     * @return Blanguage|null|Language
+     * @return Blanguage|Language|null
      */
     public function get($id, $isBase = true)
     {
@@ -78,7 +78,7 @@ class LanguageHandler extends \XoopsObjectHandler
      * @param string $name
      * @param bool $isBase
      *
-     * @return Xlanguage\Blanguage|null|Xlanguage\Language
+     * @return Xlanguage\Blanguage|Xlanguage\Language|null
      */
     public function getByName($name, $isBase=false)
     {
@@ -201,8 +201,8 @@ class LanguageHandler extends \XoopsObjectHandler
     }
 
     /**
-     * @param \XoopsObject $object
-     * @return bool
+     * @param Blanguage|Language $object
+     * @return bool|string
      * @internal param object $lang
      */
     public function insert(\XoopsObject $object)//insert(&$lang)

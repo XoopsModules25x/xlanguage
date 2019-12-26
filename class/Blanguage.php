@@ -32,6 +32,7 @@ class Blanguage extends \XoopsObject
 {
     public $isBase = false;
     public $db;
+    public $table;
 
     /**
      * Blanguage constructor.

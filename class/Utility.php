@@ -203,6 +203,7 @@ class Utility
     {
         global $xoopsConfig;
         global $xlanguage_langs;
+        $patterns = [];
         if (!isset($xlanguage_langs)) {
             $xlanguage_langs = [];
             /** @var \XoopsModules\Xlanguage\Helper $helper */
@@ -281,7 +282,7 @@ class Utility
     }
 
     /**
-     * @param null $options
+     * @param null|array $options
      * @return bool
      */
     public static function showSelectedLanguage($options = null)
