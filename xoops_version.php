@@ -27,7 +27,7 @@ $helper->loadLanguage('common');
 // ------------------- Informations ------------------- //
 $modversion = [
     'version'             => 3.1,
-    'module_status'       => 'Beta 1',
+    'module_status'       => 'RC 1',
     'release_date'        => '2019/12/22',
     'name'                => _MI_XLANGUAGE_NAME,
     'description'         => _MI_XLANGUAGE_DESC,

@@ -1,3 +1,12 @@
+<h5>3.1 RC 1        [2019-12-22]</h5>
+<hr>
+- __NAMESPACE__ in Helper.php (mamba)
+- renamed 'PHP_SELF' to 'SCRIPT_NAME' (mamba)
+- cosmetics, PSR12 (mamba)
+- decreased index key length (mamba) (MySQL error #1071)
+- added few \Xmf\Request checks (mamba)
+
+
 <h5>3.1 Beta 1        [NOT RELEASED]</h5>
 <hr>
 - cosmetics (mamba)
@@ -5,8 +14,7 @@
 - namespaces (mamba)
 - autoloading (mamba)
 - moved include/config.php to /config/config.ph (mamba)
-- __NAMESPACE__ in Helper.php (mamba)
-- renamed 'PHP_SELF' to 'SCRIPT_NAME' (mamba)
+
 
 <h5>3.05 RC 1        [2017-09-02]</h5>
 <hr>
