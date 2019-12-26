@@ -126,6 +126,7 @@ class LanguageHandler extends \XoopsObjectHandler
      */
     public function getAll($isBase = true)
     {
+        $array = [];
         $prefix = $isBase ? 'xlanguage_base' : 'xlanguage_ext';
         $ret    = [];
         if (isset($this->cachedConfig[$prefix])) {

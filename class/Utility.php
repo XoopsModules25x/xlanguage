@@ -345,6 +345,7 @@ class Utility
     public static function getPreferredLanguage()
     {
         $langs = [];
+        $lang = '';
         //        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
             // break up string into pieces (languages and q factors)
