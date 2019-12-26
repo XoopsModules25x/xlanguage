@@ -28,7 +28,7 @@ $helper->loadLanguage('common');
 $modversion = [
     'version'             => 3.1,
     'module_status'       => 'Beta 1',
-    'release_date'        => '2019/09/04',
+    'release_date'        => '2019/12/22',
     'name'                => _MI_XLANGUAGE_NAME,
     'description'         => _MI_XLANGUAGE_DESC,
     'official'            => 1, //1 indicates official XOOPS module supported by XOOPS Dev Team, 0 means 3rd party supported
@@ -85,7 +85,7 @@ $modversion = [
     //  'onUninstall'         => 'include/onuninstall.php',
     // -------------------  PayPal ---------------------------
     'paypal'              => [
-        'business'      => 'foundation@xoops.org',
+        'business'      => 'xoopsfoundation@gmail.com',
         'item_name'     => 'Donation : ' . _MI_XLANGUAGE_NAME,
         'amount'        => 0,
         'currency_code' => 'USD',

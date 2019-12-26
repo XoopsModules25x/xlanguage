@@ -16,7 +16,7 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 require_once XOOPS_ROOT_PATH . '/class/xoopsformloader.php';
-$sform = new \XoopsThemeForm(_AM_XLANGUAGE_EDITLANG, 'langform', xoops_getenv('PHP_SELF'), 'post', true);
+$sform = new \XoopsThemeForm(_AM_XLANGUAGE_EDITLANG, 'langform', xoops_getenv('SCRIPT_NAME'), 'post', true);
 
 if ($isBase) {
     $lang_select = new \XoopsFormSelect(_AM_XLANGUAGE_NAME, 'lang_name', $lang_name);

@@ -55,9 +55,11 @@ class LanguageHandler extends \XoopsObjectHandler
             $array = $this->cachedConfig[$prefix][$id];
         } else {
             $sql = 'SELECT * FROM ' . $this->db->prefix($prefix) . ' WHERE lang_id=' . $id;
-            /** @var \mysqli_result $result */
+            /** @var \mysqli_result|false $result */
             $result = $this->db->query($sql);
-            $array  = $this->db->fetchArray($result);
+            if ($result) {
+                $array = $this->db->fetchArray($result);
+            }
         }
         if (!is_array($array) || 0 == count($array)) {
             return $lang;
@@ -119,7 +121,7 @@ class LanguageHandler extends \XoopsObjectHandler
     /**
      * @param bool $isBase
      *
-     * @return array
+     * @return array|false
      */
     public function getAll($isBase = true)
     {
@@ -136,8 +138,11 @@ class LanguageHandler extends \XoopsObjectHandler
         } elseif (!isset($this->cachedConfig)) {
             //        } elseif (false === $this->cachedConfig) {
             $sql = 'SELECT * FROM ' . $this->db->prefix($prefix);
-            /** @var \mysqli_result $result */
+            /** @var \mysqli_result|false $result */
             $result = $this->db->query($sql);
+            if (!$result ) {
+                return false;
+            }
             while (false !== ($myrow = $this->db->fetchArray($result))) {
                 $lang = $this->create(false, $isBase);
                 $lang->assignVars($myrow);

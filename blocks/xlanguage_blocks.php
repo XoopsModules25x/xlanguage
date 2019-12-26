@@ -77,7 +77,7 @@ function b_xlanguage_select_show($options)
         $query_string = implode('&', array_map('htmlspecialchars', $QUERY_STRING_new));
         $query_string .= empty($query_string) ? '' : '&';
     }
-    $block['url']       = xoops_getenv('PHP_SELF') . '?' . $query_string . XLANGUAGE_LANG_TAG . '=';
+    $block['url']       = xoops_getenv('SCRIPT_NAME') . '?' . $query_string . XLANGUAGE_LANG_TAG . '=';
     $block['languages'] = &$languages;
 
     return $block;
