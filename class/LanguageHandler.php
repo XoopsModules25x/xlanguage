@@ -45,6 +45,7 @@ class LanguageHandler extends \XoopsObjectHandler
      */
     public function get($id, $isBase = true)
     {
+        $array = [];
         $lang = null;
         $id   = (int)$id;
         if (!$id) {
