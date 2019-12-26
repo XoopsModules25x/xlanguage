@@ -211,8 +211,10 @@ class Utility
             $xlanguageHandler = $helper->getHandler('Language');
             $langs            = $xlanguageHandler->getAll(true);
             //        $langs = $GLOBALS['xlanguageHandler']->getAll(true); //mb
-            foreach (array_keys($langs) as $_lang) {
-                $xlanguage_langs[$_lang] = $langs[$_lang]->getVar('lang_code');
+            if (false !== $langs) {
+                foreach (array_keys($langs) as $_lang) {
+                    $xlanguage_langs[$_lang] = $langs[$_lang]->getVar('lang_code');
+                }
             }
             unset($langs);
         }
