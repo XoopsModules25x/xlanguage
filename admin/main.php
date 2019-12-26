@@ -49,7 +49,7 @@ switch ($op) {
             $aboutAdmin = \Xmf\Module\Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             //            echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
-            xoops_confirm(['op' => 'del', 'type' => $_GET['type'], 'lang_id' => \Xmf\Request::getInt('lang_id', 0, 'GET'), 'ok' => 1], 'main.php', _AM_XLANGUAGE_DELETE_CFM);
+            xoops_confirm(['op' => 'del', 'type' => \Xmf\Request::getString('type', 0, 'GET'), 'lang_id' => \Xmf\Request::getInt('lang_id', 0, 'GET'), 'ok' => 1], 'main.php', _AM_XLANGUAGE_DELETE_CFM);
         } else {
             $isBase = true;
             if (isset($type) && 'ext' === $type) {

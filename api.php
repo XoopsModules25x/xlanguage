@@ -25,10 +25,11 @@ require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
 $cookie_var = XLANGUAGE_LANG_TAG;
 
 $xlanguage['action'] = false;
-if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
+$langTag = \Xmf\Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
+if (!empty($langTag)) {
     $cookie_path = '/';
-    setcookie($cookie_var, $_GET[XLANGUAGE_LANG_TAG], time() + 3600 * 24 * 30, $cookie_path, '', 0);
-    $xlanguage['lang'] = $_GET[XLANGUAGE_LANG_TAG];
+    setcookie($cookie_var, $langTag, time() + 3600 * 24 * 30, $cookie_path, '', 0);
+    $xlanguage['lang'] = $langTag;
 } elseif (!empty($_COOKIE[$cookie_var])) {
     $xlanguage['lang'] = $_COOKIE[$cookie_var];
 
