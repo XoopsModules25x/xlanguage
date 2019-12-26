@@ -47,15 +47,15 @@ class Utility
         }
 
         $xconvHandler = @xoops_getModuleHandler('xconv', 'xconv', true);
-        if (is_object($xconvHandler) && $converted_value = @$xconvHandler->convert_encoding($value, $out_charset, $in_charset)) {
-            return $converted_value;
+        if (is_object($xconvHandler) && $convertedValue = @$xconvHandler->convert_encoding($value, $out_charset, $in_charset)) {
+            return $convertedValue;
         }
         if (XOOPS_USE_MULTIBYTES && function_exists('mb_convert_encoding')) {
-            $converted_value = @mb_convert_encoding($value, $out_charset, $in_charset);
+            $convertedValue = @mb_convert_encoding($value, $out_charset, $in_charset);
         } elseif (function_exists('iconv')) {
-            $converted_value = @iconv($in_charset, $out_charset, $value);
+            $convertedValue = @iconv($in_charset, $out_charset, $value);
         }
-        $value = empty($converted_value) ? $value : $converted_value;
+        $value = empty($convertedValue) ? $value : $convertedValue;
 
         return $value;
     }
@@ -66,7 +66,7 @@ class Utility
     public static function createConfig()
     {
         /** @var \XoopsModules\Xlanguage\Helper $helper */
-        $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+        $helper = Helper::getInstance();
         /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
         $xlanguageHandler = $helper->getHandler('Language');
 
@@ -79,7 +79,7 @@ class Utility
     public static function loadConfig()
     {
         /** @var \XoopsModules\Xlanguage\Helper $helper */
-        $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+        $helper = Helper::getInstance();
         /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
         $xlanguageHandler = $helper->getHandler('Language');
         $config           = $xlanguageHandler->loadFileConfig();
@@ -206,7 +206,7 @@ class Utility
         if (!isset($xlanguage_langs)) {
             $xlanguage_langs = [];
             /** @var \XoopsModules\Xlanguage\Helper $helper */
-            $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+            $helper = Helper::getInstance();
             /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
             $xlanguageHandler = $helper->getHandler('Language');
             $langs            = $xlanguageHandler->getAll(true);
@@ -240,7 +240,7 @@ class Utility
 
         if (isset($xlanguage_langs[$xoopsConfig['language']])) {
             $lang       = $xlanguage_langs[$xoopsConfig['language']];
-            $patterns[] = '/(\[([^\]]*\|)?' . preg_quote($lang) . '(\|[^\]]*)?\])(' . $mid_pattern . ')(\[\/([^\]]*\|)?' . preg_quote($lang) . '(\|[^\]]*)?\])/isU';
+            $patterns[] = '/(\[([^\]]*\|)?' . preg_quote($lang, '~') . '(\|[^\]]*)?\])(' . $mid_pattern . ')(\[\/([^\]]*\|)?' . preg_quote($lang, '~') . '(\|[^\]]*)?\])/isU';
             $replaces[] = '$4';
         }
 
@@ -249,11 +249,11 @@ class Utility
                 continue;
             }
             $name       = $xlanguage_langs[$_lang];
-            $patterns[] = '/(\[([^\]]*\|)?' . preg_quote($name) . '(\|[^\]]*)?\])(' . $mid_pattern . ')(\[\/([^\]]*\|)?' . preg_quote($name) . '(\|[^\]]*)?(\]\<br[\s]?[\/]?\>|\]))/isU';
+            $patterns[] = '/(\[([^\]]*\|)?' . preg_quote($name, '~') . '(\|[^\]]*)?\])(' . $mid_pattern . ')(\[\/([^\]]*\|)?' . preg_quote($name, '~') . '(\|[^\]]*)?(\]\<br[\s]?[\/]?\>|\]))/isU';
             $replaces[] = '';
         }
         if (!empty($xoopsConfig['language'])) {
-            $text = preg_replace('/\[[\/]?[\|]?' . preg_quote($xoopsConfig['language']) . '[\|]?\](\<br \/\>)?/i', '', $text);
+            $text = preg_replace('/\[[\/]?[\|]?' . preg_quote($xoopsConfig['language'], '~') . '[\|]?\](\<br \/\>)?/i', '', $text);
         }
         if (count($replaces) > 0) {
             $text = preg_replace($patterns, $replaces, $text);
