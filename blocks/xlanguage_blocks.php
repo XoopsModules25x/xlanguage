@@ -46,9 +46,10 @@ function b_xlanguage_select_show($options)
             continue;
         }
         foreach ($lang['ext'] as $ext) {
-            $languages[$ext->getVar('lang_name')]['name']  = $ext->getVar('lang_name');
-            $languages[$ext->getVar('lang_name')]['desc']  = $ext->getVar('lang_desc');
-            $languages[$ext->getVar('lang_name')]['image'] = XOOPS_URL . '/modules/xlanguage/assets/images/' . $ext->getVar('lang_image');
+            $langName = $ext->getVar('lang_name');
+            $languages[$langName]['name']  = $langName;
+            $languages[$langName]['desc']  = $ext->getVar('lang_desc');
+            $languages[$langName]['image'] = XOOPS_URL . '/modules/xlanguage/assets/images/' . $ext->getVar('lang_image');
         }
     }
 
