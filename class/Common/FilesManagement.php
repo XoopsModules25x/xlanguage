@@ -92,31 +92,33 @@ trait FilesManagement
             return false;
         }
 
-        $success = true;
+        $success = false;
         // remove old files
         $dirInfo = new \SplFileInfo($src);
         // validate is a directory
         if ($dirInfo->isDir()) {
             $dirScan = scandir($src, SCANDIR_SORT_NONE);
-            $fileList = array_diff($dirScan, ['..', '.']);
-            foreach ($fileList as $k => $v) {
-                $fileInfo = new \SplFileInfo("{$src}/{$v}");
-                if ($fileInfo->isDir()) {
-                    // recursively handle subdirectories
-                    if (!$success = self::deleteDirectory($fileInfo->getRealPath())) {
-                        break;
-                    }
-                } elseif (!($success = unlink($fileInfo->getRealPath()))) {
+            if (false !== $dirScan) {
+                $fileList = array_diff($dirScan, ['..', '.']);
+                foreach ($fileList as $k => $v) {
+                    $fileInfo = new \SplFileInfo("{$src}/{$v}");
+                    if ($fileInfo->isDir()) {
+                        // recursively handle subdirectories
+                        if (!$success = self::deleteDirectory($fileInfo->getRealPath())) {
+                            break;
+                        }
+                    } elseif (!($success = unlink($fileInfo->getRealPath()))) {
                         break; // delete the file
                     }
+                }
+                // now delete this (sub)directory if all the files are gone
+                if ($success) {
+                    $success = rmdir($dirInfo->getRealPath());
+                }
             }
-            // now delete this (sub)directory if all the files are gone
-            if ($success) {
-                $success = rmdir($dirInfo->getRealPath());
-            }
-        } else {
-            // input is not a valid directory
-            $success = false;
+//        } else {
+//            // input is not a valid directory
+//            $success = false;
         }
 
         return $success;

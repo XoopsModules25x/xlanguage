@@ -202,7 +202,7 @@ class LanguageHandler extends \XoopsObjectHandler
 
     /**
      * @param Blanguage|Language $object
-     * @return bool|string
+     * @return bool|string|array
      * @internal param object $lang
      */
     public function insert(\XoopsObject $object)//insert(&$lang)

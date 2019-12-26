@@ -72,11 +72,11 @@ function xoops_module_install_xlanguage(\XoopsModule $module)
     /** @var \XoopsGroupPermHandler $grouppermHandler */
     $grouppermHandler = xoops_getHandler('groupperm');
     // access rights ------------------------------------------
-    $grouppermHandler->addRight($moduleDirName . '_approve', 1, XOOPS_GROUP_ADMIN, $moduleId);
-    $grouppermHandler->addRight($moduleDirName . '_submit', 1, XOOPS_GROUP_ADMIN, $moduleId);
-    $grouppermHandler->addRight($moduleDirName . '_view', 1, XOOPS_GROUP_ADMIN, $moduleId);
-    $grouppermHandler->addRight($moduleDirName . '_view', 1, XOOPS_GROUP_USERS, $moduleId);
-    $grouppermHandler->addRight($moduleDirName . '_view', 1, XOOPS_GROUP_ANONYMOUS, $moduleId);
+    $grouppermHandler->addRight($moduleDirName . '_approve', 1, (int)XOOPS_GROUP_ADMIN, $moduleId);
+    $grouppermHandler->addRight($moduleDirName . '_submit', 1, (int)XOOPS_GROUP_ADMIN, $moduleId);
+    $grouppermHandler->addRight($moduleDirName . '_view', 1, (int)XOOPS_GROUP_ADMIN, $moduleId);
+    $grouppermHandler->addRight($moduleDirName . '_view', 1, (int)XOOPS_GROUP_USERS, $moduleId);
+    $grouppermHandler->addRight($moduleDirName . '_view', 1, (int)XOOPS_GROUP_ANONYMOUS, $moduleId);
 
     //  ---  CREATE FOLDERS ---------------
     if (count($configurator->uploadFolders) > 0) {
