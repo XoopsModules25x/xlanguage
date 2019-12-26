@@ -16,48 +16,50 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-use Xmf\Module\Admin;
-use Xmf\Module\Helper;
+use XoopsModules\Xlanguage;
 
-// defined('XOOPS_ROOT_PATH') || exit('Restricted access.');
+// require_once  dirname(__DIR__) . '/class/Helper.php';
+//require_once  dirname(__DIR__) . '/include/common.php';
+/** @var Xlanguage\Helper $helper */
+$helper = Xlanguage\Helper::getInstance();
 
-//$path = dirname(dirname(dirname(__DIR__)));
-//require_once $path . '/mainfile.php';
-
-$moduleDirName = basename(dirname(__DIR__));
-
-if (false !== ($moduleHelper = Helper::getHelper($moduleDirName))) {
-} else {
-    $moduleHelper = Helper::getHelper('system');
+$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+if (is_object($helper->getModule())) {
+    $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 }
-$pathIcon32    = Admin::menuIconPath('');
-$pathModIcon32 = $moduleHelper->getModule()->getInfo('modicons32');
 
-xoops_loadLanguage('modinfo', $moduleDirName);
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU_HOME,
+    'link'  => 'admin/index.php',
+    'icon'  => $pathIcon32 . '/home.png',
+];
 
-$adminmenu = array();
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU0,
+    'link'  => 'admin/main.php',
+    'icon'  => $pathIcon32 . '/manage.png',
+];
 
-$i                      = 1;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU_HOME;
-$adminmenu[$i]['link']  = 'admin/index.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/home.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU0;
-$adminmenu[$i]['link']  = 'admin/main.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/manage.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU1;
-$adminmenu[$i]['link']  = 'admin/main.php?op=add&type=base';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/add.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU2;
-$adminmenu[$i]['link']  = 'admin/main.php?op=add&type=ext';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/insert_table_row.png';
-++$i;
-$adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU3;
-$adminmenu[$i]['link']  = 'admin/about.php';
-$adminmenu[$i]['icon']  = $pathIcon32 . '/about.png';
-// ++$i;
-// $adminmenu[$i]['title'] = _MI_XLANGUAGE_ADMENU3;
-// $adminmenu[$i]['link'] = "admin/about2.php";
-// $adminmenu[$i]['icon']  = $pathIcon32.'/about.png';
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU1,
+    'link'  => 'admin/main.php?op=add&type=base',
+    'icon'  => $pathIcon32 . '/add.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU2,
+    'link'  => 'admin/main.php?op=add&type=ext',
+    'icon'  => $pathIcon32 . '/insert_table_row.png',
+];
+
+$adminmenu[] = [
+    'title' => _MI_XLANGUAGE_ADMENU3,
+    'link'  => 'admin/about.php',
+    'icon'  => $pathIcon32 . '/about.png',
+];
+
+//$adminmenu[] = [
+// 'title' =>  _MI_XLANGUAGE_ADMENU3,
+// 'link' =>  "admin/about2.php",
+// 'icon' =>  $pathIcon32.'/about.png',
+//];

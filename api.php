@@ -16,37 +16,42 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use XoopsModules\Xlanguage;
+
 global $xlanguage;
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
-require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/functions.php';
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
 
 $xlanguage['action'] = false;
-if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
+$langTag = \Xmf\Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
+if (!empty($langTag)) {
     $cookie_path = '/';
-    setcookie($cookie_var, $_GET[XLANGUAGE_LANG_TAG], time() + 3600 * 24 * 30, $cookie_path, '', 0);
-    $xlanguage['lang'] = $_GET[XLANGUAGE_LANG_TAG];
+    setcookie($cookie_var, $langTag, time() + 3600 * 24 * 30, $cookie_path, '', 0);
+    $xlanguage['lang'] = $langTag;
 } elseif (!empty($_COOKIE[$cookie_var])) {
     $xlanguage['lang'] = $_COOKIE[$cookie_var];
+
     /* FIXME: shall we remove it? */
-    /*
-    if (preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])) {
-    } elseif (strpos($_SERVER['REQUEST_URI'], "?")) {
-        $_SERVER['REQUEST_URI'] .= "&".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
-    } else {
-        $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
-    }
-    */
-} elseif ($lang = xlanguage_detectLang()) {
+
+    //    if (preg_match("/[&|\?]\b".XLANGUAGE_LANG_TAG."\b=/i",$_SERVER['REQUEST_URI'])) {
+    //    } elseif (strpos($_SERVER['REQUEST_URI'], "?")) {
+    //        $_SERVER['REQUEST_URI'] .= "&".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
+    //    } else {
+    //        $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
+    //    }
+
+} elseif ($lang = Xlanguage\Utility::detectLang()) {
     $xlanguage['lang'] = $lang;
 } else {
     $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
-/** @var \XlanguageLanguageHandler $xlanguageHandler */
-$xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+/** @var \XoopsModules\Xlanguage\Helper $helper */
+$helper = \XoopsModules\Xlanguage\Helper::getInstance();
+/** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
+$xlanguageHandler = $helper->getHandler('Language');
 $xlanguageHandler->loadConfig();
 $lang = $xlanguageHandler->getByName($xlanguage['lang']);
 if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['language'])) {
@@ -79,17 +84,17 @@ if ($xlanguage['action']) {
         $out_charset = $xlanguage['charset_base'];
 
         //$CONV_REQUEST_array=array("_GET", "_POST");
-        $CONV_REQUEST_array = array('_POST');
+        $CONV_REQUEST_array = ['_POST'];
         foreach ($CONV_REQUEST_array as $HV) {
             if (!empty(${$HV})) {
-                ${$HV} = xlanguage_convert_encoding(${$HV}, $out_charset, $in_charset);
+                ${$HV} = Xlanguage\Utility::convertEncoding(${$HV}, $out_charset, $in_charset);
             }
             $GLOBALS['HTTP' . $HV . '_VARS'] = ${$HV};
         }
     }
-    ob_start('xlanguage_encoding');
+    ob_start("XoopsModules\Xlanguage\Utility::encodeCharSet");
 } else {
-    ob_start('xlanguage_ml');
+    ob_start("XoopsModules\Xlanguage\Utility::cleanMultiLang");
 }
 
 /*
@@ -102,6 +107,6 @@ if ($xlanguage['action']) {
  */
 $xlanguage_theme_enable = true;
 if (!empty($xlanguage_theme_enable)) {
-    $options = array('dropdown', ' ', 5); // display mode, delimitor, number per line
-    xlanguage_select_show($options);
+    $options = ['dropdown', ' ', 5]; // display mode, delimitor, number per line
+    Xlanguage\Utility::showSelectedLanguage($options);
 }

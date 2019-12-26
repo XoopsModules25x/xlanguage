@@ -8,11 +8,11 @@
             
 ## User Manual
 
-© 2016 XOOPS Project ([www.xoops.org](https://xoops.org))  
+© 2016 XOOPS Project ([www.xoops.org](https://xoops.org))
 
 ## Module Purpose 
 
-This module, **xLanguage** (eXtensible Multi-language content and character encoding Management plugin) handles displaying contents of different languages, like English, French and Chinese. Character encoding management also handles contents of different encoding sets for one language, like GB2312 (Chinese Simplified) and BIG5 (Chinese Traditional) for Chinese.  
+This module, **xLanguage** (eXtensible Multi-language content and character encoding Management plugin) handles displaying contents of different languages, like English, French and Chinese. Character encoding management also handles contents of different encoding sets for one language, like GB2312 (Chinese Simplified) and BIG5 (Chinese Traditional) for Chinese.
 
 ### What xLanguage CAN do
 1 displaying content of specified language based on user's dynamic choice 
@@ -32,13 +32,13 @@ This module, **xLanguage** (eXtensible Multi-language content and character enco
 ![image001.jpg](assets/image001.jpg)
 *Figure 1: Main view of the xLanguage Module (Admin side)*
 
-## Download/Fork the Module ![](https://xoops.org/images/forkit.png)  
+## Download/Fork the Module ![](https://xoops.org/images/forkit.png)
 
 **You can fork the module --> [here](https://github.com/XoopsModules25x/xlanguage))** 
 
 ## How to Contribute
 
-[You can contribute on GitHub](https://github.com/XoopsDocs/xlanguage-tutorial). Changes will be [pushed to Gitbook.io automatically](https://www.gitbook.com/book/xoops/xlanguage-tutorial/activity) when the [main repository](https://github.com/XoopsDocs/xlanguage-tutorial) changes.
+[You can contribute on GitHub](https://github.com/XoopsDocs/xlanguage-tutorial). Changes will be [pushed to Gitbook.io automatically](https://xoops.gitbook.io/xlanguage-tutorial/activity) when the [main repository](https://github.com/XoopsDocs/xlanguage-tutorial) changes.
 
 Editing the book can be done either by updating the markdown files with a text editor, or opening the repository in [the Gitbook desktop app](https://github.com/GitbookIO/editor/blob/master/README.md). The desktop app will give you a live preview option.
 

@@ -1,5 +1,5 @@
 <div id="help-template" class="outer">
-    <{include file=$smarty.const._MI_XLANG_HELP_HEADER}>
+    <{include file=$smarty.const._MI_XLANGUAGE_HELP_HEADER}>
 
     <h4 class="odd">DESCRIPTION</h4> <br>
 
@@ -44,7 +44,7 @@
     ../modules directory. Install the module through Admin -> System Module -> Modules.
     <br><br>
     Detailed instructions on installing modules are available in the <a
-        href="https://www.gitbook.com/book/xoops/xoops-operations-guide/" target="_blank">XOOPS Operations Manual</a>
+            href="https://xoops.gitbook.io/xoops-operations-guide/" target="_blank">XOOPS Operations Manual</a>
 
     <h4 class="odd">OPERATING INSTRUCTIONS</h4>
 
@@ -90,7 +90,7 @@
         the language selection box:<br>
         1) modify /modules/xlanguage/api.php "$xlanguage_theme_enable = true;"<br>
         2) config options "$options = array("images", " ", 5); // display mode, delimitor, number per line";<br>
-        3) insert &lt;{$smarty.const.XLANGUAGE_SWITCH_CODE}&gt; into your theme or template files anywhere you prefer it
+        3) insert &lt;{$smarty.const.XLANGUAGE_SWITCH_CODE}> into your theme or template files anywhere you prefer it
         present <br><br>
 
 

@@ -17,22 +17,24 @@
  * @param $options
  * @return array
  */
-
 function b_xlanguage_select_show($options)
 {
     global $xlanguage;
 
-    $block = array();
+    $block = [];
 
-    /** @var \XlanguageLanguageHandler $xlanguageHandler */
-    $xlanguageHandler = xoops_getModuleHandler('language', 'xlanguage');
+    /** @var \XoopsModules\Xlanguage\Helper $helper */
+    $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+
+    /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
+    $xlanguageHandler = $helper->getHandler('Language');
     $xlanguageHandler->loadConfig();
     $lang_list = $xlanguageHandler->getAllList();
-    if (!is_array($lang_list) || count($lang_list) < 1) {
+    if (!is_array($lang_list) || (count($lang_list) < 1)) {
         return $block;
     }
 
-    $languages = array();
+    $languages = [];
     foreach ($lang_list as $lang_name => $lang) {
         if (!isset($lang['base'])) {
             continue;
@@ -44,16 +46,17 @@ function b_xlanguage_select_show($options)
             continue;
         }
         foreach ($lang['ext'] as $ext) {
-            $languages[$ext->getVar('lang_name')]['name']  = $ext->getVar('lang_name');
-            $languages[$ext->getVar('lang_name')]['desc']  = $ext->getVar('lang_desc');
-            $languages[$ext->getVar('lang_name')]['image'] = XOOPS_URL . '/modules/xlanguage/assets/images/' . $ext->getVar('lang_image');
+            $langName = $ext->getVar('lang_name');
+            $languages[$langName]['name']  = $langName;
+            $languages[$langName]['desc']  = $ext->getVar('lang_desc');
+            $languages[$langName]['image'] = XOOPS_URL . '/modules/xlanguage/assets/images/' . $ext->getVar('lang_image');
         }
     }
 
     $QUERY_STRING_array = array_filter(explode('&', xoops_getenv('QUERY_STRING')));
-    $QUERY_STRING_new   = array();
+    $QUERY_STRING_new   = [];
     foreach ($QUERY_STRING_array as $QUERY) {
-        if (0 !== strpos($QUERY, XLANGUAGE_LANG_TAG . '=')) {
+        if (0 !== mb_strpos($QUERY, XLANGUAGE_LANG_TAG . '=')) {
             $vals = explode('=', $QUERY);
             foreach (array_keys($vals) as $key) {
                 if (preg_match('/^a-z0-9$/i', $vals[$key])) {
@@ -68,15 +71,15 @@ function b_xlanguage_select_show($options)
     $block['delimitor'] = $options[1];
     $block['number']    = $options[2];
     $block['selected']  = $xlanguage['lang'];
-    if ($options[0] === 'images' || $options[0] === 'text') {
-        $query_string = htmlspecialchars(implode('&', $QUERY_STRING_new));
+    if ('images' === $options[0] || 'text' === $options[0]) {
+        $query_string = htmlspecialchars(implode('&', $QUERY_STRING_new), ENT_QUOTES | ENT_HTML5);
         $query_string .= empty($query_string) ? '' : '&amp;';
     } else {
         $query_string = implode('&', array_map('htmlspecialchars', $QUERY_STRING_new));
         $query_string .= empty($query_string) ? '' : '&';
     }
-    $block['url']       = xoops_getenv('PHP_SELF') . '?' . $query_string . XLANGUAGE_LANG_TAG . '=';
-    $block['languages'] =& $languages;
+    $block['url']       = xoops_getenv('SCRIPT_NAME') . '?' . $query_string . XLANGUAGE_LANG_TAG . '=';
+    $block['languages'] = &$languages;
 
     return $block;
 }
@@ -89,17 +92,17 @@ function b_xlanguage_select_edit($options)
 {
     $form = _MB_XLANGUAGE_DISPLAY_METHOD . "&nbsp;<select name='options[]'>";
     $form .= "<option value='images'";
-    if ($options[0] === 'images') {
+    if ('images' === $options[0]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_FLAGLIST . "</option>\n";
     $form .= "<option value='text'";
-    if ($options[0] === 'text') {
+    if ('text' === $options[0]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_TEXTLIST . "</option>\n";
     $form .= "<option value='dropdown'";
-    if ($options[0] === 'dropdown') {
+    if ('dropdown' === $options[0]) {
         $form .= ' selected';
     }
     $form .= '>' . _MB_XLANGUAGE_DISPLAY_DROPDOWNLIST . "</option>\n";

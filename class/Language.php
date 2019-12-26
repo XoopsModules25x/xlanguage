@@ -1,4 +1,7 @@
 <?php
+
+namespace XoopsModules\Xlanguage;
+
 /**
  * xLanguage module (eXtensible Language Management For XOOPS)
  *
@@ -13,15 +16,30 @@
  * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
- * @author       XOOPS Team
+ * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
-require_once __DIR__ . '/admin_header.php';
-xoops_cp_header();
+use XoopsModules\Xlanguage;
 
-$adminObject = \Xmf\Module\Admin::getInstance();
+//require(XOOPS_ROOT_PATH."/class/xoopslists.php");
+//require(XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php');
+//require(XOOPS_ROOT_PATH.'/modules/xlanguage/class/Utility.php');
 
-$adminObject->displayNavigation(basename(__FILE__));
-$adminObject->displayIndex();
+/**
+ * Class Language
+ */
+class Language extends Xlanguage\Blanguage
+{
+    public $lang_base;
 
-require_once __DIR__ . '/admin_footer.php';
+    /**
+     * Language constructor.
+     * @param bool $isBase
+     */
+    public function __construct($isBase = false)
+    {
+        parent::__construct($isBase);
+        $this->table = $this->db->prefix('xlanguage_ext');
+        $this->initVar('lang_base', XOBJ_DTYPE_TXTBOX);
+    }
+}

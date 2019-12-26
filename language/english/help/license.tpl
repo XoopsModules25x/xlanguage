@@ -1,5 +1,5 @@
 <div id="help-template" class="outer">
-    <{include file=$smarty.const._MI_XLANG_HELP_HEADER}>
+    <{include file=$smarty.const._MI_XLANGUAGE_HELP_HEADER}>
 
     <h4 class="odd">LICENSE</h4>
     <pre>

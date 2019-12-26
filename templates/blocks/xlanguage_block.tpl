@@ -1,5 +1,5 @@
 <div style="text-align: center; margin-left: auto; margin-right: auto;">
-    <{if $block.display eq "images" OR $block.display eq "text"}>
+    <{if $block.display eq "images" || ($block.display eq "text")}>
         <{foreach item=lang name=lang_it from=$block.languages}>
             <a href="<{$block.url}><{$lang.name}>" title="<{$lang.desc}>">
                 <{if $block.display eq "images"}>
@@ -9,7 +9,7 @@
                     <{$lang.desc}>
                 <{/if}>
             </a>
-            <{if $smarty.foreach.lang_it.iteration % $block.number eq 0}>
+            <{if $block.number != 0 && $smarty.foreach.lang_it.iteration % $block.number eq 0}>
                 <br>
             <{/if}>
         <{/foreach}>

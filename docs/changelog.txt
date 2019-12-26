@@ -1,3 +1,22 @@
+<h5>3.1 RC 1        [2019-12-22]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.1
+<hr>
+- __NAMESPACE__ in Helper.php (mamba)
+- renamed 'PHP_SELF' to 'SCRIPT_NAME' (mamba)
+- cosmetics, PSR12 (mamba)
+- decreased index key length (mamba) (MySQL error #1071)
+- added few \Xmf\Request checks (mamba)
+- Scrutinizer suggestions (mamba)
+
+
+<h5>3.1 Beta 1        [NOT RELEASED]</h5>
+<hr>
+- cosmetics (mamba)
+- renamed XLANG to XLANGUAGE (mamba)
+- namespaces (mamba)
+- autoloading (mamba)
+- moved include/config.php to /config/config.ph (mamba)
+
+
 <h5>3.05 RC 1        [2017-09-02]</h5>
 <hr>
 - code cosmetics (mamba)
@@ -16,11 +35,13 @@
     &nbsp;&nbsp;- displayNavigation(basename(__FILE__))  (mamba)
     &nbsp;&nbsp;- changed to ->displayButton('left') (mamba)
 
+
 <h5>3.05 Beta 1       [NOT RELEASED</h5>
 <hr>
 - moved all images, CSS, and JS files to /assets (mamba)
 - renamed .html Smarty templates to .tpl (mamba)
 - fixed language auto-detection (Rewarder/Mamba)
+
 
 <h5>3.04</h5>
 <hr>
@@ -28,14 +49,16 @@
 - minor fixes (Mamba)
 - fixing generation of configuration file for extended languages
 
+
 <h5>3.03</h5>
 <hr>
 1 updated to XOOPS 2.5.x GUI using ModuleAdmin class (Mamba)
 
+
 <h5>3.02</h5>
 <hr>
-
 1 adjusted for Xoops 2.4.0 using Preloads, no hacks of Core files required anymore in 2.4.0 and above (trabis)
+
 
 <h5>3.0:</h5>
 <hr>
@@ -43,20 +66,23 @@
 2 added smarty template for block
 3 added inline scripts for displaying language switch manner anywhere prefered
 
+
 <h5>2.04</h5>
 <hr>
 capable for different language cache, reported by suico @ xoops.org
 
+
 <h5>2.03</h5>
 <hr>
 "input" parse improvement, reported by irmtfan @ xoops.org
+
 
 <h5>2.02</h5>
 <hr>
 bugfix for XSS vulnerability
 Thanks domifara @ dev.xoops.org
 
+
 <h5>2.01</h5>
 <hr>
 bugfix for nonexisting language
-
