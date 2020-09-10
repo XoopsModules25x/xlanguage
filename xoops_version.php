@@ -1,4 +1,5 @@
 <?php
+
 /**
  * xLanguage module (eXtensible Language Management For XOOPS)
  *
@@ -10,14 +11,14 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 require_once __DIR__ . '/preloads/autoloader.php';
 
-$moduleDirName = basename(__DIR__);
+$moduleDirName      = basename(__DIR__);
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 /** @var \XoopsModules\Xlanguage\Helper $helper */
@@ -67,7 +68,7 @@ $modversion = [
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
     // ------------------- Min Requirements -------------------
-    'min_php'             => '5.5',
+    'min_php'             =>  '7.2',
     'min_xoops'           => '2.5.10',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '5.5'],
@@ -81,7 +82,7 @@ $modversion = [
 
     // ------------------- Install/Update -------------------
     //    'onInstall'           => 'include/oninstall.php',
-        'onUpdate'            => 'include/onupdate.php',
+    'onUpdate'            => 'include/onupdate.php',
     //  'onUninstall'         => 'include/onuninstall.php',
     // -------------------  PayPal ---------------------------
     'paypal'              => [
@@ -121,7 +122,6 @@ $modversion['blocks'][] = [
     'template'    => 'xlanguage_block.tpl',
 ];
 
-
 /**
  * Make Sample button visible?
  */
@@ -138,10 +138,10 @@ $modversion['config'][] = [
  * Show Developer Tools?
  */
 $modversion['config'][] = [
-    'name' => 'displayDeveloperTools',
-    'title' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS',
+    'name'        => 'displayDeveloperTools',
+    'title'       => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS',
     'description' => 'CO_' . $moduleDirNameUpper . '_' . 'SHOW_DEV_TOOLS_DESC',
-    'formtype' => 'yesno',
-    'valuetype' => 'int',
-    'default' => 0,
+    'formtype'    => 'yesno',
+    'valuetype'   => 'int',
+    'default'     => 0,
 ];

@@ -10,21 +10,29 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
  * @param $options
  * @return array
  */
+
+use XoopsModules\Xlanguage\Helper;
+
 function b_xlanguage_select_show($options)
 {
     global $xlanguage;
 
     $block = [];
 
-    /** @var \XoopsModules\Xlanguage\Helper $helper */
-    $helper = \XoopsModules\Xlanguage\Helper::getInstance();
+    /** @var Helper $helper */
+    if (!class_exists(Helper::class)) {
+        //  throw new \RuntimeException('Unable to create the $helper directory');
+        return false;
+    }
+
+    $helper = Helper::getInstance();
 
     /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
     $xlanguageHandler = $helper->getHandler('Language');
@@ -46,7 +54,7 @@ function b_xlanguage_select_show($options)
             continue;
         }
         foreach ($lang['ext'] as $ext) {
-            $langName = $ext->getVar('lang_name');
+            $langName                      = $ext->getVar('lang_name');
             $languages[$langName]['name']  = $langName;
             $languages[$langName]['desc']  = $ext->getVar('lang_desc');
             $languages[$langName]['image'] = XOOPS_URL . '/modules/xlanguage/assets/images/' . $ext->getVar('lang_image');
@@ -75,7 +83,7 @@ function b_xlanguage_select_show($options)
         $query_string = htmlspecialchars(implode('&', $QUERY_STRING_new), ENT_QUOTES | ENT_HTML5);
         $query_string .= empty($query_string) ? '' : '&amp;';
     } else {
-        $query_string = implode('&', array_map('htmlspecialchars', $QUERY_STRING_new));
+        $query_string = implode('&', array_map('\htmlspecialchars', $QUERY_STRING_new));
         $query_string .= empty($query_string) ? '' : '&';
     }
     $block['url']       = xoops_getenv('SCRIPT_NAME') . '?' . $query_string . XLANGUAGE_LANG_TAG . '=';

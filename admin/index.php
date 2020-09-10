@@ -10,7 +10,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       XOOPS Team

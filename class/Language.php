@@ -13,7 +13,7 @@ namespace XoopsModules\Xlanguage;
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
@@ -22,8 +22,8 @@ namespace XoopsModules\Xlanguage;
 use XoopsModules\Xlanguage;
 
 //require(XOOPS_ROOT_PATH."/class/xoopslists.php");
-//require(XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php');
-//require(XOOPS_ROOT_PATH.'/modules/xlanguage/class/Utility.php');
+//require XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php';
+//require XOOPS_ROOT_PATH.'/modules/xlanguage/class/Utility.php';
 
 /**
  * Class Language
@@ -40,6 +40,6 @@ class Language extends Xlanguage\Blanguage
     {
         parent::__construct($isBase);
         $this->table = $this->db->prefix('xlanguage_ext');
-        $this->initVar('lang_base', XOBJ_DTYPE_TXTBOX);
+        $this->initVar('lang_base', \XOBJ_DTYPE_TXTBOX);
     }
 }

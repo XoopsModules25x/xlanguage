@@ -10,7 +10,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
@@ -25,7 +25,7 @@ require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
 $cookie_var = XLANGUAGE_LANG_TAG;
 
 $xlanguage['action'] = false;
-$langTag = \Xmf\Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
+$langTag             = \Xmf\Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
 if (!empty($langTag)) {
     $cookie_path = '/';
     setcookie($cookie_var, $langTag, time() + 3600 * 24 * 30, $cookie_path, '', 0);

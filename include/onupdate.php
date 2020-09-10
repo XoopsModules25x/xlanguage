@@ -11,7 +11,7 @@
 
 /**
  * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
  * @author       XOOPS Development Team
@@ -20,7 +20,7 @@
 use XoopsModules\Xlanguage;
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
-    || !$GLOBALS['xoopsUser']->IsAdmin()) {
+    || !$GLOBALS['xoopsUser']->isAdmin()) {
     exit('Restricted access' . PHP_EOL);
 }
 
@@ -58,8 +58,8 @@ function xoops_module_pre_update_xlanguage(\XoopsModule $module)
 
 /**
  * Performs tasks required during update of the module
- * @param \XoopsModule $module {@link XoopsModule}
- * @param null|string|int        $previousVersion
+ * @param \XoopsModule    $module {@link XoopsModule}
+ * @param null|string|int $previousVersion
  *
  * @return bool true if update successful, false if not
  */
@@ -68,8 +68,7 @@ function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = 
     $moduleDirName      = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-    /** @var \XoopsModules\Xlanguage\Helper $helper */
-    /** @var \XoopsModules\Xlanguage\Utility $utility */
+    /** @var \XoopsModules\Xlanguage\Helper $helper */ /** @var \XoopsModules\Xlanguage\Utility $utility */
     /** @var \XoopsModules\Xlanguage\Common\Configurator $configurator */
     $helper       = \XoopsModules\Xlanguage\Helper::getInstance();
     $utility      = new \XoopsModules\Xlanguage\Utility();
@@ -85,7 +84,7 @@ function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = 
                     foreach ($templateList as $k => $v) {
                         $fileInfo = new \SplFileInfo($templateFolder . $v);
                         if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
-                            if (file_exists($templateFolder . $v)) {
+                            if (is_file($templateFolder . $v)) {
                                 unlink($templateFolder . $v);
                             }
                         }
@@ -138,8 +137,8 @@ function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = 
         $sql = 'DELETE FROM ' . $GLOBALS['xoopsDB']->prefix('tplfile') . " WHERE `tpl_module` = '" . $module->getVar('dirname', 'n') . '\' AND `tpl_file` LIKE \'%.html%\'';
         $GLOBALS['xoopsDB']->queryF($sql);
 
-        /** @var \XoopsGroupPermHandler $grouppermHandler */
-        $grouppermHandler = xoops_getHandler('groupperm');
+    /** @var \XoopsGroupPermHandler $grouppermHandler */
+$grouppermHandler = xoops_getHandler('groupperm');
 
         return $grouppermHandler->deleteByModule($module->getVar('mid'), 'item_read');
     }

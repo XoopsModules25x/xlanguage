@@ -14,7 +14,7 @@
 - renamed XLANG to XLANGUAGE (mamba)
 - namespaces (mamba)
 - autoloading (mamba)
-- moved include/config.php to /config/config.ph (mamba)
+- moved config/config.php to /config/config.ph (mamba)
 
 
 <h5>3.05 RC 1        [2017-09-02]</h5>

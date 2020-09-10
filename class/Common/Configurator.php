@@ -17,11 +17,9 @@ namespace XoopsModules\Xlanguage\Common;
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      XOOPS Development Team
- * @package     Publisher
+ * @package
  * @since       1.05
  */
-
-
 
 /**
  * Class Configurator
@@ -46,11 +44,10 @@ class Configurator
      */
     public function __construct()
     {
+        $config = require \dirname(\dirname(__DIR__)) . '/config/config.php';
 
-        $config = include dirname(dirname(__DIR__)) . '/config/config.php';
-
-        $this->name            = $config->name;
-//        $this->paths           = $config->paths;
+        $this->name = $config->name;
+        //        $this->paths           = $config->paths;
         $this->uploadFolders   = $config->uploadFolders;
         $this->copyBlankFiles  = $config->copyBlankFiles;
         $this->copyTestFolders = $config->copyTestFolders;
@@ -61,8 +58,8 @@ class Configurator
         $this->moduleStats     = $config->moduleStats;
         $this->modCopyright    = $config->modCopyright;
 
-        $this->paths = include dirname(dirname(__DIR__)) . '/config/paths.php';
-        $this->icons  = include dirname(dirname(__DIR__)) . '/config/icons.php';
+        $this->paths = require \dirname(\dirname(__DIR__)) . '/config/paths.php';
+        $this->icons = require \dirname(\dirname(__DIR__)) . '/config/icons.php';
     }
 }
 

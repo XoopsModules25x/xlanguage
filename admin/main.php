@@ -10,7 +10,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
@@ -157,11 +157,11 @@ switch ($op) {
 
         //        echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         languageList($xlanguageHandler);
-        $configfile_status = (@is_readable(XLANGUAGE_CONFIG_FILE)) ? _AM_XLANGUAGE_CONFIGOK : _AM_XLANGUAGE_CONFIGNOTOK;
+        $configfile_status = (@is_readable(\XLANGUAGE_CONFIG_FILE)) ? _AM_XLANGUAGE_CONFIGOK : _AM_XLANGUAGE_CONFIGNOTOK;
         echo "<table width='100%' border='0' cellspacing='1' class='outer'><tr><td class=\"odd\"><br>";
         //        echo " - <b><a href='index.php?op=add&amp;type=base'>" . _AM_XLANGUAGE_ADDBASE . "</a></b><br><br>\n";
         //        echo " - <b><a href='index.php?op=add&amp;type=ext'>" . _AM_XLANGUAGE_ADDEXT . "</a></b><br><br>\n";
-        echo '<b>' . $configfile_status . '</b>: ' . XLANGUAGE_CONFIG_FILE . " (<a href='main.php?op=createconfig' title='" . _AM_XLANGUAGE_CREATECONFIG . "'>" . _AM_XLANGUAGE_CREATECONFIG . "</a>)<br><br>\n";
+        echo '<b>' . $configfile_status . '</b>: ' . \XLANGUAGE_CONFIG_FILE . " (<a href='main.php?op=createconfig' title='" . _AM_XLANGUAGE_CREATECONFIG . "'>" . _AM_XLANGUAGE_CREATECONFIG . "</a>)<br><br>\n";
         //        echo " - <b><a href='about.php'>" . _AM_XLANGUAGE_ABOUT . "</a></b>";
         echo '</td></tr></table>';
         break;
@@ -173,7 +173,7 @@ xoops_cp_footer();
  */
 function languageList(Xlanguage\LanguageHandler $xlanguageHandler)
 {
-//    global $xlanguageHandler, $xoopsModule;
+    //    global $xlanguageHandler, $xoopsModule;
 
     global $pathIcon16;
 
