@@ -51,7 +51,7 @@ function xoops_module_uninstall_xlanguage(\XoopsModule $module)
         $dirInfo = new \SplFileInfo($old_dir);
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
-            if (false === $utility::rrmdir($old_dir)) {
+            if (!$utility::rrmdir($old_dir)) {
                 $module->setErrors(sprintf(constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_DEL_PATH'), $old_dir));
                 $success = false;
             }
