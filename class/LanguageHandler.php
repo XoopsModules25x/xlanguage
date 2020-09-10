@@ -205,7 +205,7 @@ class LanguageHandler extends \XoopsObjectHandler
      * @return bool|string|array
      * @internal param object $lang
      */
-    public function insert(Blanguage $lang)
+    public function insert(\XoopsObject $lang)
     {
         $val_array = [];
         if (!$lang->isDirty()) {
