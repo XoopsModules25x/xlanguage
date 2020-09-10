@@ -30,7 +30,6 @@ use XoopsModules\Xlanguage;
 function xoops_module_pre_install_xlanguage(\XoopsModule $module)
 {
     require_once dirname(__DIR__) . '/preloads/autoloader.php';
-    /** @var Xlanguage\Utility $utility */
     $utility      = new \XoopsModules\Xlanguage\Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
