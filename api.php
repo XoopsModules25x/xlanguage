@@ -16,7 +16,9 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use Xmf\Request;
 use XoopsModules\Xlanguage;
+use XoopsModules\Xlanguage\Helper;
 
 global $xlanguage;
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
@@ -25,7 +27,7 @@ require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
 $cookie_var = XLANGUAGE_LANG_TAG;
 
 $xlanguage['action'] = false;
-$langTag             = \Xmf\Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
+$langTag             = Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
 if (!empty($langTag)) {
     $cookie_path = '/';
     setcookie($cookie_var, $langTag, time() + 3600 * 24 * 30, $cookie_path, '', 0);
@@ -49,7 +51,7 @@ if (!empty($langTag)) {
 }
 
 /** @var \XoopsModules\Xlanguage\Helper $helper */
-$helper = \XoopsModules\Xlanguage\Helper::getInstance();
+$helper = Helper::getInstance();
 /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
 $xlanguageHandler = $helper->getHandler('Language');
 $xlanguageHandler->loadConfig();

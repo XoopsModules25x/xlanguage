@@ -18,6 +18,7 @@
  */
 
 use XoopsModules\Xlanguage;
+use XoopsModules\Xlanguage\Helper;
 
 if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUser)
     || !$GLOBALS['xoopsUser']->isAdmin()) {
@@ -47,7 +48,7 @@ function xoops_module_pre_update_xlanguage(\XoopsModule $module)
     $moduleDirName = basename(dirname(__DIR__));
     /** @var \XoopsModules\Xlanguage\Helper $helper */
     /** @var \XoopsModules\Xlanguage\Utility $utility */
-    $helper  = Xlanguage\Helper::getInstance();
+    $helper  = Helper::getInstance();
     $utility = new Xlanguage\Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
@@ -70,7 +71,7 @@ function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = 
 
     /** @var \XoopsModules\Xlanguage\Helper $helper */ /** @var \XoopsModules\Xlanguage\Utility $utility */
     /** @var \XoopsModules\Xlanguage\Common\Configurator $configurator */
-    $helper       = \XoopsModules\Xlanguage\Helper::getInstance();
+    $helper       = Helper::getInstance();
     $utility      = new \XoopsModules\Xlanguage\Utility();
     $configurator = new Xlanguage\Common\Configurator();
 

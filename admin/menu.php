@@ -16,6 +16,7 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use Xmf\Module\Admin;
 use XoopsModules\Xlanguage;
 
 // require_once  dirname(__DIR__) . '/class/Helper.php';
@@ -25,7 +26,7 @@ $helper = Xlanguage\Helper::getInstance();
 $helper->loadLanguage('common');
 $helper->loadLanguage('feedback');
 
-$pathIcon32 = \Xmf\Module\Admin::menuIconPath('');
+$pathIcon32 = Admin::menuIconPath('');
 if (is_object($helper->getModule())) {
     $pathModIcon32 = $helper->getModule()->getInfo('modicons32');
 }

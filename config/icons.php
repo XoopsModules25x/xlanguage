@@ -1,6 +1,8 @@
 <?php
 
-$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
+use Xmf\Module\Admin;
+
+$pathIcon16 = Admin::iconUrl('', 16);
 
 return [
     'name' => mb_strtoupper($moduleDirName) . ' IconConfigurator',

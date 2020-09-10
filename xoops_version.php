@@ -16,13 +16,16 @@
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
+
+use XoopsModules\Xlanguage\Helper;
+
 require_once __DIR__ . '/preloads/autoloader.php';
 
 $moduleDirName      = basename(__DIR__);
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 /** @var \XoopsModules\Xlanguage\Helper $helper */
-$helper = \XoopsModules\Xlanguage\Helper::getInstance();
+$helper = Helper::getInstance();
 $helper->loadLanguage('common');
 
 // ------------------- Informations ------------------- //

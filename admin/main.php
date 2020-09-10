@@ -16,7 +16,10 @@
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use Xmf\Module\Admin;
+use Xmf\Request;
 use XoopsModules\Xlanguage;
+use XoopsModules\Xlanguage\Helper;
 
 require_once __DIR__ . '/admin_header.php';
 
@@ -37,7 +40,7 @@ if (isset($_GET)) {
 define('XLANG_CONFIG_LINK', "<a href='main.php' target='_self'>" . _AM_XLANGUAGE_CONFIG . '</a>');
 
 /** @var \XoopsModules\Xlanguage\Helper $helper */
-$helper = \XoopsModules\Xlanguage\Helper::getInstance();
+$helper = Helper::getInstance();
 /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
 $xlanguageHandler = $helper->getHandler('Language');
 $xlanguageHandler->loadConfig();
@@ -46,10 +49,10 @@ switch ($op) {
     case 'del':
         if (!isset($_POST['ok']) || 1 != $_POST['ok']) {
             xoops_cp_header();
-            $aboutAdmin = \Xmf\Module\Admin::getInstance();
+            $aboutAdmin = Admin::getInstance();
             $adminObject->displayNavigation(basename(__FILE__));
             //            echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
-            xoops_confirm(['op' => 'del', 'type' => \Xmf\Request::getString('type', 0, 'GET'), 'lang_id' => \Xmf\Request::getInt('lang_id', 0, 'GET'), 'ok' => 1], 'main.php', _AM_XLANGUAGE_DELETE_CFM);
+            xoops_confirm(['op' => 'del', 'type' => Request::getString('type', 0, 'GET'), 'lang_id' => Request::getInt('lang_id', 0, 'GET'), 'ok' => 1], 'main.php', _AM_XLANGUAGE_DELETE_CFM);
         } else {
             $isBase = true;
             if (isset($type) && 'ext' === $type) {
@@ -86,7 +89,7 @@ switch ($op) {
         break;
     case 'edit':
         xoops_cp_header();
-        $aboutAdmin = \Xmf\Module\Admin::getInstance();
+        $aboutAdmin = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
         // echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         // echo "<br>";
@@ -115,7 +118,7 @@ switch ($op) {
         break;
     case 'add':
         xoops_cp_header();
-        $aboutAdmin = \Xmf\Module\Admin::getInstance();
+        $aboutAdmin = Admin::getInstance();
         //        echo "<h4>" . XLANG_CONFIG_LINK . "</h4>";
         //        echo "<br>";
         //        echo "<h4>" . _AM_XLANGUAGE_ADDLANG . "</h4>";
@@ -143,7 +146,7 @@ switch ($op) {
     case 'default':
     default:
         xoops_cp_header();
-        $adminObject = \Xmf\Module\Admin::getInstance();
+        $adminObject = Admin::getInstance();
         $adminObject->displayNavigation(basename(__FILE__));
 
         // if (TDMDownloads_checkModuleAdmin()) {
