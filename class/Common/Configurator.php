@@ -44,7 +44,7 @@ class Configurator
      */
     public function __construct()
     {
-        $config = require dirname(__DIR__, 2) . '/config/config.php';
+        $config = require \dirname(__DIR__, 2) . '/config/config.php';
 
         $this->name = $config->name;
         //        $this->paths           = $config->paths;
@@ -58,8 +58,8 @@ class Configurator
         $this->moduleStats     = $config->moduleStats;
         $this->modCopyright    = $config->modCopyright;
 
-        $this->paths = require dirname(__DIR__, 2) . '/config/paths.php';
-        $this->icons = require dirname(__DIR__, 2) . '/config/icons.php';
+        $this->paths = require \dirname(__DIR__, 2) . '/config/paths.php';
+        $this->icons = require \dirname(__DIR__, 2) . '/config/icons.php';
     }
 }
 

@@ -17,14 +17,21 @@
  **/
 
 use Xmf\Request;
-use XoopsModules\Xlanguage;
-use XoopsModules\Xlanguage\Helper;
+use XoopsModules\Xlanguage\{
+    Helper,
+    LanguageHandler,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
+/** @var LanguageHandler $languageHandler */
 
-global $xlanguage;
+global $xlanguage, $xoopsConfig;
 require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
+$utility = new Utility();
 
 $xlanguage['action'] = false;
 $langTag             = Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
@@ -44,23 +51,21 @@ if (!empty($langTag)) {
     //        $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
     //    }
 
-} elseif ($lang = Xlanguage\Utility::detectLang()) {
+} elseif ($lang == $utility::detectLang()) {
     $xlanguage['lang'] = $lang;
 } else {
     $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
-/** @var \XoopsModules\Xlanguage\Helper $helper */
 $helper = Helper::getInstance();
-/** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-$xlanguageHandler = $helper->getHandler('Language');
-$xlanguageHandler->loadConfig();
-$lang = $xlanguageHandler->getByName($xlanguage['lang']);
+$languageHandler = $helper->getHandler('Language');
+$languageHandler->loadConfig();
+$lang = $languageHandler->getByName($xlanguage['lang']);
 if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['language'])) {
     if ($lang->hasBase()) {
         $xoopsConfig['language'] = $lang->getVar('lang_name');
     } else {
-        $lang_base = $xlanguageHandler->getByName($lang->getVar('lang_base'));
+        $lang_base = $languageHandler->getByName($lang->getVar('lang_base'));
         if (is_object($lang_base)) {
             $xlanguage['charset_base'] = $lang_base->getVar('lang_charset');
             $xlanguage['action']       = true;
@@ -77,7 +82,7 @@ if (is_object($lang) && strcasecmp($lang->getVar('lang_name'), $xoopsConfig['lan
 }
 unset($lang);
 
-$GLOBALS['xlanguageHandler'] = $xlanguageHandler;
+$GLOBALS['xlanguageHandler'] = $languageHandler;
 
 if ($xlanguage['action']) {
     //if (CONV_REQUEST && (!empty($_GET)||!empty($_POST))) {
@@ -89,7 +94,7 @@ if ($xlanguage['action']) {
         $CONV_REQUEST_array = ['_POST'];
         foreach ($CONV_REQUEST_array as $HV) {
             if (!empty(${$HV})) {
-                ${$HV} = Xlanguage\Utility::convertEncoding(${$HV}, $out_charset, $in_charset);
+                ${$HV} = $utility::convertEncoding(${$HV}, $out_charset, $in_charset);
             }
             $GLOBALS['HTTP' . $HV . '_VARS'] = ${$HV};
         }
@@ -110,5 +115,5 @@ if ($xlanguage['action']) {
 $xlanguage_theme_enable = true;
 if (!empty($xlanguage_theme_enable)) {
     $options = ['dropdown', ' ', 5]; // display mode, delimitor, number per line
-    Xlanguage\Utility::showSelectedLanguage($options);
+    $utility::showSelectedLanguage($options);
 }

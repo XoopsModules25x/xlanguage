@@ -2,9 +2,14 @@
 
 namespace XoopsModules\Xlanguage;
 
-use XoopsModules\Xlanguage;
-use XoopsModules\Xlanguage\Common;
-use XoopsModules\Xlanguage\Constants;
+use XoopsModules\Xlanguage\{
+    Common,
+    Constants,
+    Helper,
+    LanguageHandler
+};
+/** @var Helper $helper */
+/** @var LanguageHandler $languageHandler */
 
 /**
  * Class Utility
@@ -63,12 +68,10 @@ class Utility extends Common\SysUtility
      */
     public static function createConfig()
     {
-        /** @var \XoopsModules\Xlanguage\Helper $helper */
         $helper = Helper::getInstance();
-        /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-        $xlanguageHandler = $helper->getHandler('Language');
+        $languageHandler = $helper->getHandler('Language');
 
-        return $xlanguageHandler->createConfig();
+        return $languageHandler->createConfig();
     }
 
     /**
@@ -76,11 +79,9 @@ class Utility extends Common\SysUtility
      */
     public static function loadConfig()
     {
-        /** @var \XoopsModules\Xlanguage\Helper $helper */
         $helper = Helper::getInstance();
-        /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-        $xlanguageHandler = $helper->getHandler('Language');
-        $config           = $xlanguageHandler->loadFileConfig();
+        $languageHandler = $helper->getHandler('Language');
+        $config           = $languageHandler->loadFileConfig();
 
         return $config;
     }
@@ -204,11 +205,9 @@ class Utility extends Common\SysUtility
         $patterns = [];
         if (!isset($xlanguage_langs)) {
             $xlanguage_langs = [];
-            /** @var \XoopsModules\Xlanguage\Helper $helper */
             $helper = Helper::getInstance();
-            /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-            $xlanguageHandler = $helper->getHandler('Language');
-            $langs            = $xlanguageHandler->getAll(true);
+            $languageHandler = $helper->getHandler('Language');
+            $langs            = $languageHandler->getAll(true);
             //        $langs = $GLOBALS['xlanguageHandler']->getAll(true); //mb
             if (false !== $langs) {
                 foreach (\array_keys($langs) as $_lang) {

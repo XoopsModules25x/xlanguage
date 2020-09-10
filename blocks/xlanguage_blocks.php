@@ -34,10 +34,10 @@ function b_xlanguage_select_show($options)
 
     $helper = Helper::getInstance();
 
-    /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-    $xlanguageHandler = $helper->getHandler('Language');
-    $xlanguageHandler->loadConfig();
-    $lang_list = $xlanguageHandler->getAllList();
+    /** @var \XoopsModules\Xlanguage\LanguageHandler $languageHandler */
+    $languageHandler = $helper->getHandler('Language');
+    $languageHandler->loadConfig();
+    $lang_list = $languageHandler->getAllList();
     if (!is_array($lang_list) || (count($lang_list) < 1)) {
         return $block;
     }

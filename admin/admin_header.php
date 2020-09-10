@@ -18,7 +18,11 @@
 
 //use XoopsModules\Xlanguage;
 use Xmf\Module\Admin;
-use XoopsModules\Xlanguage\Helper;
+use XoopsModules\Xlanguage\{
+    Helper
+};
+/** @var Helper $helper */
+/** @var Admin $adminObject */
 
 require dirname(__DIR__) . '/preloads/autoloader.php';
 
@@ -30,10 +34,7 @@ require_once dirname(__DIR__) . '/include/common.php';
 
 $moduleDirName = basename(dirname(__DIR__));
 
-/** @var \XoopsModules\Xlanguage\Helper $helper */
 $helper = Helper::getInstance();
-
-/** @var \Xmf\Module\Admin $adminObject */
 $adminObject = Admin::getInstance();
 
 //$pathIcon16    = \Xmf\Module\Admin::iconUrl('', 16);

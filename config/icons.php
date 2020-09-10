@@ -2,6 +2,7 @@
 
 use Xmf\Module\Admin;
 
+$moduleDirName      = basename(dirname(__DIR__));
 $pathIcon16 = Admin::iconUrl('', 16);
 
 return [
