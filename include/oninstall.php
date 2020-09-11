@@ -11,7 +11,7 @@
 
 /**
  * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
  * @package
  * @since
  * @author       XOOPS Development Team
@@ -19,7 +19,14 @@
 
 //require_once __DIR__ . '/setup.php';
 
-use XoopsModules\Xlanguage;
+use XoopsModules\Xlanguage\{
+    Common\Configurator,
+    Helper,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
+/** @var Configurator $configurator */
 
 /**
  * Prepares system prior to attempting to install module
@@ -30,8 +37,7 @@ use XoopsModules\Xlanguage;
 function xoops_module_pre_install_xlanguage(\XoopsModule $module)
 {
     require_once dirname(__DIR__) . '/preloads/autoloader.php';
-    /** @var Xlanguage\Utility $utility */
-    $utility      = new \XoopsModules\Xlanguage\Utility();
+    $utility      = new Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
 
@@ -53,24 +59,22 @@ function xoops_module_pre_install_xlanguage(\XoopsModule $module)
  */
 function xoops_module_install_xlanguage(\XoopsModule $module)
 {
-    require_once dirname(dirname(dirname(__DIR__))) . '/mainfile.php';
-    require_once dirname(__DIR__) . '/config/config.php';
+    require_once dirname(__DIR__, 3) . '/mainfile.php';
 
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var Xlanguage\Helper $helper */
-    $helper       = Xlanguage\Helper::getInstance();
-    $utility      = new Xlanguage\Utility();
-    $configurator = new Xlanguage\Common\Configurator();
+    $helper       = Helper::getInstance();
+    $utility      = new Utility();
+    $configurator = new Configurator();
     // Load language files
     $helper->loadLanguage('admin');
     $helper->loadLanguage('modinfo');
 
     // default Permission Settings ----------------------
     global $xoopsModule;
-    $moduleId         = $xoopsModule->getVar('mid');
+    $moduleId = $xoopsModule->getVar('mid');
     // $moduleId2        = $helper->getModule()->mid();
-    /** @var \XoopsGroupPermHandler $grouppermHandler */
-    $grouppermHandler = xoops_getHandler('groupperm');
+/** @var \XoopsGroupPermHandler $grouppermHandler */
+$grouppermHandler = xoops_getHandler('groupperm');
     // access rights ------------------------------------------
     $grouppermHandler->addRight($moduleDirName . '_approve', 1, (int)XOOPS_GROUP_ADMIN, $moduleId);
     $grouppermHandler->addRight($moduleDirName . '_submit', 1, (int)XOOPS_GROUP_ADMIN, $moduleId);

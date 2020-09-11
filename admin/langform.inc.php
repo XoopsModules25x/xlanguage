@@ -1,4 +1,5 @@
 <?php
+
 /**
  * xLanguage module (eXtensible Language Management For XOOPS)
  *
@@ -10,7 +11,7 @@
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  *
  * @copyright    XOOPS Project (https://xoops.org)
- * @license      {@link http://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
+ * @license      {@link https://www.gnu.org/licenses/gpl-2.0.html GNU Public License}
  * @package      xlanguage
  * @since        2.0
  * @author       D.J.(phppp) php_pp@hotmail.com
@@ -20,7 +21,7 @@ $sform = new \XoopsThemeForm(_AM_XLANGUAGE_EDITLANG, 'langform', xoops_getenv('S
 
 if ($isBase) {
     $lang_select = new \XoopsFormSelect(_AM_XLANGUAGE_NAME, 'lang_name', $lang_name);
-    $lang_select->addOptionArray($xlanguageHandler->getXoopsLangList());
+    $lang_select->addOptionArray($languageHandler->getXoopsLangList());
     $sform->addElement($lang_select, true);
 } else {
     $sform->addElement(new \XoopsFormText(_AM_XLANGUAGE_NAME, 'lang_name', 50, 255, $lang_name), true);
@@ -39,7 +40,7 @@ $lang_charset->setDescription(_AM_XLANGUAGE_CHARSET_DESC);
 $sform->addElement($lang_charset, true);
 
 if (!$isBase) {
-    $baseList  = $xlanguageHandler->getAll();
+    $baseList  = $languageHandler->getAll();
     $base_list = [];
     foreach ($baseList as $base => $baselang) {
         $base_list[$base] = $base;

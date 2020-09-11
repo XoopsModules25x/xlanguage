@@ -8,7 +8,12 @@
  * @link            https://xoops.org XOOPS
  */
 
-use XoopsModules\Xlanguage;
+use XoopsModules\Xlanguage\{
+    Helper,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
 
 /**
  * Prepares system prior to attempting to uninstall module
@@ -34,11 +39,8 @@ function xoops_module_uninstall_xlanguage(\XoopsModule $module)
 
     $moduleDirName      = basename(dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
-    /** @var Xlanguage\Helper $helper */
-    $helper = Xlanguage\Helper::getInstance();
-
-    /** @var Xlanguage\Utility $utility */
-    $utility = new Xlanguage\Utility();
+    $helper = Helper::getInstance();
+    $utility = new Utility();
 
     $success = true;
     $helper->loadLanguage('admin');
@@ -52,7 +54,7 @@ function xoops_module_uninstall_xlanguage(\XoopsModule $module)
         $dirInfo = new \SplFileInfo($old_dir);
         if ($dirInfo->isDir()) {
             // The directory exists so delete it
-            if (false === $utility::rrmdir($old_dir)) {
+            if (!$utility::rrmdir($old_dir)) {
                 $module->setErrors(sprintf(constant('CO_' . $moduleDirNameUpper . '_ERROR_BAD_DEL_PATH'), $old_dir));
                 $success = false;
             }

@@ -4,7 +4,7 @@ $moduleDirName      = basename(dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
 return [
-    'name' => mb_strtoupper($moduleDirName) . ' PathConfigurator',
+    'name' => $moduleDirNameUpper . ' PathConfigurator',
 
     'dirname'       => $moduleDirName,
     'admin'         => XOOPS_ROOT_PATH . '/modules/' . $moduleDirName . '/admin',

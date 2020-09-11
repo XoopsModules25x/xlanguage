@@ -2,17 +2,17 @@
 
 namespace XoopsModules\Xlanguage;
 
+use XoopsModules\Xlanguage\{
+    Common
+};
+/** @var Helper $helper */
+/** @var LanguageHandler $languageHandler */
+
 /**
  * Class Utility
  */
-class Utility
+class Utility extends Common\SysUtility
 {
-    use Common\VersionChecks; //checkVerXoops, checkVerPhp Traits
-
-    use Common\ServerStats; // getServerStats Trait
-
-    use Common\FilesManagement; // Files Management Trait
-
     //--------------- Custom module methods -----------------------------
 
     /**
@@ -23,7 +23,7 @@ class Utility
      */
     public static function convertEncoding($value, $out_charset, $in_charset)
     {
-        if (is_array($value)) {
+        if (\is_array($value)) {
             foreach ($value as $key => $val) {
                 $value[$key] = static::convertEncoding($val, $out_charset, $in_charset);
             }
@@ -46,14 +46,14 @@ class Utility
             return $value;
         }
 
-        $xconvHandler = @xoops_getModuleHandler('xconv', 'xconv', true);
-        if (is_object($xconvHandler) && $convertedValue = @$xconvHandler->convert_encoding($value, $out_charset, $in_charset)) {
+        $xconvHandler = @\xoops_getModuleHandler('xconv', 'xconv', true);
+        if (\is_object($xconvHandler) && $convertedValue = @$xconvHandler->convert_encoding($value, $out_charset, $in_charset)) {
             return $convertedValue;
         }
-        if (XOOPS_USE_MULTIBYTES && function_exists('mb_convert_encoding')) {
+        if (XOOPS_USE_MULTIBYTES && \function_exists('mb_convert_encoding')) {
             $convertedValue = @mb_convert_encoding($value, $out_charset, $in_charset);
-        } elseif (function_exists('iconv')) {
-            $convertedValue = @iconv($in_charset, $out_charset, $value);
+        } elseif (\function_exists('iconv')) {
+            $convertedValue = @\iconv($in_charset, $out_charset, $value);
         }
         $value = empty($convertedValue) ? $value : $convertedValue;
 
@@ -65,12 +65,10 @@ class Utility
      */
     public static function createConfig()
     {
-        /** @var \XoopsModules\Xlanguage\Helper $helper */
         $helper = Helper::getInstance();
-        /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-        $xlanguageHandler = $helper->getHandler('Language');
+        $languageHandler = $helper->getHandler('Language');
 
-        return $xlanguageHandler->createConfig();
+        return $languageHandler->createConfig();
     }
 
     /**
@@ -78,11 +76,9 @@ class Utility
      */
     public static function loadConfig()
     {
-        /** @var \XoopsModules\Xlanguage\Helper $helper */
         $helper = Helper::getInstance();
-        /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-        $xlanguageHandler = $helper->getHandler('Language');
-        $config           = $xlanguageHandler->loadFileConfig();
+        $languageHandler = $helper->getHandler('Language');
+        $config           = $languageHandler->loadFileConfig();
 
         return $config;
     }
@@ -112,11 +108,11 @@ class Utility
                 //             2 for the 'HTTP_USER_AGENT' one
                 $expr = $value[0];
                 if (false === mb_strpos($expr, '[-_]')) {
-                    $expr = str_replace('|', '([-_][[:alpha:]]{2,3})?|', $expr);
+                    $expr = \str_replace('|', '([-_][[:alpha:]]{2,3})?|', $expr);
                 }
                 //        if (($envType == 1 && eregi('^(' . $expr . ')(;q=[0-9]\\.[0-9])?$', $str))
                 //            || ($envType == 2 && eregi('(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))', $str))) {
-                if ((1 == $envType && preg_match('#^(' . $expr . ')(;q=[0-9]\\.[0-9])?$#i', $str)) || (2 == $envType && preg_match('#(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))#i', $str))) {
+                if ((1 == $envType && \preg_match('#^(' . $expr . ')(;q=[0-9]\\.[0-9])?$#i', $str)) || (2 == $envType && \preg_match('#(\(|\[|;[[:space:]])(' . $expr . ')(;|\]|\))#i', $str))) {
                     $lang = $key;
                     //if($lang != 'en')
                     break;
@@ -184,7 +180,7 @@ class Utility
         global $xlanguage;
         $output = static::cleanMultiLang($output);
         // escape XML doc
-        if (preg_match("/^\<\?[\s]?xml[\s]+version=([\"'])[^\>]+\\1[\s]+encoding=([\"'])[^\>]+\\2[\s]?\?\>/i", $output)) {
+        if (\preg_match("/^\<\?[\s]?xml[\s]+version=([\"'])[^\>]+\\1[\s]+encoding=([\"'])[^\>]+\\2[\s]?\?\>/i", $output)) {
             return $output;
         }
         $in_charset  = $xlanguage['charset_base'];
@@ -206,20 +202,18 @@ class Utility
         $patterns = [];
         if (!isset($xlanguage_langs)) {
             $xlanguage_langs = [];
-            /** @var \XoopsModules\Xlanguage\Helper $helper */
             $helper = Helper::getInstance();
-            /** @var \XoopsModules\Xlanguage\LanguageHandler $xlanguageHandler */
-            $xlanguageHandler = $helper->getHandler('Language');
-            $langs            = $xlanguageHandler->getAll(true);
+            $languageHandler = $helper->getHandler('Language');
+            $langs            = $languageHandler->getAll(true);
             //        $langs = $GLOBALS['xlanguageHandler']->getAll(true); //mb
             if (false !== $langs) {
-                foreach (array_keys($langs) as $_lang) {
+                foreach (\array_keys($langs) as $_lang) {
                     $xlanguage_langs[$_lang] = $langs[$_lang]->getVar('lang_code');
                 }
             }
             unset($langs);
         }
-        if (empty($xlanguage_langs) || 0 == count($xlanguage_langs)) {
+        if (empty($xlanguage_langs) || 0 == \count($xlanguage_langs)) {
             return $text;
         }
 
@@ -232,11 +226,11 @@ class Utility
         // escape brackets inside of <textarea></textarea>
         $patterns[] = '/(\<textarea\b[^>]*>[^\<]*\<\/textarea>)/isU';
 
-        $text = preg_replace_callback($patterns, 'static::escapeBracketMultiLang', $text);
+        $text = \preg_replace_callback($patterns, 'static::escapeBracketMultiLang', $text);
 
         // create the pattern between language tags
-        $pqhtmltags  = explode(',', preg_quote(XLANGUAGE_TAGS_RESERVED, '/'));
-        $mid_pattern = '(?:(?!(' . str_replace(',', '|', preg_quote(XLANGUAGE_TAGS_RESERVED, '/')) . ')).)*';
+        $pqhtmltags  = \explode(',', preg_quote(\XLANGUAGE_TAGS_RESERVED, '/'));
+        $mid_pattern = '(?:(?!(' . \str_replace(',', '|', preg_quote(\XLANGUAGE_TAGS_RESERVED, '/')) . ')).)*';
 
         $patterns = [];
         $replaces = [];
@@ -247,7 +241,7 @@ class Utility
             $replaces[] = '$4';
         }
 
-        foreach (array_keys($xlanguage_langs) as $_lang) {
+        foreach (\array_keys($xlanguage_langs) as $_lang) {
             if ($_lang == @$xoopsConfig['language']) {
                 continue;
             }
@@ -256,10 +250,10 @@ class Utility
             $replaces[] = '';
         }
         if (!empty($xoopsConfig['language'])) {
-            $text = preg_replace('/\[[\/]?[\|]?' . preg_quote($xoopsConfig['language'], '~') . '[\|]?\](\<br \/\>)?/i', '', $text);
+            $text = \preg_replace('/\[[\/]?[\|]?' . preg_quote($xoopsConfig['language'], '~') . '[\|]?\](\<br \/\>)?/i', '', $text);
         }
-        if (count($replaces) > 0) {
-            $text = preg_replace($patterns, $replaces, $text);
+        if (\count($replaces) > 0) {
+            $text = \preg_replace($patterns, $replaces, $text);
         }
 
         return $text;
@@ -274,8 +268,8 @@ class Utility
         global $xlanguage_langs;
         $ret = $matches[1];
         if (!empty($xlanguage_langs)) {
-            $pattern = '/(\[([\/])?(' . implode('|', array_map('preg_quote', array_values($xlanguage_langs))) . ')([\|\]]))/isU';
-            $ret     = preg_replace($pattern, '&#91;\\2\\3\\4', $ret);
+            $pattern = '/(\[([\/])?(' . \implode('|', \array_map('\preg_quote', \array_values($xlanguage_langs))) . ')([\|\]]))/isU';
+            $ret     = \preg_replace($pattern, '&#91;\\2\\3\\4', $ret);
         }
 
         return $ret;
@@ -294,13 +288,13 @@ class Utility
             $options[2] = 5; // items per line
         }
 
-        $block        = b_xlanguage_select_show($options);
+        $block        = \b_xlanguage_select_show($options);
         $block['tag'] = 'xlanguage';
 
         $content = '';
         $i       = 1;
         if (!empty($block['display'])) { //mb
-            if (in_array($block['display'], ['images', 'text'])) {
+            if (\in_array($block['display'], ['images', 'text'])) {
                 foreach ($block['languages'] as $name => $lang) {
                     $content .= '<a href="' . $block['url'] . $lang['name'] . '" title="' . $lang['desc'] . '">';
                     if ('images' === $block['display']) {
@@ -334,7 +328,7 @@ class Utility
             }
         }
 
-        define('XLANGUAGE_SWITCH_CODE', $content);
+        \define('XLANGUAGE_SWITCH_CODE', $content);
 
         return true;
     }
@@ -345,15 +339,15 @@ class Utility
     public static function getPreferredLanguage()
     {
         $langs = [];
-        $lang = '';
+        $lang  = '';
         //        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
             // break up string into pieces (languages and q factors)
             $temp = \Xmf\Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
-            preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.\d+))?/i', $temp, $lang_parse);
-            if (count($lang_parse[1])) {
+            \preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.\d+))?/i', $temp, $lang_parse);
+            if (\count($lang_parse[1])) {
                 // create a list like "en" => 0.8
-                $langs = array_combine($lang_parse[1], $lang_parse[4]);
+                $langs = \array_combine($lang_parse[1], $lang_parse[4]);
                 // set default to 1 for any without q factor
                 foreach ($langs as $lang => $val) {
                     if ('' === $val) {
@@ -361,7 +355,7 @@ class Utility
                     }
                 }
                 // sort list based on value
-                arsort($langs, SORT_NUMERIC);
+                \arsort($langs, \SORT_NUMERIC);
             }
         }
         //extract most important (first)
@@ -370,7 +364,7 @@ class Utility
         }
         //if complex language simplify it
         if (false !== mb_strpos($lang, '-')) {
-            $tmp  = explode('-', $lang);
+            $tmp  = \explode('-', $lang);
             $lang = $tmp[0];
         }
 

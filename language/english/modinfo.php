@@ -28,7 +28,7 @@ define('_MI_XLANGUAGE_MODULE_XOOPSVERSION', 'Xoops Version');
 define('_MI_XLANGUAGE_ADMENU_HOME', 'Home');
 //3.05
 //Help
-define('_MI_XLANGUAGE_DIRNAME', basename(dirname(dirname(__DIR__))));
+define('_MI_XLANGUAGE_DIRNAME', basename(dirname(__DIR__, 2)));
 define('_MI_XLANGUAGE_HELP_HEADER', __DIR__ . '/help/helpheader.tpl');
 define('_MI_XLANGUAGE_BACK_2_ADMIN', 'Back to Administration of ');
 define('_MI_XLANGUAGE_OVERVIEW', 'Overview');
