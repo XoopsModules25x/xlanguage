@@ -20,10 +20,12 @@ use Xmf\Module\Admin;
 use Xmf\Request;
 use XoopsModules\Xlanguage\{
     Helper,
-    LanguageHandler
+    LanguageHandler,
+    Utility
 };
 /** @var Helper $helper */
 /** @var LanguageHandler $languageHandler */
+/** @var Utility $utility */
 /** @var Admin $adminObject */
 
 require_once __DIR__ . '/admin_header.php';
@@ -142,7 +144,7 @@ switch ($op) {
         require_once __DIR__ . '/langform.inc.php';
         break;
     case 'createconfig':
-        Xlanguage\Utility::createConfig();
+        Utility::createConfig();
         redirect_header('main.php', 1, _AM_XLANGUAGE_CREATED);
 
         break;
@@ -175,9 +177,9 @@ switch ($op) {
 xoops_cp_footer();
 
 /**
- * @param \XoopsModules\Xlanguage\LanguageHandler $languageHandler
+ * @param LanguageHandler $languageHandler
  */
-function languageList(Xlanguage\LanguageHandler $languageHandler)
+function languageList(LanguageHandler $languageHandler)
 {
     //    global $languageHandler, $xoopsModule;
 

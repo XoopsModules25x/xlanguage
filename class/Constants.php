@@ -25,7 +25,7 @@ namespace XoopsModules\Xlanguage;
 /**
  * class Constants
  */
-final class Constants
+Interface Constants
 {
     /**#@+
      * Constant definition

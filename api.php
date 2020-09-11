@@ -17,11 +17,11 @@
  **/
 
 use Xmf\Request;
-use XoopsModules\Xlanguage\{
-    Helper,
+use XoopsModules\Xlanguage\{Helper,
     LanguageHandler,
     Utility
 };
+
 /** @var Helper $helper */
 /** @var Utility $utility */
 /** @var LanguageHandler $languageHandler */
@@ -31,7 +31,7 @@ require_once XOOPS_ROOT_PATH . '/modules/xlanguage/include/vars.php';
 
 //$cookie_prefix = preg_replace("/[^a-z_0-9]+/i", "_", preg_replace("/(http(s)?:\/\/)?(www.)?/i","",XOOPS_URL));
 $cookie_var = XLANGUAGE_LANG_TAG;
-$utility = new Utility();
+$utility    = new Utility();
 
 $xlanguage['action'] = false;
 $langTag             = Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
@@ -51,13 +51,13 @@ if (!empty($langTag)) {
     //        $_SERVER['REQUEST_URI'] .= "?".XLANGUAGE_LANG_TAG."=".$xlanguage["lang"];
     //    }
 
-} elseif ($lang == $utility::detectLang()) {
+} elseif ($lang = $utility::detectLang()) {
     $xlanguage['lang'] = $lang;
 } else {
     $xlanguage['lang'] = $xoopsConfig['language'];
 }
 
-$helper = Helper::getInstance();
+$helper          = Helper::getInstance();
 $languageHandler = $helper->getHandler('Language');
 $languageHandler->loadConfig();
 $lang = $languageHandler->getByName($xlanguage['lang']);
