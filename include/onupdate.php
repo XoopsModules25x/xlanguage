@@ -72,7 +72,6 @@ function xoops_module_pre_update_xlanguage(\XoopsModule $module)
 function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = null)
 {
     $moduleDirName      = basename(dirname(__DIR__));
-    $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
     $utility      = new Utility();
     $configurator = new Configurator();
@@ -84,14 +83,17 @@ function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = 
                 $templateFolder = $GLOBALS['xoops']->path('modules/' . $moduleDirName . $folder);
                 if (is_dir($templateFolder)) {
                     $templateList = array_diff(scandir($templateFolder, SCANDIR_SORT_NONE), ['..', '.']);
-                    foreach ($templateList as $k => $v) {
-                        $fileInfo = new \SplFileInfo($templateFolder . $v);
-                        if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
-                            if (is_file($templateFolder . $v)) {
-                                unlink($templateFolder . $v);
+                    if (is_array($templateList)) {
+                        foreach ($templateList as $k => $v) {
+                            $fileInfo = new \SplFileInfo($templateFolder . $v);
+                            if ('html' === $fileInfo->getExtension() && 'index.html' !== $fileInfo->getFilename()) {
+                                if (is_file($templateFolder . $v)) {
+                                    unlink($templateFolder . $v);
+                                }
                             }
                         }
                     }
+
                 }
             }
         }
