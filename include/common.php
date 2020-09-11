@@ -17,19 +17,23 @@
  * @author       XOOPS Development Team
  */
 
-use XoopsModules\Xlanguage;
+use Xmf\Module\Admin;
+use XoopsModules\Xlanguage\{
+    Helper,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
+/** @var \XoopsDatabase $db */
 
 require_once dirname(__DIR__) . '/preloads/autoloader.php';
 
 $moduleDirName      = basename(dirname(__DIR__));
 $moduleDirNameUpper = mb_strtoupper($moduleDirName); //$capsDirName
 
-/** @var \XoopsDatabase $db */
-/** @var \XoopsModules\Xlanguage\Helper $helper */
-/** @var \XoopsModules\Xlanguage\Utility $utility */
 $db      = \XoopsDatabaseFactory::getDatabaseConnection();
-$helper  = \XoopsModules\Xlanguage\Helper::getInstance();
-$utility = new \XoopsModules\Xlanguage\Utility();
+$helper  = Helper::getInstance();
+$utility = new Utility();
 //$configurator = new Xlanguage\Common\Configurator();
 
 $helper->loadLanguage('common');
@@ -38,8 +42,8 @@ $helper->loadLanguage('common');
 //$categoryHandler     = new Xlanguage\CategoryHandler($db);
 //$downloadHandler     = new Xlanguage\DownloadHandler($db);
 
-$pathIcon16 = \Xmf\Module\Admin::iconUrl('', 16);
-$pathIcon32 = \Xmf\Module\Admin::iconUrl('', 32);
+$pathIcon16 = Admin::iconUrl('', 16);
+$pathIcon32 = Admin::iconUrl('', 32);
 if (is_object($helper->getModule())) {
     $pathModIcon16 = $helper->getModule()->getInfo('modicons16');
     $pathModIcon32 = $helper->getModule()->getInfo('modicons32');

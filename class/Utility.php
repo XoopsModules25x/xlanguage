@@ -3,10 +3,7 @@
 namespace XoopsModules\Xlanguage;
 
 use XoopsModules\Xlanguage\{
-    Common,
-    Constants,
-    Helper,
-    LanguageHandler
+    Common
 };
 /** @var Helper $helper */
 /** @var LanguageHandler $languageHandler */

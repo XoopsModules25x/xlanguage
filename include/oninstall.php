@@ -19,7 +19,14 @@
 
 //require_once __DIR__ . '/setup.php';
 
-use XoopsModules\Xlanguage;
+use XoopsModules\Xlanguage\{
+    Common\Configurator,
+    Helper,
+    Utility
+};
+/** @var Helper $helper */
+/** @var Utility $utility */
+/** @var Configurator $configurator */
 
 /**
  * Prepares system prior to attempting to install module
@@ -30,7 +37,7 @@ use XoopsModules\Xlanguage;
 function xoops_module_pre_install_xlanguage(\XoopsModule $module)
 {
     require_once dirname(__DIR__) . '/preloads/autoloader.php';
-    $utility      = new \XoopsModules\Xlanguage\Utility();
+    $utility      = new Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
 
@@ -55,10 +62,9 @@ function xoops_module_install_xlanguage(\XoopsModule $module)
     require_once dirname(__DIR__, 3) . '/mainfile.php';
 
     $moduleDirName = basename(dirname(__DIR__));
-    /** @var Xlanguage\Helper $helper */
-    $helper       = Xlanguage\Helper::getInstance();
-    $utility      = new Xlanguage\Utility();
-    $configurator = new Xlanguage\Common\Configurator();
+    $helper       = Helper::getInstance();
+    $utility      = new Utility();
+    $configurator = new Configurator();
     // Load language files
     $helper->loadLanguage('admin');
     $helper->loadLanguage('modinfo');

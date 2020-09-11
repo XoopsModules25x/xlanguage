@@ -18,23 +18,30 @@
  * @return array
  */
 
-use XoopsModules\Xlanguage\Helper;
+use XoopsModules\Xlanguage\{
+    Helper,
+    LanguageHandler
+};
 
+/** @var Helper $helper */
+/** @var LanguageHandler $languageHandler */
+
+/**
+ * @param $options
+ * @return array|false
+ */
 function b_xlanguage_select_show($options)
 {
     global $xlanguage;
 
     $block = [];
 
-    /** @var Helper $helper */
     if (!class_exists(Helper::class)) {
         //  throw new \RuntimeException('Unable to create the $helper directory');
         return false;
     }
 
     $helper = Helper::getInstance();
-
-    /** @var \XoopsModules\Xlanguage\LanguageHandler $languageHandler */
     $languageHandler = $helper->getHandler('Language');
     $languageHandler->loadConfig();
     $lang_list = $languageHandler->getAllList();

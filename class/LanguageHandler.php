@@ -21,10 +21,6 @@ namespace XoopsModules\Xlanguage;
 
 use XoopsModules\Xlanguage;
 
-//require(XOOPS_ROOT_PATH."/class/xoopslists.php");
-//require XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php';
-//require XOOPS_ROOT_PATH.'/modules/xlanguage/class/Utility.php';
-
 /**
  * Class LanguageHandler
  */
@@ -78,7 +74,7 @@ class LanguageHandler extends \XoopsObjectHandler
      * @param string $name
      * @param bool   $isBase
      *
-     * @return Xlanguage\Blanguage|Xlanguage\Language|null
+     * @return Blanguage|Language|null
      */
     public function getByName($name, $isBase = false)
     {
@@ -201,11 +197,11 @@ class LanguageHandler extends \XoopsObjectHandler
     }
 
     /**
-     * @param \XoopsObject|Blanguage $lang
+     * @param \XoopsObject|Blanguage|Language $lang
      * @return bool|string|array
      * @internal param object $lang
      */
-    public function insert(\XoopsObject $lang)
+    public function insert($lang)
     {
         $val_array = [];
         if (!$lang->isDirty()) {
@@ -286,11 +282,11 @@ class LanguageHandler extends \XoopsObjectHandler
     }
 
     /**
-     * @param \XoopsObject $lang
+     * @param \XoopsObject|Blanguage|Language $lang
      * @return bool
      * @internal param object $lang
      */
-    public function delete(\XoopsObject $lang)//delete(&$lang)
+    public function delete($lang)//delete(&$lang)
     {
         if (!\is_object($lang) || !$lang->getVar('lang_id')) {
             return true;

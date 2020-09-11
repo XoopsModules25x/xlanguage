@@ -63,6 +63,7 @@ class SysUtility
      */
     public static function truncateHtml($text, $length = 100, $ending = '...', $exact = false, $considerHtml = true)
     {
+        $open_tags    = [];
         if ($considerHtml) {
             // if the plain text is shorter than the maximum length, return the whole text
             if (mb_strlen(\preg_replace('/<.*?' . '>/', '', $text)) <= $length) {
@@ -71,7 +72,6 @@ class SysUtility
             // splits all html-tags to scanable lines
             \preg_match_all('/(<.+?' . '>)?([^<>]*)/s', $text, $lines, \PREG_SET_ORDER);
             $total_length = mb_strlen($ending);
-            $open_tags    = [];
             $truncate     = '';
             foreach ($lines as $line_matchings) {
                 // if there is any html-tag in this line, handle it and add it (uncounted) to the output
@@ -153,7 +153,7 @@ class SysUtility
     }
 
     /**
-     * @param null       $helper
+     * @param null|Helper       $helper
      * @param array|null $options
      * @return \XoopsFormDhtmlTextArea|\XoopsFormEditor
      */
@@ -182,7 +182,7 @@ class SysUtility
                 $descEditor = new \XoopsFormEditor(\ucfirst($options['name']), $helper->getConfig('editorUser'), $options, $nohtml = false, $onfailure = 'textarea');
             }
         } else {
-            $descEditor = new \XoopsFormDhtmlTextArea(\ucfirst($options['name']), $options['name'], $options['value'], '100%', '100%');
+            $descEditor = new \XoopsFormDhtmlTextArea(\ucfirst($options['name']), $options['name'], $options['value'], 5, 50);
         }
 
         //        $form->addElement($descEditor);

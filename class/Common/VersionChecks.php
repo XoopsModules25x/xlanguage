@@ -117,7 +117,7 @@ trait VersionChecks
                 } elseif (false !== \strpos($curlReturn, 'Not Found')) {
                     \trigger_error('Repository Not Found: ' . $infoReleasesUrl);
                 } else {
-                    $file              = json_decode($curlReturn, false);
+                    $file              = \json_decode($curlReturn, false);
                     $latestVersionLink = \sprintf("https://github.com/$repository/archive/%s.zip", $file ? \reset($file)->tag_name : $default);
                     $latestVersion     = $file[0]->tag_name;
                     $prerelease        = $file[0]->prerelease;
