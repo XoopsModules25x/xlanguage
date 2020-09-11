@@ -78,6 +78,7 @@ class LanguageHandler extends \XoopsObjectHandler
      */
     public function getByName($name, $isBase = false)
     {
+        $array = [];
         $lang = null;
         if (empty($name) || \preg_match("/[^a-zA-Z0-9\_\-]/", $name)) {
             return $lang;
@@ -314,7 +315,9 @@ class LanguageHandler extends \XoopsObjectHandler
     public function createConfig()
     {
         $file_config = \XLANGUAGE_CONFIG_FILE;
-        @\unlink($file_config);
+        if (\is_file($file_config)) {
+            \unlink($file_config);
+        }
         if (!$fp = \fopen($file_config, 'wb')) {
             echo '<br> the config file can not be created: ' . $file_config;
 
