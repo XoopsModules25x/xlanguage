@@ -21,6 +21,8 @@ namespace XoopsModules\Xlanguage;
 
 use XoopsModules\Xlanguage;
 
+
+
 //require(XOOPS_ROOT_PATH."/class/xoopslists.php");
 //require XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php';
 //require XOOPS_ROOT_PATH.'/modules/xlanguage/class/Utility.php';

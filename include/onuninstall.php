@@ -8,10 +8,10 @@
  * @link            https://xoops.org XOOPS
  */
 
-use XoopsModules\Xlanguage\{
-    Helper,
+use XoopsModules\Xlanguage\{Helper,
     Utility
 };
+
 /** @var Helper $helper */
 /** @var Utility $utility */
 
@@ -37,10 +37,10 @@ function xoops_module_uninstall_xlanguage(\XoopsModule $module)
 {
     //    return true;
 
-    $moduleDirName      = basename(dirname(__DIR__));
+    $moduleDirName      = \basename(\dirname(__DIR__));
     $moduleDirNameUpper = mb_strtoupper($moduleDirName);
-    $helper = Helper::getInstance();
-    $utility = new Utility();
+    $helper             = Helper::getInstance();
+    $utility            = new Utility();
 
     $success = true;
     $helper->loadLanguage('admin');

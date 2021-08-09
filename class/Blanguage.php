@@ -19,7 +19,21 @@ namespace XoopsModules\Xlanguage;
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use XoopsDatabaseFactory;
 use XoopsModules\Xlanguage;
+use XoopsObject;
+
+
+
+
+
+
+
+
+
+
+
+
 
 //require(XOOPS_ROOT_PATH."/class/xoopslists.php");
 //require XOOPS_ROOT_PATH.'/modules/xlanguage/include/vars.php';
@@ -28,7 +42,7 @@ use XoopsModules\Xlanguage;
 /**
  * Class Blanguage
  */
-class Blanguage extends \XoopsObject
+class Blanguage extends XoopsObject
 {
     public $isBase = false;
     public $db;
@@ -41,7 +55,7 @@ class Blanguage extends \XoopsObject
     public function __construct($isBase = false)
     {
         $this->isBase = $isBase;
-        $this->db     = \XoopsDatabaseFactory::getDatabaseConnection();
+        $this->db     = XoopsDatabaseFactory::getDatabaseConnection();
         $this->table  = $this->db->prefix('xlanguage_base');
         $this->initVar('lang_id', \XOBJ_DTYPE_INT);
         $this->initVar('weight', \XOBJ_DTYPE_INT);

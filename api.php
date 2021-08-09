@@ -17,7 +17,8 @@
  **/
 
 use Xmf\Request;
-use XoopsModules\Xlanguage\{Helper,
+use XoopsModules\Xlanguage\{
+    Helper,
     LanguageHandler,
     Utility
 };

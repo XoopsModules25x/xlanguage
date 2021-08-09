@@ -10,11 +10,9 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 use XoopsModules\Xlanguage;
@@ -34,17 +32,7 @@ if ((!defined('XOOPS_ROOT_PATH')) || !($GLOBALS['xoopsUser'] instanceof \XoopsUs
     exit('Restricted access' . PHP_EOL);
 }
 
-/**
- * @param string $tablename
- *
- * @return bool
- */
-function tableExists($tablename)
-{
-    $result = $GLOBALS['xoopsDB']->queryF("SHOW TABLES LIKE '$tablename'");
 
-    return $GLOBALS['xoopsDB']->getRowsNum($result) > 0;
-}
 
 /**
  * Prepares system prior to attempting to install module
@@ -54,7 +42,7 @@ function tableExists($tablename)
  */
 function xoops_module_pre_update_xlanguage(\XoopsModule $module)
 {
-    $utility       = new Utility();
+    $utility = new Utility();
 
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -71,7 +59,7 @@ function xoops_module_pre_update_xlanguage(\XoopsModule $module)
  */
 function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = null)
 {
-    $moduleDirName      = basename(dirname(__DIR__));
+    $moduleDirName = \basename(\dirname(__DIR__));
 
     $utility      = new Utility();
     $configurator = new Configurator();
@@ -93,7 +81,6 @@ function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = 
                             }
                         }
                     }
-
                 }
             }
         }
@@ -131,7 +118,7 @@ function xoops_module_update_xlanguage(\XoopsModule $module, $previousVersion = 
 
         //  ---  COPY blank.png FILES ---------------
         if (count($configurator->copyBlankFiles) > 0) {
-            $file = dirname(__DIR__) . '/assets/images/blank.png';
+            $file = \dirname(__DIR__) . '/assets/images/blank.png';
             foreach (array_keys($configurator->copyBlankFiles) as $i) {
                 $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
                 $utility::copyFile($file, $dest);

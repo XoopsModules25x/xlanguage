@@ -10,20 +10,18 @@
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
+ * @copyright    XOOPS Project (https://xoops.org)
  * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author       XOOPS Development Team
+ * @author      XOOPS Development Team
  */
 
 //require_once __DIR__ . '/setup.php';
 
-use XoopsModules\Xlanguage\{
-    Common\Configurator,
+use XoopsModules\Xlanguage\{Common\Configurator,
     Helper,
     Utility
 };
+
 /** @var Helper $helper */
 /** @var Utility $utility */
 /** @var Configurator $configurator */
@@ -36,7 +34,7 @@ use XoopsModules\Xlanguage\{
  */
 function xoops_module_pre_install_xlanguage(\XoopsModule $module)
 {
-    require_once dirname(__DIR__) . '/preloads/autoloader.php';
+    require_once \dirname(__DIR__) . '/preloads/autoloader.php';
     $utility      = new Utility();
     $xoopsSuccess = $utility::checkVerXoops($module);
     $phpSuccess   = $utility::checkVerPhp($module);
@@ -59,12 +57,12 @@ function xoops_module_pre_install_xlanguage(\XoopsModule $module)
  */
 function xoops_module_install_xlanguage(\XoopsModule $module)
 {
-    require_once dirname(__DIR__, 3) . '/mainfile.php';
+    require_once \dirname(__DIR__, 3) . '/mainfile.php';
 
-    $moduleDirName = basename(dirname(__DIR__));
-    $helper       = Helper::getInstance();
-    $utility      = new Utility();
-    $configurator = new Configurator();
+    $moduleDirName = \basename(\dirname(__DIR__));
+    $helper        = Helper::getInstance();
+    $utility       = new Utility();
+    $configurator  = new Configurator();
     // Load language files
     $helper->loadLanguage('admin');
     $helper->loadLanguage('modinfo');
@@ -73,8 +71,8 @@ function xoops_module_install_xlanguage(\XoopsModule $module)
     global $xoopsModule;
     $moduleId = $xoopsModule->getVar('mid');
     // $moduleId2        = $helper->getModule()->mid();
-/** @var \XoopsGroupPermHandler $grouppermHandler */
-$grouppermHandler = xoops_getHandler('groupperm');
+    /** @var \XoopsGroupPermHandler $grouppermHandler */
+    $grouppermHandler = xoops_getHandler('groupperm');
     // access rights ------------------------------------------
     $grouppermHandler->addRight($moduleDirName . '_approve', 1, (int)XOOPS_GROUP_ADMIN, $moduleId);
     $grouppermHandler->addRight($moduleDirName . '_submit', 1, (int)XOOPS_GROUP_ADMIN, $moduleId);
@@ -92,7 +90,7 @@ $grouppermHandler = xoops_getHandler('groupperm');
 
     //  ---  COPY blank.png FILES ---------------
     if (count($configurator->copyBlankFiles) > 0) {
-        $file = dirname(__DIR__) . '/assets/images/blank.png';
+        $file = \dirname(__DIR__) . '/assets/images/blank.png';
         foreach (array_keys($configurator->copyBlankFiles) as $i) {
             $dest = $configurator->copyBlankFiles[$i] . '/blank.png';
             $utility::copyFile($file, $dest);

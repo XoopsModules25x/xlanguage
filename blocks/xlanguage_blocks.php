@@ -18,8 +18,7 @@
  * @return array
  */
 
-use XoopsModules\Xlanguage\{
-    Helper,
+use XoopsModules\Xlanguage\{Helper,
     LanguageHandler
 };
 
@@ -41,7 +40,7 @@ function b_xlanguage_select_show($options)
         return false;
     }
 
-    $helper = Helper::getInstance();
+    $helper          = Helper::getInstance();
     $languageHandler = $helper->getHandler('Language');
     $languageHandler->loadConfig();
     $lang_list = $languageHandler->getAllList();

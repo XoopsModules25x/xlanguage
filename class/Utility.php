@@ -2,9 +2,12 @@
 
 namespace XoopsModules\Xlanguage;
 
-use XoopsModules\Xlanguage\{
-    Common
+use XoopsModules\Xlanguage\{Common
 };
+use Xmf\Request;
+
+
+
 /** @var Helper $helper */
 /** @var LanguageHandler $languageHandler */
 
@@ -14,7 +17,6 @@ use XoopsModules\Xlanguage\{
 class Utility extends Common\SysUtility
 {
     //--------------- Custom module methods -----------------------------
-
     /**
      * @param $value
      * @param $out_charset
@@ -65,7 +67,7 @@ class Utility extends Common\SysUtility
      */
     public static function createConfig()
     {
-        $helper = Helper::getInstance();
+        $helper          = Helper::getInstance();
         $languageHandler = $helper->getHandler('Language');
 
         return $languageHandler->createConfig();
@@ -76,9 +78,9 @@ class Utility extends Common\SysUtility
      */
     public static function loadConfig()
     {
-        $helper = Helper::getInstance();
+        $helper          = Helper::getInstance();
         $languageHandler = $helper->getHandler('Language');
-        $config           = $languageHandler->loadFileConfig();
+        $config          = $languageHandler->loadFileConfig();
 
         return $config;
     }
@@ -131,13 +133,13 @@ class Utility extends Common\SysUtility
         global $available_languages, $_SERVER;
 
         //      if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-        if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
-            $HTTP_ACCEPT_LANGUAGE = \Xmf\Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
+        if (Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
+            $HTTP_ACCEPT_LANGUAGE = Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
         }
 
         //if (!empty($_SERVER['HTTP_USER_AGENT'])) {
-        if (\Xmf\Request::hasVar('HTTP_USER_AGENT', 'SERVER')) {
-            $HTTP_USER_AGENT = \Xmf\Request::getString('HTTP_USER_AGENT', '', 'SERVER');
+        if (Request::hasVar('HTTP_USER_AGENT', 'SERVER')) {
+            $HTTP_USER_AGENT = Request::getString('HTTP_USER_AGENT', '', 'SERVER');
         }
 
         $lang       = '';
@@ -202,9 +204,9 @@ class Utility extends Common\SysUtility
         $patterns = [];
         if (!isset($xlanguage_langs)) {
             $xlanguage_langs = [];
-            $helper = Helper::getInstance();
+            $helper          = Helper::getInstance();
             $languageHandler = $helper->getHandler('Language');
-            $langs            = $languageHandler->getAll(true);
+            $langs           = $languageHandler->getAll(true);
             //        $langs = $GLOBALS['xlanguageHandler']->getAll(true); //mb
             if (false !== $langs) {
                 foreach (\array_keys($langs) as $_lang) {
@@ -341,9 +343,9 @@ class Utility extends Common\SysUtility
         $langs = [];
         $lang  = '';
         //        if (isset($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
-        if (\Xmf\Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
+        if (Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
             // break up string into pieces (languages and q factors)
-            $temp = \Xmf\Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
+            $temp = Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
             \preg_match_all('/([a-z]{1,8}(-[a-z]{1,8})?)\s*(;\s*q\s*=\s*(1|0\.\d+))?/i', $temp, $lang_parse);
             if (\count($lang_parse[1])) {
                 // create a list like "en" => 0.8
