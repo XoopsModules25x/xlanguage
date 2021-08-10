@@ -401,10 +401,6 @@ class LanguageHandler extends XoopsObjectHandler
             return $config;
         }
         require $file_config;
-        if (isset(${\XLANGUAGE_CONFIG_VAR})) {
-            return ${\XLANGUAGE_CONFIG_VAR};
-        }
-
-        return false;
+        return ${\XLANGUAGE_CONFIG_VAR} ?? false;
     }
 }
