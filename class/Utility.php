@@ -195,7 +195,7 @@ class Utility extends Common\SysUtility
 
     /**
      * @param string $text
-     * @return mixed
+     * @return array|string|string[]|null
      */
     public static function cleanMultiLang($text)
     {

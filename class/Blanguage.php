@@ -110,7 +110,7 @@ class Blanguage extends XoopsObject
     }
 
     /**
-     * @return mixed
+     * @return bool
      */
     public function hasBase()
     {
