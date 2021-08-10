@@ -18,11 +18,11 @@
 
 use Xmf\Module\Admin;
 use Xmf\Request;
-use XoopsModules\Xlanguage\{
-    Helper,
+use XoopsModules\Xlanguage\{Helper,
     LanguageHandler,
     Utility
 };
+
 /** @var Helper $helper */
 /** @var LanguageHandler $languageHandler */
 /** @var Utility $utility */
@@ -46,7 +46,7 @@ if (isset($_GET)) {
 
 define('XLANG_CONFIG_LINK', "<a href='main.php' target='_self'>" . _AM_XLANGUAGE_CONFIG . '</a>');
 
-$helper = Helper::getInstance();
+$helper          = Helper::getInstance();
 $languageHandler = $helper->getHandler('Language');
 $languageHandler->loadConfig();
 
@@ -78,7 +78,7 @@ switch ($op) {
         } else {
             $lang = $languageHandler->create(true, $isBase);
         }
-        $lang_name = preg_replace("/[^a-zA-Z0-9\_\-]/", '', $lang_name);
+        $lang_name = preg_replace('/[^a-zA-Z0-9\_\-]/', '', $lang_name);
 
         $lang->setVar('lang_name', $lang_name);
         $lang->setVar('lang_desc', $lang_desc);

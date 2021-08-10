@@ -19,12 +19,30 @@ namespace XoopsModules\Xlanguage;
  * @author       D.J.(phppp) php_pp@hotmail.com
  **/
 
+use XoopsLists;
 use XoopsModules\Xlanguage;
+use XoopsObjectHandler;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /**
  * Class LanguageHandler
  */
-class LanguageHandler extends \XoopsObjectHandler
+class LanguageHandler extends XoopsObjectHandler
 {
     public $cachedConfig;
 
@@ -79,8 +97,8 @@ class LanguageHandler extends \XoopsObjectHandler
     public function getByName($name, $isBase = false)
     {
         $array = [];
-        $lang = null;
-        if (empty($name) || \preg_match("/[^a-zA-Z0-9\_\-]/", $name)) {
+        $lang  = null;
+        if (empty($name) || \preg_match('/[^a-zA-Z0-9\_\-]/', $name)) {
             return $lang;
         }
 
@@ -306,7 +324,7 @@ class LanguageHandler extends \XoopsObjectHandler
      */
     public function getXoopsLangList()
     {
-        return \XoopsLists::getLangList();
+        return XoopsLists::getLangList();
     }
 
     /**
@@ -383,10 +401,6 @@ class LanguageHandler extends \XoopsObjectHandler
             return $config;
         }
         require $file_config;
-        if (isset(${\XLANGUAGE_CONFIG_VAR})) {
-            return ${\XLANGUAGE_CONFIG_VAR};
-        }
-
-        return false;
+        return ${\XLANGUAGE_CONFIG_VAR} ?? false;
     }
 }

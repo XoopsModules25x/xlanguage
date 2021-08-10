@@ -24,15 +24,14 @@ require_once __DIR__ . '/preloads/autoloader.php';
 $moduleDirName      = basename(__DIR__);
 $moduleDirNameUpper = mb_strtoupper($moduleDirName);
 
-/** @var \XoopsModules\Xlanguage\Helper $helper */
 $helper = Helper::getInstance();
 $helper->loadLanguage('common');
 
 // ------------------- Informations ------------------- //
 $modversion = [
     'version'             => 3.1,
-    'module_status'       => 'RC 2',
-    'release_date'        => '2020/09/10',
+    'module_status'       => 'Final',
+    'release_date'        => '2021/08/10',
     'name'                => _MI_XLANGUAGE_NAME,
     'description'         => _MI_XLANGUAGE_DESC,
     'official'            => 1, //1 indicates official XOOPS module supported by XOOPS Dev Team, 0 means 3rd party supported
@@ -71,7 +70,7 @@ $modversion = [
     'module_website_url'  => 'www.xoops.org',
     'module_website_name' => 'XOOPS Project',
     // ------------------- Min Requirements -------------------
-    'min_php'             =>  '7.2',
+    'min_php'             => '7.3',
     'min_xoops'           => '2.5.10',
     'min_admin'           => '1.2',
     'min_db'              => ['mysql' => '5.5'],

@@ -11,14 +11,15 @@ namespace XoopsModules\Xlanguage\Common;
  but WITHOUT ANY WARRANTY; without even the implied warranty of
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
+
+
+
 /**
  * Configurator Class
  *
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
  * @author      XOOPS Development Team
- * @package
- * @since       1.05
  */
 
 /**
@@ -35,6 +36,7 @@ class Configurator
     public $oldFiles        = [];
     public $oldFolders      = [];
     public $renameTables    = [];
+    public $renameColumns   = [];
     public $moduleStats     = [];
     public $modCopyright;
     public $icons           = [];
@@ -55,6 +57,7 @@ class Configurator
         $this->oldFiles        = $config->oldFiles;
         $this->oldFolders      = $config->oldFolders;
         $this->renameTables    = $config->renameTables;
+        $this->renameColumns   = $config->renameColumns;
         $this->moduleStats     = $config->moduleStats;
         $this->modCopyright    = $config->modCopyright;
 

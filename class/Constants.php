@@ -13,11 +13,9 @@ namespace XoopsModules\Xlanguage;
  */
 
 /**
- * @copyright    XOOPS Project https://xoops.org/
- * @license      GNU GPL 2 or later (http://www.gnu.org/licenses/gpl-2.0.html)
- * @package
- * @since
- * @author     XOOPS Development Team
+ * @copyright    XOOPS Project (https://xoops.org)
+ * @license      GNU GPL 2 or later (https://www.gnu.org/licenses/gpl-2.0.html)
+ * @author      XOOPS Development Team
  */
 
 //defined('XOOPS_ROOT_PATH') || die('Restricted access');
@@ -25,14 +23,13 @@ namespace XoopsModules\Xlanguage;
 /**
  * class Constants
  */
-Interface Constants
+interface Constants
 {
     /**#@+
      * Constant definition
      */
 
     public const DISALLOW = 0;
-
     /**
      * no delay XOOPS redirect delay (in seconds)
      */
@@ -49,6 +46,5 @@ Interface Constants
      * long XOOPS redirect delay (in seconds)
      */
     public const REDIRECT_DELAY_LONG = 7;
-
     /**#@-*/
 }

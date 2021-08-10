@@ -1,0 +1,16 @@
+-
+    lang_id: '1'
+    weight: '1'
+    lang_name: english
+    lang_desc: English
+    lang_code: en
+    lang_charset: UTF-8
+    lang_image: usa.gif
+-
+    lang_id: '2'
+    weight: '2'
+    lang_name: spanish
+    lang_desc: Spanish
+    lang_code: es
+    lang_charset: UTF-8
+    lang_image: spanish.gif

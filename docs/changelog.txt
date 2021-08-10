@@ -1,3 +1,7 @@
+<h5>3.1 Final        [2021-08-10]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.22, PHP 8.0.9
+<hr>
+- added test data (mamba)
+
 <h5>3.1 RC 2        [2020-09-09]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.10, PHP 8.0 Beta2
 <hr>
 - fixed warning about XoopsObject compatibility (issue #10) (goffy)

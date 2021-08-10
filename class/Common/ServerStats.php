@@ -12,6 +12,8 @@ namespace XoopsModules\Xlanguage\Common;
  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
  */
 
+
+
 /**
  * @copyright   XOOPS Project (https://xoops.org)
  * @license     http://www.fsf.org/copyleft/gpl.html GNU public license
