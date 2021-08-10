@@ -78,7 +78,7 @@ switch ($op) {
         } else {
             $lang = $languageHandler->create(true, $isBase);
         }
-        $lang_name = preg_replace("/[^a-zA-Z0-9\_\-]/", '', $lang_name);
+        $lang_name = preg_replace('/[^a-zA-Z0-9\_\-]/', '', $lang_name);
 
         $lang->setVar('lang_name', $lang_name);
         $lang->setVar('lang_desc', $lang_desc);

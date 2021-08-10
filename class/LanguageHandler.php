@@ -98,7 +98,7 @@ class LanguageHandler extends XoopsObjectHandler
     {
         $array = [];
         $lang  = null;
-        if (empty($name) || \preg_match("/[^a-zA-Z0-9\_\-]/", $name)) {
+        if (empty($name) || \preg_match('/[^a-zA-Z0-9\_\-]/', $name)) {
             return $lang;
         }
 

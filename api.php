@@ -100,9 +100,9 @@ if ($xlanguage['action']) {
             $GLOBALS['HTTP' . $HV . '_VARS'] = ${$HV};
         }
     }
-    ob_start("XoopsModules\Xlanguage\Utility::encodeCharSet");
+    ob_start('XoopsModules\Xlanguage\Utility::encodeCharSet');
 } else {
-    ob_start("XoopsModules\Xlanguage\Utility::cleanMultiLang");
+    ob_start('XoopsModules\Xlanguage\Utility::cleanMultiLang');
 }
 
 /*
