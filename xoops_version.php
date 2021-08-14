@@ -29,7 +29,7 @@ $helper->loadLanguage('common');
 
 // ------------------- Informations ------------------- //
 $modversion = [
-    'version'             => '3.1.1',
+    'version'             => '3.1.2',
     'module_status'       => 'Final',
     'release_date'        => '2021/08/13',
     'name'                => _MI_XLANGUAGE_NAME,
@@ -80,7 +80,7 @@ $modversion = [
     'adminindex'          => 'admin/index.php',
     'adminmenu'           => 'admin/menu.php',
     // ------------------- Main Menu -------------------
-    'hasMain'             => 1,
+    'hasMain'             => 0,
 
     // ------------------- Install/Update -------------------
     //    'onInstall'           => 'include/oninstall.php',
