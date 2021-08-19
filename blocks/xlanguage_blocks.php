@@ -84,7 +84,7 @@ function b_xlanguage_select_show($options)
     $block['display']   = $options[0];
     $block['delimitor'] = $options[1];
     $block['number']    = $options[2];
-    $block['selected']  = $xlanguage['lang'];
+    $block['selected']  = $xlanguage['lang']??'';
     if ('images' === $options[0] || 'text' === $options[0]) {
         $query_string = htmlspecialchars(implode('&', $QUERY_STRING_new), ENT_QUOTES | ENT_HTML5);
         $query_string .= empty($query_string) ? '' : '&amp;';

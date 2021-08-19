@@ -101,7 +101,7 @@ class Utility extends Common\SysUtility
      */
     public static function langDetect($str = '', $envType = '')
     {
-        global $available_languages;
+        require dirname(__DIR__) . '/include/vars.php';
         $lang = '';
 
         if (!empty($available_languages)) {
@@ -130,7 +130,7 @@ class Utility extends Common\SysUtility
      */
     public static function detectLang()
     {
-        global $available_languages, $_SERVER;
+        global  $_SERVER;
 
         //      if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         if (Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
@@ -146,17 +146,17 @@ class Utility extends Common\SysUtility
         $xoops_lang = '';
         // 1. try to findout user's language by checking its HTTP_ACCEPT_LANGUAGE variable
 
-        //    if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
-        //        $accepted    = explode(',', $HTTP_ACCEPT_LANGUAGE);
-        //        $acceptedCnt = count($accepted);
-        //        reset($accepted);
-        //        for ($i = 0; $i < $acceptedCnt; ++$i) {
-        //            $lang = static::langDetect($accepted[$i], 1);
-        //            if (strncasecmp($lang, 'en', 2)) {
-        //                break;
-        //            }
-        //        }
-        //    }
+            if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
+                $accepted    = explode(',', $HTTP_ACCEPT_LANGUAGE);
+                $acceptedCnt = count($accepted);
+                reset($accepted);
+                for ($i = 0; $i < $acceptedCnt; ++$i) {
+                    $lang = static::langDetect($accepted[$i], 1);
+                    if (strncasecmp($lang, 'en', 2)) {
+                        break;
+                    }
+                }
+            }
 
         //This returns the most preferred language "q=1"
         $lang = static::getPreferredLanguage();
@@ -167,7 +167,7 @@ class Utility extends Common\SysUtility
         }
         // 3. If we catch a valid language, configure it
         if (!empty($lang)) {
-            $xoops_lang = $available_languages[$lang][1];
+            $xoops_lang = isset($available_languages[$lang][1])?:'';
         }
 
         return $xoops_lang;
