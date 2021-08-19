@@ -145,10 +145,9 @@ class Utility extends Common\SysUtility
 
             if (empty($lang) && !empty($HTTP_ACCEPT_LANGUAGE)) {
                 $accepted    = explode(',', $HTTP_ACCEPT_LANGUAGE);
-                $acceptedCnt = count($accepted);
                 reset($accepted);
-                for ($i = 0; $i < $acceptedCnt; ++$i) {
-                    $lang = static::langDetect($accepted[$i], 1);
+                foreach ($accepted as $iValue) {
+                    $lang = static::langDetect($iValue, 1);
                     if (strncasecmp($lang, 'en', 2)) {
                         break;
                     }
