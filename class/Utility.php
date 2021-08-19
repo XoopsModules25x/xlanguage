@@ -6,8 +6,6 @@ use XoopsModules\Xlanguage\{Common
 };
 use Xmf\Request;
 
-
-
 /** @var Helper $helper */
 /** @var LanguageHandler $languageHandler */
 
@@ -126,12 +124,11 @@ class Utility extends Common\SysUtility
     }
 
     /**
-     * @return string
+     * @return string|bool
      */
     public static function detectLang()
     {
         global  $_SERVER;
-
         //      if (!empty($_SERVER['HTTP_ACCEPT_LANGUAGE'])) {
         if (Request::hasVar('HTTP_ACCEPT_LANGUAGE', 'SERVER')) {
             $HTTP_ACCEPT_LANGUAGE = Request::getString('HTTP_ACCEPT_LANGUAGE', '', 'SERVER');
@@ -166,7 +163,7 @@ class Utility extends Common\SysUtility
             $lang = static::langDetect($HTTP_USER_AGENT, 2);
         }
         // 3. If we catch a valid language, configure it
-        if (!empty($lang)) {
+          if (!empty($lang)) {
             $xoops_lang = isset($available_languages[$lang][1])?:'';
         }
 
