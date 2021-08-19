@@ -172,7 +172,7 @@ class Utility extends Common\SysUtility
 
     /**
      * @param $output
-     * @return array|mixed|string
+     * @return array|string|null
      */
     public static function encodeCharSet($output)
     {
