@@ -1,3 +1,11 @@
+<h5>3.1.3 FINAL        [2021-08-20]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.22, PHP 8.0.9
+<hr>
+
+
+<h5>3.1.3 RC-1        [2021-08-18]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.22, PHP 8.0.9
+<hr>
+- fix site stays on English instead of going to local default language (liomj/mamba)
+
 <h5>3.1.2 Final        [2021-08-13]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.22, PHP 8.0.9
 <hr>
 - set 'hasMain'  in xoops_version.php to 0 (alain01/geekwright)
