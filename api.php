@@ -40,8 +40,6 @@ $utility       = new Utility();
 $xlanguage['action'] = false;
 $langTag             = Request::getString(XLANGUAGE_LANG_TAG, '', 'GET');
 if (!empty($langTag)) {
-    //comment out the line 45 and line 128 if you want to switch also the Admin's language. 
-    //Otherwise the Admin will remain using your default language set in Site Preferences
     if (!empty($_GET[XLANGUAGE_LANG_TAG])) {
         $cookie_path = '/';
         setcookie($cookie_var, $langTag, time() + 3600 * 24 * 30, $cookie_path, '', 0);
