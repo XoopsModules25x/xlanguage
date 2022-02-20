@@ -1,3 +1,7 @@
+<h5>3.1.4 Beta 1        [2022-02-20]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.27, PHP 8.0.16
+<hr>
+- index.html in /preloads (mamba)
+
 <h5>3.1.3 FINAL        [2021-08-20]</h5>  Dev: XOOPS 2.5.11, PHP 7.4.22, PHP 8.0.9
 <hr>
 

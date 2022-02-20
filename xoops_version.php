@@ -29,9 +29,9 @@ $helper->loadLanguage('common');
 
 // ------------------- Informations ------------------- //
 $modversion = [
-    'version'             => '3.1.3',
-    'module_status'       => 'Final',
-    'release_date'        => '2021/08/20',
+    'version'             => '3.1.4',
+    'module_status'       => 'Beta 1',
+    'release_date'        => '2022/02/20',
     'name'                => _MI_XLANGUAGE_NAME,
     'description'         => _MI_XLANGUAGE_DESC,
     'official'            => 1, //1 indicates official XOOPS module supported by XOOPS Dev Team, 0 means 3rd party supported
